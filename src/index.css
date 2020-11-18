@@ -1,4 +1,4 @@
-:root {
+/* :root {
 	--primary-color: rgb(249, 253, 2);
 	--darker-primary: rgb(207, 211, 1);
 	--title-color: rgb(49, 49, 49);
@@ -9,7 +9,7 @@
 	--mainSpacing: 0.2rem;
 	--light-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
 	--dark-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-}
+} */
 
 * {
 	margin: 0;
@@ -34,7 +34,7 @@ img:not(.image-logo) {
 
 h1,
 h2 {
-	font-size: 2.5rem;
+	font-size: 1.5rem;
 	text-transform: capitalize;
 	margin-bottom: 1.25rem;
 }
@@ -56,7 +56,7 @@ p {
 	line-height: 2;
 }
 
-.btn {
+/* .btn {
 	color: var(--title-color);
 	font-weight: bold;
 	background: var(--primary-color);
@@ -84,4 +84,4 @@ main {
 
 .cards {
 	margin-top: 10rem;
-}
+} */

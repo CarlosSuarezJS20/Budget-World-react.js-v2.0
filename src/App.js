@@ -1,11 +1,22 @@
 import React, { Component } from 'react';
-import classes from './App.css';
+import Layout from './hoc/Layout/Layout';
 
 class App extends Component {
 	render() {
 		return (
-			<div className={classes.App}>
-				<h1 className={classes.Header}>Budget World</h1>
+			<div>
+				<Layout>
+					<div>
+						<h1>Items Holder</h1>
+						<h2>Item</h2>
+					</div>
+					<div>
+						<h1>Add New Form</h1>
+					</div>
+					<div>
+						<h1>Plan Your trip</h1>
+					</div>
+				</Layout>
 			</div>
 		);
 	}

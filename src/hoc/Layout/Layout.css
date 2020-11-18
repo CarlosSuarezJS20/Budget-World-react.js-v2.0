@@ -1,0 +1,17 @@
+.Layout {
+	margin-top: 100px;
+	margin-left: 10px;
+}
+
+@media (min-width: 970px) {
+	.Layout {
+		margin-top: 150px;
+	}
+}
+
+@media (min-width: 1300px) {
+	.Layout {
+		margin-top: 100px;
+		margin-left: 350px;
+	}
+}
