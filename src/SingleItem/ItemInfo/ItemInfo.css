@@ -1,0 +1,32 @@
+.CardInfo {
+	padding: 1rem;
+}
+
+.CardInfo h3 {
+	border-top: 1px solid rgb(49, 49, 49);
+	border-bottom: 1px solid rgb(49, 49, 49);
+	margin-bottom: 0.5rem;
+}
+
+.CardTitle {
+	margin: 0.5rem 0;
+}
+
+.CardPrice {
+	font-weight: 400;
+	margin-left: 0.5rem;
+	margin-top: 1rem;
+	margin-bottom: 1rem;
+}
+
+.CardDescription {
+	margin-left: 0.5rem;
+}
+
+.CardInfoText {
+	margin-top: 1rem;
+	font-family: inherit;
+	border: none;
+	pointer-events: none;
+	resize: none;
+}

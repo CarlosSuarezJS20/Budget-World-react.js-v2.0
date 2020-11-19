@@ -1,0 +1,66 @@
+.CardFooter {
+	background: rgb(49, 49, 49);
+	padding: 0.5rem 1rem;
+	margin-left: 0rem;
+	margin-right: 0rem;
+	display: grid;
+	grid-template-columns: repeat(2, 1fr);
+	justify-items: center;
+	justify-content: space-between;
+}
+
+.CardFooter span {
+	color: var(--main-white);
+	font-size: 0.7rem;
+	font-weight: bolder;
+	padding: 0.5rem;
+	text-transform: uppercase;
+}
+
+.FooterInfo {
+	display: grid;
+	grid-template-columns: repeat(2, 1fr);
+	justify-content: center;
+}
+
+.CardBtns {
+	display: grid;
+	grid-template-columns: repeat(2, 70px);
+	justify-items: center;
+}
+
+.CardsBtns {
+	display: grid;
+	grid-template-columns: repeat(2, 70px);
+	justify-items: center;
+}
+
+.FooterBtn {
+	color: rgb(49, 49, 49);
+	font-weight: bold;
+	background: rgb(249, 253, 2);
+	display: inline-block;
+	padding: 0.2rem 0.5rem;
+	text-transform: capitalize;
+	border-radius: 5px;
+	border: 1px solid rgb(207, 211, 1);
+	box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+	transition: all 0.3s linear;
+	cursor: pointer;
+}
+
+.FooterBtn:hover {
+	background: rgb(207, 211, 1);
+}
+
+@media (min-width: 1070px) {
+	.CardFooter {
+		padding: 0.5rem 0.7rem;
+	}
+}
+
+@media (min-width: 1200px) {
+	.CardFooter {
+		padding: 0.5rem 0.7rem;
+	}
+}

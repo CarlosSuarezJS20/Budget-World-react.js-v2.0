@@ -1,0 +1,27 @@
+.Card {
+	border: 1px solid rgb(49, 49, 49);
+	border-radius: 5px;
+	margin-top: 4rem;
+	margin-bottom: 6rem;
+	margin-left: 0rem;
+	margin-right: 0rem;
+	display: grid;
+	grid-template-columns: 1fr;
+	grid-template-rows: auto 1fr auto;
+}
+
+@media screen and (min-width: 1070px) {
+	.Card {
+		margin-top: 0;
+		margin-bottom: 6rem;
+		margin-left: 0.2rem;
+		margin-right: 0.2rem;
+	}
+}
+
+@media screen and (min-width: 1200px) {
+	.Card {
+		margin-top: -5rem;
+		margin-bottom: 10rem;
+	}
+}

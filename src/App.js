@@ -1,18 +1,15 @@
 import React, { Component } from 'react';
 import Layout from './hoc/Layout/Layout';
+import Itemsholder from './containers/ItemsHolder/Itemsholder';
+import ItemBuilder from './containers/ItemsHolder/ItemBuilder/ItemBuilder';
 
 class App extends Component {
 	render() {
 		return (
 			<div>
 				<Layout>
-					<div>
-						<h1>Items Holder</h1>
-						<h2>Item</h2>
-					</div>
-					<div>
-						<h1>Add New Form</h1>
-					</div>
+					<Itemsholder />
+					<ItemBuilder />
 					<div>
 						<h1>Plan Your trip</h1>
 					</div>
