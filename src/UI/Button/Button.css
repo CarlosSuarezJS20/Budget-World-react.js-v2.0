@@ -1,0 +1,33 @@
+.Button {
+	color: rgb(49, 49, 49);
+	font-weight: bold;
+	background: rgb(249, 253, 2);
+	display: inline-block;
+	padding: 0.5rem 5.5rem;
+	text-transform: capitalize;
+	border: 1px solid rgb(207, 211, 1);
+	box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+	transition: all 0.3s linear;
+	cursor: pointer;
+}
+
+.Button:hover {
+	background: rgb(207, 211, 1);
+}
+
+.Button:disabled {
+	color: #ccc;
+	cursor: not-allowed;
+}
+
+@media (min-width: 770px) {
+	.Button {
+		padding: 0.5rem 10.5rem;
+	}
+}
+
+@media (min-width: 1300px) {
+	.Button {
+		padding: 0.5rem 13.5rem;
+	}
+}

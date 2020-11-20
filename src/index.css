@@ -55,33 +55,3 @@ p {
 	font-size: 0.7rem;
 	line-height: 2;
 }
-
-/* .btn {
-	color: var(--title-color);
-	font-weight: bold;
-	background: var(--primary-color);
-	display: inline-block;
-	padding: 0.2rem 0.5rem;
-	text-transform: capitalize;
-	border-radius: var(--border-radius);
-	border: 1px solid var(--darker-primary);
-	box-shadow: var(--light-shadow);
-	transition: var(--mainTransition);
-	cursor: pointer;
-}
-
-.btn:hover {
-	background: var(--darker-primary);
-}
-
-.list-holder {
-	height: 100%;
-}
-
-main {
-	min-height: 0;
-}
-
-.cards {
-	margin-top: 10rem;
-} */

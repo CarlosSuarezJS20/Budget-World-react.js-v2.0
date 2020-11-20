@@ -10,7 +10,7 @@
 }
 
 .CardFooter span {
-	color: var(--main-white);
+	color: white;
 	font-size: 0.7rem;
 	font-weight: bolder;
 	padding: 0.5rem;

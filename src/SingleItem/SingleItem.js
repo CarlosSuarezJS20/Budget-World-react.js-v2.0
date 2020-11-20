@@ -1,19 +1,28 @@
-import React, { Component } from 'react';
+import React from 'react';
 import classes from './SingleItem.css';
-import ImageHolder from '../UI/ImageHolder/ImageHolder';
+import ImageHolder from './ImageHolder/ImageHolder';
 import ItemInfo from './ItemInfo/ItemInfo';
 import ItemFooter from './ItemFooter/ItemFooter';
 
-class SingleItem extends Component {
-	render() {
-		return (
-			<article className={classes.Card}>
-				<ImageHolder />
-				<ItemInfo />
-				<ItemFooter />
-			</article>
-		);
-	}
-}
+const singleItem = (props) => {
+	console.log(props.image);
+	console.log(props.title);
+	console.log(props.price);
+	console.log(props.description);
+	console.log(props.category);
+	console.log(props.country);
 
-export default SingleItem;
+	return (
+		<article className={classes.Card}>
+			<ImageHolder image={props.image} />
+			<ItemInfo
+				itemName={props.title}
+				itemPrice={props.price}
+				itemDescription={props.description}
+			/>
+			<ItemFooter itemCategory={props.category} itemCountry={props.country} />
+		</article>
+	);
+};
+
+export default singleItem;

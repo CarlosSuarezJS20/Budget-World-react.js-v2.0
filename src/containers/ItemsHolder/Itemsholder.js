@@ -1,20 +1,54 @@
-import React from 'react';
+import React, { Component } from 'react';
 import classes from './Itemsholder.css';
 import SingleItem from '../../SingleItem/SingleItem';
+import axios from '../../axios';
 
-const itemsHolder = (props) => {
-	return (
-		<section className={classes.Cards}>
-			<div className={classes.CardsCenter}>
-				<SingleItem />
-				<SingleItem />
-				<SingleItem />
-				<SingleItem />
-				<SingleItem />
-				<SingleItem />
-			</div>
-		</section>
-	);
-};
+class ItemsHolder extends Component {
+	state = {
+		items: [],
+	};
 
-export default itemsHolder;
+	componentDidMount() {
+		axios
+			.get('/items.json')
+			.then((res) => {
+				const fetchedItems = [];
+				for (let item in res.data) {
+					fetchedItems.push({
+						...res.data[item],
+						id: item,
+					});
+					console.log(fetchedItems);
+				}
+				this.setState({ items: fetchedItems });
+			})
+			.catch((error) => {
+				console.log(error);
+			});
+	}
+
+	render() {
+		console.log(this.state);
+		return (
+			<section className={classes.Cards}>
+				<div className={classes.CardsCenter}>
+					{this.state.items.map((item) => {
+						return (
+							<SingleItem
+								key={item.id}
+								image={item.image}
+								title={item.itemName}
+								price={item.price}
+								description={item.description}
+								category={item.category}
+								country={item.country}
+							/>
+						);
+					})}
+				</div>
+			</section>
+		);
+	}
+}
+
+export default ItemsHolder;

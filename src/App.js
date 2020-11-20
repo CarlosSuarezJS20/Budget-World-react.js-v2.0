@@ -1,12 +1,13 @@
 import React, { Component } from 'react';
 import Layout from './hoc/Layout/Layout';
+import classes from './App.css';
 import Itemsholder from './containers/ItemsHolder/Itemsholder';
 import ItemBuilder from './containers/ItemsHolder/ItemBuilder/ItemBuilder';
 
 class App extends Component {
 	render() {
 		return (
-			<div>
+			<div className={classes.ListHolder}>
 				<Layout>
 					<Itemsholder />
 					<ItemBuilder />

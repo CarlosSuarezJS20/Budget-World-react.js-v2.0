@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import classes from './ItemBuilder.css';
 import Input from '../../../UI/Input/Input';
+import Button from '../../../UI/Button/Button';
+import axios from '../../../axios';
 
 class ItemBuilder extends Component {
 	state = {
@@ -66,6 +68,8 @@ class ItemBuilder extends Component {
 				value: '',
 				validation: {
 					required: true,
+					minLength: 10,
+					maxLength: 150,
 				},
 				valid: false,
 				touched: false,
@@ -88,10 +92,40 @@ class ItemBuilder extends Component {
 			},
 		},
 		formIsValid: false,
+		loading: false,
 	};
 
 	addItemHandler = (event) => {
 		event.preventDefault();
+		this.setState({ loading: true });
+
+		const itemData = {};
+
+		for (let formElementName in this.state.newItemForm) {
+			itemData[formElementName] = this.state.newItemForm[formElementName].value;
+		}
+
+		console.log(itemData);
+
+		const item = {
+			image: itemData.imageURL,
+			itemName: itemData.itemName,
+			price: itemData.price,
+			description: itemData.description,
+			category: itemData.category,
+			country: itemData.country,
+		};
+
+		axios
+			.post('/items.json', item)
+			.then((res) => {
+				this.setState({ loading: true });
+				console.log(res);
+			})
+			.catch((error) => {
+				this.setState({ loading: true });
+				console.log(error);
+			});
 	};
 
 	// orderHandler = (event) => {
@@ -112,58 +146,56 @@ class ItemBuilder extends Component {
 	// 	this.props.onOrderBurger(order);
 	// };
 
-	// checkValidity(value, rules) {
-	// 	let isValid = true;
-	// 	if (!rules) {
-	// 		return true;
-	// 	}
+	checkValidity(value, rules) {
+		let isValid = true;
+		if (!rules) {
+			return true;
+		}
 
-	// 	if (rules.required) {
-	// 		isValid = value.trim() !== '' && isValid;
-	// 	}
+		if (rules.required) {
+			isValid = value.trim() !== '' && isValid;
+		}
 
-	// 	if (rules.minLength) {
-	// 		isValid = value.length >= rules.minLength && isValid;
-	// 	}
+		if (rules.minLength) {
+			isValid = value.length >= rules.minLength && isValid;
+		}
 
-	// 	if (rules.maxLength) {
-	// 		isValid = value.length <= rules.maxLength && isValid;
-	// 	}
+		if (rules.maxLength) {
+			isValid = value.length <= rules.maxLength && isValid;
+		}
 
-	// 	if (rules.isEmail) {
-	// 		const pattern = /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/;
-	// 		isValid = pattern.test(value) && isValid;
-	// 	}
+		if (rules.isNumeric) {
+			const pattern = /^\d+$/;
+			isValid = pattern.test(value) && isValid;
+		}
 
-	// 	if (rules.isNumeric) {
-	// 		const pattern = /^\d+$/;
-	// 		isValid = pattern.test(value) && isValid;
-	// 	}
+		return isValid;
+	}
 
-	// 	return isValid;
-	// }
+	inputChangedHandler = (event, inputIdentifier) => {
+		const updatedItemForm = {
+			...this.state.newItemForm,
+		};
+		const updatedFormElement = {
+			...updatedItemForm[inputIdentifier],
+		};
 
-	// inputChangedHandler = (event, inputIdentifier) => {
-	// 	const updatedOrderForm = {
-	// 		...this.state.orderForm,
-	// 	};
-	// 	const updatedFormElement = {
-	// 		...updatedOrderForm[inputIdentifier],
-	// 	};
-	// 	updatedFormElement.value = event.target.value;
-	// 	updatedFormElement.valid = this.checkValidity(
-	// 		updatedFormElement.value,
-	// 		updatedFormElement.validation
-	// 	);
-	// 	updatedFormElement.touched = true;
-	// 	updatedOrderForm[inputIdentifier] = updatedFormElement;
+		updatedFormElement.value = event.target.value;
+		updatedFormElement.valid = this.checkValidity(
+			updatedFormElement.value,
+			updatedFormElement.validation
+		);
+		updatedFormElement.touched = true;
+		updatedItemForm[inputIdentifier] = updatedFormElement;
+		console.log(updatedItemForm[inputIdentifier]);
 
-	// 	let formIsValid = true;
-	// 	for (let inputIdentifier in updatedOrderForm) {
-	// 		formIsValid = updatedOrderForm[inputIdentifier].valid && formIsValid;
-	// 	}
-	// 	this.setState({ orderForm: updatedOrderForm, formIsValid: formIsValid });
-	// };
+		let formIsValid = true;
+		for (let inputIdentifier in updatedItemForm) {
+			formIsValid = updatedItemForm[inputIdentifier].valid && formIsValid;
+		}
+		this.setState({ orderForm: updatedItemForm, formIsValid: formIsValid });
+		this.setState({ newItemForm: updatedItemForm });
+	};
 
 	render() {
 		const formElementsArray = [];
@@ -173,28 +205,31 @@ class ItemBuilder extends Component {
 				config: this.state.newItemForm[key],
 			});
 		}
-		console.log(formElementsArray);
 		let form = (
 			<form>
-				{formElementsArray.map((formElement) => (
-					<Input
-						key={formElement.id}
-						elementType={formElement.config.elementType}
-						elementConfig={formElement.config.elementConfig}
-						value={formElement.config.value}
-						invalid={!formElement.config.valid}
-						shouldValidate={formElement.config.validation}
-						touched={formElement.config.touched}
-						changed={(event) => this.inputChangedHandler(event, formElement.id)}
-					/>
-				))}
-				<button onClick={this.addItemHandler}>ADD</button>
+				{formElementsArray.map((formElement) => {
+					return (
+						<Input
+							key={formElement.id}
+							elementType={formElement.config.elementType}
+							elementConfig={formElement.config.elementConfig}
+							value={formElement.config.value}
+							invalid={!formElement.config.valid}
+							shouldValidate={formElement.config.validation}
+							touched={formElement.config.touched}
+							changed={(event) =>
+								this.inputChangedHandler(event, formElement.id)
+							}
+						/>
+					);
+				})}
+				<Button clicked={this.addItemHandler}> add new </Button>
 			</form>
 		);
 
 		return (
 			<div className={classes.ItemBuilder}>
-				<h4> Item Info </h4>
+				<h4 className={classes.FormTitle}> Item Info </h4>
 				{form}
 			</div>
 		);
