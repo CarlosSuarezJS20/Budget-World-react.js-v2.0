@@ -1,0 +1,13 @@
+.Logo {
+	margin-top: 0.5rem;
+	width: 40px;
+	padding: 0.2rem;
+	border: 2px solid rgb(49, 49, 49);
+	border-radius: 5px;
+}
+
+@media (min-width: 1300px) {
+	.LogoHolder {
+		margin-left: 1rem;
+	}
+}

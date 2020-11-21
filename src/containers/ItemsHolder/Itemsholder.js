@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import classes from './Itemsholder.css';
-import SingleItem from '../../SingleItem/SingleItem';
+import SingleItem from '../../components/SingleItem/SingleItem';
 import axios from '../../axios';
+// redux
+import { connect } from 'react-redux';
 
 class ItemsHolder extends Component {
 	state = {
@@ -28,11 +30,10 @@ class ItemsHolder extends Component {
 	}
 
 	render() {
-		console.log(this.state);
 		return (
 			<section className={classes.Cards}>
 				<div className={classes.CardsCenter}>
-					{this.state.items.map((item) => {
+					{this.props.items.map((item) => {
 						return (
 							<SingleItem
 								key={item.id}
@@ -51,4 +52,10 @@ class ItemsHolder extends Component {
 	}
 }
 
-export default ItemsHolder;
+const mapStateToProps = (state) => {
+	return {
+		items: state.items,
+	};
+};
+
+export default connect(mapStateToProps)(ItemsHolder);

@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import classes from './ItemBuilder.css';
-import Input from '../../../UI/Input/Input';
-import Button from '../../../UI/Button/Button';
-import axios from '../../../axios';
+import Input from '../../components/UI/Input/Input';
+import Button from '../../components/UI/Button/Button';
+import axios from '../../axios';
 
 class ItemBuilder extends Component {
 	state = {
@@ -105,22 +105,19 @@ class ItemBuilder extends Component {
 			itemData[formElementName] = this.state.newItemForm[formElementName].value;
 		}
 
-		console.log(itemData);
-
 		const item = {
 			image: itemData.imageURL,
 			itemName: itemData.itemName,
-			price: itemData.price,
+			price: +itemData.price,
 			description: itemData.description,
 			category: itemData.category,
-			country: itemData.country,
+			country: itemData.country.toUpperCase(),
 		};
 
 		axios
 			.post('/items.json', item)
 			.then((res) => {
 				this.setState({ loading: true });
-				console.log(res);
 			})
 			.catch((error) => {
 				this.setState({ loading: true });
@@ -165,7 +162,7 @@ class ItemBuilder extends Component {
 		}
 
 		if (rules.isNumeric) {
-			const pattern = /^\d+$/;
+			const pattern = /^-?[\d.]+(?:e-?\d+)?$/;
 			isValid = pattern.test(value) && isValid;
 		}
 
@@ -187,13 +184,12 @@ class ItemBuilder extends Component {
 		);
 		updatedFormElement.touched = true;
 		updatedItemForm[inputIdentifier] = updatedFormElement;
-		console.log(updatedItemForm[inputIdentifier]);
 
 		let formIsValid = true;
 		for (let inputIdentifier in updatedItemForm) {
 			formIsValid = updatedItemForm[inputIdentifier].valid && formIsValid;
 		}
-		this.setState({ orderForm: updatedItemForm, formIsValid: formIsValid });
+		this.setState({ formIsValid: formIsValid });
 		this.setState({ newItemForm: updatedItemForm });
 	};
 

@@ -1,7 +1,7 @@
 import React from 'react';
 import classes from './Layout.css';
-import Aux from './Aux/Aux';
-import Toolbar from '../../Navigation/Toolbar/Toolbar';
+import Aux from '../hoc/Aux/Aux';
+import Toolbar from '../Navigation/Toolbar/Toolbar';
 
 const layOut = (props) => (
 	<Aux>

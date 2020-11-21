@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import Layout from './hoc/Layout/Layout';
+import Layout from './components/Layout/Layout';
 import classes from './App.css';
 import Itemsholder from './containers/ItemsHolder/Itemsholder';
-import ItemBuilder from './containers/ItemsHolder/ItemBuilder/ItemBuilder';
+import ItemBuilder from './containers/ItemBuilder/ItemBuilder';
 
 class App extends Component {
 	render() {

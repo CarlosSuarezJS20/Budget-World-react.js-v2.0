@@ -1,0 +1,10 @@
+.ImageContainer {
+	position: relative;
+}
+
+.Img {
+	width: 100%;
+	display: block;
+	border-top-left-radius: var(--border-radius);
+	border-top-right-radius: var(--border-radius);
+}
