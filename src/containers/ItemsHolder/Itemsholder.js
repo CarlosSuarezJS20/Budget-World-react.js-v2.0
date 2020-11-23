@@ -1,52 +1,44 @@
 import React, { Component } from 'react';
 import classes from './Itemsholder.css';
 import SingleItem from '../../components/SingleItem/SingleItem';
-import axios from '../../axios';
 // redux
+import * as actions from '../../store/actions/index';
 import { connect } from 'react-redux';
 
-class ItemsHolder extends Component {
-	state = {
-		items: [],
-	};
+// need to add spinnere for when fetching items
 
+class ItemsHolder extends Component {
 	componentDidMount() {
-		axios
-			.get('/items.json')
-			.then((res) => {
-				const fetchedItems = [];
-				for (let item in res.data) {
-					fetchedItems.push({
-						...res.data[item],
-						id: item,
-					});
-					console.log(fetchedItems);
-				}
-				this.setState({ items: fetchedItems });
-			})
-			.catch((error) => {
-				console.log(error);
-			});
+		this.props.onFetchOrders();
 	}
 
 	render() {
+		let items = this.props.items.filter((item) => {
+			return item.country.indexOf(this.props.search.trim()) !== -1;
+		});
+
+		let filteredItems =
+			items.length === 0 ? (
+				<p className={classes.NotFound}> No Country Found</p>
+			) : (
+				items.map((item) => {
+					return (
+						<SingleItem
+							key={item.id}
+							image={item.image}
+							title={item.itemName}
+							price={item.price}
+							description={item.description}
+							category={item.category}
+							country={item.country}
+						/>
+					);
+				})
+			);
+
 		return (
 			<section className={classes.Cards}>
-				<div className={classes.CardsCenter}>
-					{this.props.items.map((item) => {
-						return (
-							<SingleItem
-								key={item.id}
-								image={item.image}
-								title={item.itemName}
-								price={item.price}
-								description={item.description}
-								category={item.category}
-								country={item.country}
-							/>
-						);
-					})}
-				</div>
+				<div className={classes.CardsCenter}>{filteredItems}</div>
 			</section>
 		);
 	}
@@ -55,7 +47,14 @@ class ItemsHolder extends Component {
 const mapStateToProps = (state) => {
 	return {
 		items: state.items,
+		search: state.search,
 	};
 };
 
-export default connect(mapStateToProps)(ItemsHolder);
+const mapDispatchToProps = (dispatch) => {
+	return {
+		onFetchOrders: () => dispatch(actions.fetchItemsFromServer()),
+	};
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(ItemsHolder);

@@ -9,6 +9,14 @@ class App extends Component {
 		return (
 			<div className={classes.ListHolder}>
 				<Layout>
+					<div className={classes.ButtonsSection}>
+						<button>Food/Beverage</button>
+						<button>Activity</button>
+						<button>Transport</button>
+						<button>Souvenirs</button>
+						<button>Others</button>
+						<button>ALL</button>
+					</div>
 					<Itemsholder />
 					<ItemBuilder />
 					<div>

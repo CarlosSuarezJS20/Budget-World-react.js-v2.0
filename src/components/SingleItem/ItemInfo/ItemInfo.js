@@ -2,7 +2,6 @@ import React from 'react';
 import classes from './ItemInfo.css';
 
 const itemInfo = (props) => {
-	console.log(props.itemName);
 	return (
 		<div className={classes.CardInfo}>
 			<div className={classes.CardTitle}>
