@@ -11,6 +11,7 @@ const initialState = {
 		value: '',
 	},
 	search: '',
+	category: '',
 };
 
 const reducer = (state = initialState, action) => {
@@ -43,8 +44,13 @@ const reducer = (state = initialState, action) => {
 					search: updatedSearchInput.value.toUpperCase(),
 				},
 			};
+		case actionTypes.CATEGORY_FILTER_HANDLER:
+			return {
+				...state,
+				...{ category: action.event.target.value },
+			};
+
 		default:
-			console.log(state);
 			return state;
 	}
 };

@@ -48,3 +48,10 @@ export const inputHandler = (event) => {
 		event: event,
 	};
 };
+
+export const categoryFilterHandler = (event) => {
+	return {
+		type: actionTypes.CATEGORY_FILTER_HANDLER,
+		event: event,
+	};
+};

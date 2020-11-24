@@ -2,18 +2,3 @@
 	height: 100%;
 	margin-top: 180px;
 }
-
-.ButtonsSection {
-	display: grid;
-	grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-	grid-column-gap: 0.5rem;
-	grid-row-gap: 0.5rem;
-	justify-content: space-between;
-}
-
-.ButtonsSection button {
-	color: white;
-	padding: 5px 0;
-	background: rgb(156, 156, 156);
-	border: 1px solid rgb(97, 97, 97);
-}

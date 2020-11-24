@@ -1,13 +1,12 @@
 import React from 'react';
 import classes from './Layout.css';
-import Aux from '../hoc/Aux/Aux';
-import Toolbar from '../Navigation/Toolbar/Toolbar';
+import Toolbar from '../../Navigation/Toolbar/Toolbar';
 
 const layOut = (props) => (
-	<Aux>
+	<React.Fragment>
 		<Toolbar />
 		<main className={classes.Layout}>{props.children}</main>
-	</Aux>
+	</React.Fragment>
 );
 
 export default layOut;

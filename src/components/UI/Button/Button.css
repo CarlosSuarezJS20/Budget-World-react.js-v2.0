@@ -15,6 +15,10 @@
 	background: rgb(207, 211, 1);
 }
 
+.Button:active {
+	color: rgb(49, 49, 49);
+}
+
 .Button:disabled {
 	color: #ccc;
 	cursor: not-allowed;

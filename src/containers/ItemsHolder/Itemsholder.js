@@ -17,9 +17,31 @@ class ItemsHolder extends Component {
 			return item.country.indexOf(this.props.search.trim()) !== -1;
 		});
 
+		if (this.props.search && this.props.category) {
+			items = this.props.items
+				.filter((item) => {
+					return item.country.indexOf(this.props.search.trim()) !== -1;
+				})
+				.filter((item) => item.category === this.props.category);
+		} else if (this.props.search) {
+			items = this.props.items.filter((item) => {
+				return item.country.indexOf(this.props.search.trim()) !== -1;
+			});
+		} else if (this.props.category) {
+			items = this.props.items.filter(
+				(item) => item.category === this.props.category
+			);
+		}
+
+		if (this.props.category === 'ALL' || this.props.seach) {
+			items = this.props.items.filter((item) => {
+				return item.country.indexOf(this.props.search.trim()) !== -1;
+			});
+		}
+
 		let filteredItems =
 			items.length === 0 ? (
-				<p className={classes.NotFound}> No Country Found</p>
+				<p className={classes.NotFound}> Nothing Found :( </p>
 			) : (
 				items.map((item) => {
 					return (
@@ -48,6 +70,7 @@ const mapStateToProps = (state) => {
 	return {
 		items: state.items,
 		search: state.search,
+		category: state.category,
 	};
 };
 

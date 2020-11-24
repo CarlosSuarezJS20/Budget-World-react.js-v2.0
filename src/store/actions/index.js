@@ -1,1 +1,5 @@
-export { fetchItemsFromServer, inputHandler } from './items';
+export {
+	fetchItemsFromServer,
+	inputHandler,
+	categoryFilterHandler,
+} from './items';
