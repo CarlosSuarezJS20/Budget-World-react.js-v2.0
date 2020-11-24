@@ -7,7 +7,7 @@ class CategoriesFilterSection extends Component {
 	state = {
 		buttons: [
 			'Food-&-beverage',
-			'Activity',
+			'Activities',
 			'Transport',
 			'Souvenirs',
 			'other',

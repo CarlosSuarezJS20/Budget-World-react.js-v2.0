@@ -80,7 +80,7 @@ class ItemBuilder extends Component {
 					options: [
 						{ value: 'empty', displayValue: '--' },
 						{ value: 'Food-&-beverage', displayValue: 'food/beverage' },
-						{ value: 'Activity', displayValue: 'Activity' },
+						{ value: 'Activities', displayValue: 'Activities' },
 						{ value: 'Transport', displayValue: 'Transport' },
 						{ value: 'Souvenirs', displayValue: 'Souvenirs' },
 						{ value: 'other', displayValue: 'Other' },
@@ -124,24 +124,6 @@ class ItemBuilder extends Component {
 				console.log(error);
 			});
 	};
-
-	// orderHandler = (event) => {
-	// 	event.preventDefault();
-
-	// 	const formData = {};
-	// 	for (let formElementIdentifier in this.state.orderForm) {
-	// 		formData[formElementIdentifier] = this.state.orderForm[
-	// 			formElementIdentifier
-	// 		].value;
-	// 	}
-	// 	const order = {
-	// 		ingredients: this.props.ings,
-	// 		price: this.props.price,
-	// 		orderData: formData,
-	// 	};
-
-	// 	this.props.onOrderBurger(order);
-	// };
 
 	checkValidity(value, rules) {
 		let isValid = true;

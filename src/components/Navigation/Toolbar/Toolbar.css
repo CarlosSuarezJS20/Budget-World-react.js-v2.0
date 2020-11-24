@@ -37,10 +37,7 @@
 		border-bottom: none;
 		border-bottom-left-radius: 5px;
 		border-bottom-right-radius: 5px;
-		display: grid;
-		grid-area: a;
-		grid-template-columns: 1fr;
-		grid-template-rows: repeat(1fr, 1.5fr, 1f, 1f);
-		align-items: flex-end;
+		grid-template-columns: repeat(1, 1fr);
+		align-items: center;
 	}
 }
