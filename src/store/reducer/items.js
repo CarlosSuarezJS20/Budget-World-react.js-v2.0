@@ -12,6 +12,7 @@ const initialState = {
 	},
 	search: '',
 	category: '',
+	updating: false,
 };
 
 const reducer = (state = initialState, action) => {
@@ -48,6 +49,16 @@ const reducer = (state = initialState, action) => {
 			return {
 				...state,
 				...{ category: action.event.target.value },
+			};
+		case actionTypes.TOGGLE_UPDATING:
+			return {
+				...state,
+				...{ updating: true },
+			};
+		case actionTypes.TOGGLE_UPDATING_FALSE:
+			return {
+				...state,
+				...{ updating: false },
 			};
 
 		default:

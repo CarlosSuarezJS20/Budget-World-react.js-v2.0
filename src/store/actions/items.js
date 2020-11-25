@@ -55,3 +55,15 @@ export const categoryFilterHandler = (event) => {
 		event: event,
 	};
 };
+
+export const toggleActiveUpdating = () => {
+	return {
+		type: actionTypes.TOGGLE_UPDATING,
+	};
+};
+
+export const toggleUpdatingFalse = () => {
+	return {
+		type: actionTypes.TOGGLE_UPDATING_FALSE,
+	};
+};

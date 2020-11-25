@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Layout from './components/Layout/Layout';
+import Layout from './components/hoc/Layout/Layout';
 import classes from './App.css';
 import Itemsholder from './containers/ItemsHolder/Itemsholder';
 import ItemBuilder from './containers/ItemBuilder/ItemBuilder';

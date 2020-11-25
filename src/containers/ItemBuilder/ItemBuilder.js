@@ -3,6 +3,10 @@ import classes from './ItemBuilder.css';
 import Input from '../../components/UI/Input/Input';
 import Button from '../../components/UI/Button/Button';
 import axios from '../../axios';
+import { connect } from 'react-redux';
+import * as actions from '../../store/actions/index';
+
+// create button disable option
 
 class ItemBuilder extends Component {
 	state = {
@@ -92,37 +96,60 @@ class ItemBuilder extends Component {
 			},
 		},
 		formIsValid: false,
-		loading: false,
+		loading: null,
 	};
+
+	// componentDidMount() {
+	// 	this.props.items.map((item) => {
+	// 		for (let key in item) {
+	// 			const updatedItemForm = {
+	// 				...this.state.newItemForm,
+	// 			};
+	// 			const updatedFormElement = {
+	// 				...updatedItemForm[item.category],
+	// 			};
+
+	// 			updatedFormElement.value = item[key];
+	// 			updatedItemForm[item.category] = updatedFormElement;
+	// 			this.setState({ newItemForm: updatedItemForm });
+	// 		}
+	// 	});
+	// }
 
 	addItemHandler = (event) => {
 		event.preventDefault();
 		this.setState({ loading: true });
 
-		const itemData = {};
+		if (this.props.updating) {
+			this.props.onToggleActiveUpdating();
+		} else {
+			const itemData = {};
 
-		for (let formElementName in this.state.newItemForm) {
-			itemData[formElementName] = this.state.newItemForm[formElementName].value;
+			for (let formElementName in this.state.newItemForm) {
+				itemData[formElementName] = this.state.newItemForm[
+					formElementName
+				].value;
+			}
+
+			const item = {
+				image: itemData.imageURL,
+				itemName: itemData.itemName,
+				price: +itemData.price,
+				description: itemData.description,
+				category: itemData.category,
+				country: itemData.country.toUpperCase(),
+			};
+
+			axios
+				.post('/items.json', item)
+				.then((res) => {
+					this.setState({ loading: true });
+				})
+				.catch((error) => {
+					this.setState({ loading: true });
+					console.log(error);
+				});
 		}
-
-		const item = {
-			image: itemData.imageURL,
-			itemName: itemData.itemName,
-			price: +itemData.price,
-			description: itemData.description,
-			category: itemData.category,
-			country: itemData.country.toUpperCase(),
-		};
-
-		axios
-			.post('/items.json', item)
-			.then((res) => {
-				this.setState({ loading: true });
-			})
-			.catch((error) => {
-				this.setState({ loading: true });
-				console.log(error);
-			});
 	};
 
 	checkValidity(value, rules) {
@@ -160,6 +187,7 @@ class ItemBuilder extends Component {
 		};
 
 		updatedFormElement.value = event.target.value;
+
 		updatedFormElement.valid = this.checkValidity(
 			updatedFormElement.value,
 			updatedFormElement.validation
@@ -176,6 +204,7 @@ class ItemBuilder extends Component {
 	};
 
 	render() {
+		console.log(this.props.items);
 		const formElementsArray = [];
 		for (let key in this.state.newItemForm) {
 			formElementsArray.push({
@@ -189,6 +218,7 @@ class ItemBuilder extends Component {
 					return (
 						<Input
 							key={formElement.id}
+							id={formElement.id}
 							elementType={formElement.config.elementType}
 							elementConfig={formElement.config.elementConfig}
 							value={formElement.config.value}
@@ -201,17 +231,33 @@ class ItemBuilder extends Component {
 						/>
 					);
 				})}
-				<Button clicked={this.addItemHandler}> add new </Button>
+				<Button clicked={this.addItemHandler}>
+					{this.props.updating ? 'update item' : 'add new'}
+				</Button>
 			</form>
 		);
 
 		return (
 			<div className={classes.ItemBuilder}>
-				<h4 className={classes.FormTitle}> Item Info </h4>
+				<h2 className={classes.FormTitle}> Item Info </h2>
 				{form}
 			</div>
 		);
 	}
 }
 
-export default ItemBuilder;
+const mapStateToProps = (state) => {
+	return {
+		items: state.items,
+		updating: state.updating,
+	};
+};
+
+const mapDispatchToProps = (dispatch) => {
+	return {
+		onToggleUpdating: () => dispatch(actions.toggleActiveUpdating()),
+		onToggleActiveUpdating: () => dispatch(actions.toggleUpdatingFalse()),
+	};
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(ItemBuilder);

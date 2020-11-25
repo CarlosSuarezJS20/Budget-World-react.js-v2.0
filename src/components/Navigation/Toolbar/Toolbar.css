@@ -6,7 +6,7 @@
 	margin-bottom: 2rem;
 	display: grid;
 	background: rgb(248, 248, 248);
-	justify-content: space-around;
+	justify-content: center;
 	align-items: center;
 	border-bottom: 5px solid rgb(249, 253, 2);
 	border-bottom-left-radius: 5px;
