@@ -99,11 +99,14 @@ class ItemBuilder extends Component {
 		loading: null,
 	};
 
+	componentDidUpdate() {}
+
 	addItemHandler = (event) => {
 		event.preventDefault();
 		this.setState({ loading: true });
 
 		if (this.props.updating) {
+			console.log('updating');
 			this.props.onToggleActiveUpdating();
 		} else {
 			const itemData = {};
@@ -187,6 +190,25 @@ class ItemBuilder extends Component {
 	};
 
 	render() {
+		if (this.props.updating) {
+			const itemToUpdate = this.props.items.find((item) => {
+				return item.id === this.props.updateElId;
+			});
+			console.log(itemToUpdate);
+			const {
+				itemName,
+				imageURL,
+				price,
+				country,
+				description,
+			} = this.state.newItemForm;
+			itemName.value = itemToUpdate.itemName;
+			imageURL.value = itemToUpdate.image;
+			price.value = itemToUpdate.price;
+			country.value = itemToUpdate.country;
+			description.value = itemToUpdate.description;
+		}
+
 		const formElementsArray = [];
 		for (let key in this.state.newItemForm) {
 			formElementsArray.push({
@@ -232,6 +254,7 @@ const mapStateToProps = (state) => {
 	return {
 		items: state.items,
 		updating: state.updating,
+		updateElId: state.updateElId,
 	};
 };
 

@@ -13,6 +13,7 @@ const initialState = {
 	search: '',
 	category: '',
 	updating: false,
+	updateElId: '',
 };
 
 const reducer = (state = initialState, action) => {
@@ -53,7 +54,7 @@ const reducer = (state = initialState, action) => {
 		case actionTypes.TOGGLE_UPDATING:
 			return {
 				...state,
-				...{ updating: true },
+				...{ updating: true, updateElId: action.id },
 			};
 		case actionTypes.TOGGLE_UPDATING_FALSE:
 			return {

@@ -13,7 +13,11 @@ const singleItem = (props) => {
 				itemPrice={props.price}
 				itemDescription={props.description}
 			/>
-			<ItemFooter itemCategory={props.category} itemCountry={props.country} />
+			<ItemFooter
+				itemId={props.id}
+				itemCategory={props.category}
+				itemCountry={props.country}
+			/>
 		</article>
 	);
 };

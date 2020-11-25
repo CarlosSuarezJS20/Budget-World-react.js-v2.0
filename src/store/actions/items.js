@@ -56,9 +56,10 @@ export const categoryFilterHandler = (event) => {
 	};
 };
 
-export const toggleActiveUpdating = () => {
+export const toggleActiveUpdating = (id) => {
 	return {
 		type: actionTypes.TOGGLE_UPDATING,
+		id: id,
 	};
 };
 

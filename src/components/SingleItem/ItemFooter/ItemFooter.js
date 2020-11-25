@@ -4,8 +4,8 @@ import { connect } from 'react-redux';
 import * as actions from '../../../store/actions/index';
 
 class ItemFooter extends Component {
-	updateItem = () => {
-		this.props.onToggleActiveUpdating();
+	updateItem = (id) => {
+		this.props.onToggleActiveUpdating(id);
 	};
 
 	render() {
@@ -19,7 +19,7 @@ class ItemFooter extends Component {
 					<button
 						className={classes.FooterBtn}
 						onClick={() => {
-							this.updateItem();
+							this.updateItem(this.props.itemId);
 						}}
 					>
 						update
@@ -33,7 +33,7 @@ class ItemFooter extends Component {
 
 const mapDispatchToProps = (dispatch) => {
 	return {
-		onToggleActiveUpdating: () => dispatch(actions.toggleActiveUpdating()),
+		onToggleActiveUpdating: (id) => dispatch(actions.toggleActiveUpdating(id)),
 	};
 };
 
