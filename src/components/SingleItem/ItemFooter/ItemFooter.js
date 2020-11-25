@@ -19,7 +19,7 @@ class ItemFooter extends Component {
 					<button
 						className={classes.FooterBtn}
 						onClick={() => {
-							this.updateItem(this.props.id);
+							this.updateItem();
 						}}
 					>
 						update

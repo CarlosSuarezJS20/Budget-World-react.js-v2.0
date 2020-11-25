@@ -99,23 +99,6 @@ class ItemBuilder extends Component {
 		loading: null,
 	};
 
-	// componentDidMount() {
-	// 	this.props.items.map((item) => {
-	// 		for (let key in item) {
-	// 			const updatedItemForm = {
-	// 				...this.state.newItemForm,
-	// 			};
-	// 			const updatedFormElement = {
-	// 				...updatedItemForm[item.category],
-	// 			};
-
-	// 			updatedFormElement.value = item[key];
-	// 			updatedItemForm[item.category] = updatedFormElement;
-	// 			this.setState({ newItemForm: updatedItemForm });
-	// 		}
-	// 	});
-	// }
-
 	addItemHandler = (event) => {
 		event.preventDefault();
 		this.setState({ loading: true });
@@ -204,7 +187,6 @@ class ItemBuilder extends Component {
 	};
 
 	render() {
-		console.log(this.props.items);
 		const formElementsArray = [];
 		for (let key in this.state.newItemForm) {
 			formElementsArray.push({
@@ -212,13 +194,13 @@ class ItemBuilder extends Component {
 				config: this.state.newItemForm[key],
 			});
 		}
+
 		let form = (
 			<form>
 				{formElementsArray.map((formElement) => {
 					return (
 						<Input
 							key={formElement.id}
-							id={formElement.id}
 							elementType={formElement.config.elementType}
 							elementConfig={formElement.config.elementConfig}
 							value={formElement.config.value}
