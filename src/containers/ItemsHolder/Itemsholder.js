@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import classes from './Itemsholder.css';
 import SingleItem from '../../components/SingleItem/SingleItem';
+import CategoriesFilterSection from '../../components/CategoriesSection/CategoriesFilterSection';
 // redux
 import * as actions from '../../store/actions/index';
 import { connect } from 'react-redux';
@@ -61,6 +62,7 @@ class ItemsHolder extends Component {
 
 		return (
 			<section className={classes.Cards}>
+				<CategoriesFilterSection />
 				<div className={classes.CardsCenter}>{filteredItems}</div>
 			</section>
 		);

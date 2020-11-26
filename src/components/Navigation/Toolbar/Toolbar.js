@@ -2,21 +2,16 @@ import React from 'react';
 import classes from './Toolbar.css';
 import Logo from '../../Logo/Logo';
 import Search from '../Search/Search';
+import NavigationItems from '../NavigationItems/NavigationItems';
 
-const toolBar = (props) => {
-	return (
-		<header className={classes.Navbar}>
-			<Logo />
-			<Search />
-			<div>
-				<ul>
-					<li>Add New</li>
-					<li>Plan Trip</li>
-					<li>Log Out</li>
-				</ul>
-			</div>
-		</header>
-	);
-};
+const toolBar = () => (
+	<header className={classes.Navbar}>
+		<Logo />
+		<Search />
+		<nav>
+			<NavigationItems />
+		</nav>
+	</header>
+);
 
 export default toolBar;

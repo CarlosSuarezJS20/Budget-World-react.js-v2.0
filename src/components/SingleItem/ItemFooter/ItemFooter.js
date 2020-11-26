@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import classes from './ItemFooter.css';
 import { connect } from 'react-redux';
 import * as actions from '../../../store/actions/index';
+import { NavLink } from 'react-router-dom';
 
 class ItemFooter extends Component {
 	updateItem = (id) => {
@@ -16,15 +17,16 @@ class ItemFooter extends Component {
 					<span>{this.props.itemCountry}</span>
 				</div>
 				<div className={classes.CardBtns}>
-					<button
+					<NavLink
+						to={'/update'}
 						className={classes.FooterBtn}
 						onClick={() => {
 							this.updateItem(this.props.itemId);
 						}}
 					>
 						update
-					</button>
-					<button className={classes.FooterBtn}>delete</button>
+					</NavLink>
+					<a className={classes.FooterBtn}>delete</a>
 				</div>
 			</div>
 		);

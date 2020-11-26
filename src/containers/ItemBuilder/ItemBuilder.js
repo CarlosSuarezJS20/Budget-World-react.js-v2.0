@@ -5,6 +5,7 @@ import Button from '../../components/UI/Button/Button';
 import axios from '../../axios';
 import { connect } from 'react-redux';
 import * as actions from '../../store/actions/index';
+import { NavLink, Redirect } from 'react-router-dom';
 
 // create button disable option
 
@@ -97,6 +98,8 @@ class ItemBuilder extends Component {
 		},
 		formIsValid: false,
 		loading: null,
+		added: false,
+		updated: false,
 	};
 
 	componentDidUpdate() {}
@@ -108,6 +111,7 @@ class ItemBuilder extends Component {
 		if (this.props.updating) {
 			console.log('updating');
 			this.props.onToggleActiveUpdating();
+			this.setState({ updated: true });
 		} else {
 			const itemData = {};
 
@@ -129,12 +133,14 @@ class ItemBuilder extends Component {
 			axios
 				.post('/items.json', item)
 				.then((res) => {
-					this.setState({ loading: true });
+					this.setState({ loading: true, added: true });
 				})
 				.catch((error) => {
-					this.setState({ loading: true });
+					this.setState({ loading: true, added: true });
 					console.log(error);
 				});
+
+			this.setState({ added: false });
 		}
 	};
 
@@ -189,6 +195,10 @@ class ItemBuilder extends Component {
 		this.setState({ newItemForm: updatedItemForm });
 	};
 
+	updateStateUpdating = () => {
+		this.props.onToggleActiveUpdating();
+	};
+
 	render() {
 		if (this.props.updating) {
 			const itemToUpdate = this.props.items.find((item) => {
@@ -238,11 +248,16 @@ class ItemBuilder extends Component {
 				<Button clicked={this.addItemHandler}>
 					{this.props.updating ? 'update item' : 'add new'}
 				</Button>
+				{this.state.added || this.state.updated ? <Redirect to="/" /> : null}
 			</form>
 		);
 
 		return (
 			<div className={classes.ItemBuilder}>
+				<NavLink to="/" onClick={this.updateStateUpdating}>
+					{' '}
+					X{' '}
+				</NavLink>
 				<h2 className={classes.FormTitle}> Item Info </h2>
 				{form}
 			</div>

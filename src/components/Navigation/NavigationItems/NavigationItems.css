@@ -1,0 +1,12 @@
+.NavigationItems {
+	list-style: none;
+}
+
+@media (min-width: 970px) {
+	.NavigationItems {
+		display: inline;
+	}
+}
+
+@media (min-width: 1300px) {
+}
