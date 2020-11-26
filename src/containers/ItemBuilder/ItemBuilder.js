@@ -109,7 +109,6 @@ class ItemBuilder extends Component {
 		this.setState({ loading: true });
 
 		if (this.props.updating) {
-			console.log('updating');
 			this.props.onToggleActiveUpdating();
 			this.setState({ updated: true });
 		} else {
@@ -204,7 +203,7 @@ class ItemBuilder extends Component {
 			const itemToUpdate = this.props.items.find((item) => {
 				return item.id === this.props.updateElId;
 			});
-			console.log(itemToUpdate);
+
 			const {
 				itemName,
 				imageURL,
@@ -212,6 +211,7 @@ class ItemBuilder extends Component {
 				country,
 				description,
 			} = this.state.newItemForm;
+
 			itemName.value = itemToUpdate.itemName;
 			imageURL.value = itemToUpdate.image;
 			price.value = itemToUpdate.price;
@@ -255,8 +255,7 @@ class ItemBuilder extends Component {
 		return (
 			<div className={classes.ItemBuilder}>
 				<NavLink to="/" onClick={this.updateStateUpdating}>
-					{' '}
-					X{' '}
+					X
 				</NavLink>
 				<h2 className={classes.FormTitle}> Item Info </h2>
 				{form}
