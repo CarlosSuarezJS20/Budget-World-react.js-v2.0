@@ -61,6 +61,21 @@ const reducer = (state = initialState, action) => {
 				...state,
 				...{ updating: false },
 			};
+		case actionTypes.UPDATE_ITEM_START:
+			return {
+				...state,
+				...{ updating: true },
+			};
+		case actionTypes.UPDATE_ITEM_SUCCESS:
+			return {
+				...state,
+				...{ updating: false },
+			};
+		case actionTypes.UPDATE_ITEM_FAIL:
+			return {
+				...state,
+				...{ updating: false },
+			};
 
 		default:
 			return state;

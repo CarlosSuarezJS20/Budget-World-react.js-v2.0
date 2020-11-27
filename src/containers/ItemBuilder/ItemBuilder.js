@@ -102,7 +102,24 @@ class ItemBuilder extends Component {
 		updated: false,
 	};
 
-	componentDidUpdate() {}
+	// I had to use componentWillMout, but looking for a more actual solution:
+	componentWillMount() {
+		if (this.props.updating && this.props.items) {
+			const itemToUpdate = this.props.items.find((item) => {
+				return item.id === this.props.updateElId;
+			});
+
+			const { itemName, imageURL, price, country, description } = {
+				...this.state.newItemForm,
+			};
+
+			itemName.value = itemToUpdate.itemName;
+			imageURL.value = itemToUpdate.image;
+			price.value = itemToUpdate.price;
+			country.value = itemToUpdate.country;
+			description.value = itemToUpdate.description;
+		}
+	}
 
 	addItemHandler = (event) => {
 		event.preventDefault();
@@ -111,6 +128,18 @@ class ItemBuilder extends Component {
 		if (this.props.updating) {
 			this.props.onToggleActiveUpdating();
 			this.setState({ updated: true });
+
+			const updatedItem = {
+				image: this.state.newItemForm.imageURL.value,
+				itemName: this.state.newItemForm.itemName.value,
+				price: +this.state.newItemForm.price.value,
+				description: this.state.newItemForm.description.value,
+				category: this.state.newItemForm.category.value,
+				country: this.state.newItemForm.country.value.toUpperCase(),
+			};
+
+			this.props.onUpdatingItemInServer(this.props.updateElId, updatedItem);
+			this.props.onFetchOrders();
 		} else {
 			const itemData = {};
 
@@ -199,26 +228,6 @@ class ItemBuilder extends Component {
 	};
 
 	render() {
-		if (this.props.updating) {
-			const itemToUpdate = this.props.items.find((item) => {
-				return item.id === this.props.updateElId;
-			});
-
-			const {
-				itemName,
-				imageURL,
-				price,
-				country,
-				description,
-			} = this.state.newItemForm;
-
-			itemName.value = itemToUpdate.itemName;
-			imageURL.value = itemToUpdate.image;
-			price.value = itemToUpdate.price;
-			country.value = itemToUpdate.country;
-			description.value = itemToUpdate.description;
-		}
-
 		const formElementsArray = [];
 		for (let key in this.state.newItemForm) {
 			formElementsArray.push({
@@ -276,6 +285,9 @@ const mapDispatchToProps = (dispatch) => {
 	return {
 		onToggleUpdating: () => dispatch(actions.toggleActiveUpdating()),
 		onToggleActiveUpdating: () => dispatch(actions.toggleUpdatingFalse()),
+		onUpdatingItemInServer: (id, item) =>
+			dispatch(actions.updateItemInServer(id, item)),
+		onFetchOrders: () => dispatch(actions.fetchItemsFromServer()),
 	};
 };
 

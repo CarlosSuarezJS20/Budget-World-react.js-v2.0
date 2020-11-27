@@ -4,4 +4,5 @@ export {
 	categoryFilterHandler,
 	toggleActiveUpdating,
 	toggleUpdatingFalse,
+	updateItemInServer,
 } from './items';

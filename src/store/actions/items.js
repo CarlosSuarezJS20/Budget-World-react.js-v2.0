@@ -1,6 +1,8 @@
 import * as actionTypes from './actionTypes';
 import axios from '../../axios';
 
+// Fetching items for UI
+
 export const fetchItemsSuccess = (items) => {
 	return {
 		type: actionTypes.FETCH_ITEMS_SUCCESS,
@@ -66,5 +68,41 @@ export const toggleActiveUpdating = (id) => {
 export const toggleUpdatingFalse = () => {
 	return {
 		type: actionTypes.TOGGLE_UPDATING_FALSE,
+	};
+};
+
+export const updateItemSuccess = (res) => {
+	return {
+		type: actionTypes.UPDATE_ITEM_SUCCESS,
+		res: res,
+	};
+};
+
+export const updateItemFail = (error) => {
+	return {
+		type: actionTypes.UPDATE_ITEM_FAIL,
+		error: error,
+	};
+};
+
+export const updateItemStart = () => {
+	return {
+		type: actionTypes.UPDATE_ITEM_START,
+	};
+};
+
+export const updateItemInServer = (id, item) => {
+	return (dispatch) => {
+		console.log(id);
+		dispatch(updateItemStart());
+		axios
+			.put(`/items/${id}.json`, item)
+			.then((res) => {
+				dispatch(updateItemSuccess(res));
+			})
+			.catch((error) => {
+				dispatch(updateItemFail(error));
+				console.log(error);
+			});
 	};
 };
