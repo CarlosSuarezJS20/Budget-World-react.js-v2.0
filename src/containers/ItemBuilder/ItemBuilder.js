@@ -8,6 +8,7 @@ import * as actions from '../../store/actions/index';
 import { NavLink, Redirect } from 'react-router-dom';
 
 // create button disable option
+// modal for deletion
 
 class ItemBuilder extends Component {
 	state = {
@@ -139,7 +140,7 @@ class ItemBuilder extends Component {
 			};
 
 			this.props.onUpdatingItemInServer(this.props.updateElId, updatedItem);
-			this.props.onFetchOrders();
+			this.props.onFetchItems();
 		} else {
 			const itemData = {};
 
@@ -287,7 +288,7 @@ const mapDispatchToProps = (dispatch) => {
 		onToggleActiveUpdating: () => dispatch(actions.toggleUpdatingFalse()),
 		onUpdatingItemInServer: (id, item) =>
 			dispatch(actions.updateItemInServer(id, item)),
-		onFetchOrders: () => dispatch(actions.fetchItemsFromServer()),
+		onFetchItems: () => dispatch(actions.fetchItemsFromServer()),
 	};
 };
 

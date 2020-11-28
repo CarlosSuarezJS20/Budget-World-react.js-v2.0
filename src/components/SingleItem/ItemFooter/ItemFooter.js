@@ -5,8 +5,12 @@ import * as actions from '../../../store/actions/index';
 import { NavLink } from 'react-router-dom';
 
 class ItemFooter extends Component {
-	updateItem = (id) => {
+	updateItemHandler = (id) => {
 		this.props.onToggleActiveUpdating(id);
+	};
+
+	deleteBtnHandler = (id) => {
+		this.props.onDeletionItemStart(id);
 	};
 
 	render() {
@@ -21,12 +25,19 @@ class ItemFooter extends Component {
 						to={'/update'}
 						className={classes.FooterBtn}
 						onClick={() => {
-							this.updateItem(this.props.itemId);
+							this.updateItemHandler(this.props.itemId);
 						}}
 					>
 						update
 					</NavLink>
-					<a className={classes.FooterBtn}>delete</a>
+					<a
+						className={classes.FooterBtn}
+						onClick={() => {
+							this.deleteBtnHandler(this.props.itemId);
+						}}
+					>
+						delete
+					</a>
 				</div>
 			</div>
 		);
@@ -36,6 +47,7 @@ class ItemFooter extends Component {
 const mapDispatchToProps = (dispatch) => {
 	return {
 		onToggleActiveUpdating: (id) => dispatch(actions.toggleActiveUpdating(id)),
+		onDeletionItemStart: (id) => dispatch(actions.deletionItemStart(id)),
 	};
 };
 

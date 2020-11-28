@@ -14,6 +14,8 @@ const initialState = {
 	category: '',
 	updating: false,
 	updateElId: '',
+	deleting: false,
+	deleteItemId: null,
 };
 
 const reducer = (state = initialState, action) => {
@@ -75,6 +77,32 @@ const reducer = (state = initialState, action) => {
 			return {
 				...state,
 				...{ updating: false },
+			};
+
+		case actionTypes.DELETION_ITEM_START:
+			return {
+				...state,
+				...{ deleting: true, deleteItemId: action.deletedItemId },
+			};
+		case actionTypes.DELETE_ITEM_SUCCESS:
+			const deletedItem = state.items.find((item) => item.id === action.id);
+			const filteredItems = state.items.filter(
+				(item) => item.id !== deletedItem.id
+			);
+
+			return {
+				...state,
+				...{ items: filteredItems, deleting: false, deleteItemId: null },
+			};
+		case actionTypes.DELETE_ITEM_FAIL:
+			return {
+				...state,
+				...{ deleting: false, deleteItemId: null },
+			};
+		case actionTypes.DELETE_ITEM_CANCEL:
+			return {
+				...state,
+				...{ deleting: false },
 			};
 
 		default:

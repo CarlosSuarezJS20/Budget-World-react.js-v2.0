@@ -5,4 +5,7 @@ export {
 	toggleActiveUpdating,
 	toggleUpdatingFalse,
 	updateItemInServer,
+	deletionItemStart,
+	deletingItemInServer,
+	deletedItemCancel,
 } from './items';

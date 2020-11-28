@@ -71,6 +71,12 @@ export const toggleUpdatingFalse = () => {
 	};
 };
 
+export const updateItemStart = () => {
+	return {
+		type: actionTypes.UPDATE_ITEM_START,
+	};
+};
+
 export const updateItemSuccess = (res) => {
 	return {
 		type: actionTypes.UPDATE_ITEM_SUCCESS,
@@ -82,12 +88,6 @@ export const updateItemFail = (error) => {
 	return {
 		type: actionTypes.UPDATE_ITEM_FAIL,
 		error: error,
-	};
-};
-
-export const updateItemStart = () => {
-	return {
-		type: actionTypes.UPDATE_ITEM_START,
 	};
 };
 
@@ -104,5 +104,47 @@ export const updateItemInServer = (id, item) => {
 				dispatch(updateItemFail(error));
 				console.log(error);
 			});
+	};
+};
+
+export const deletionItemStart = (id) => {
+	return {
+		type: actionTypes.DELETION_ITEM_START,
+		deletedItemId: id,
+	};
+};
+
+export const deletingItemSuccess = (id) => {
+	return {
+		type: actionTypes.DELETE_ITEM_SUCCESS,
+		id: id,
+	};
+};
+
+export const deletingItemFail = (error) => {
+	return {
+		type: actionTypes.DELETE_ITEM_FAIL,
+		error: error,
+	};
+};
+
+export const deletingItemInServer = (id) => {
+	return (dispatch) => {
+		axios
+			.delete(`/items/${id}.json`)
+			.then((res) => {
+				dispatch(deletingItemSuccess(id));
+				console.log(res);
+			})
+			.catch((error) => {
+				dispatch(deletingItemFail(error));
+				console.log(error);
+			});
+	};
+};
+
+export const deletedItemCancel = () => {
+	return {
+		type: actionTypes.DELETE_ITEM_CANCEL,
 	};
 };

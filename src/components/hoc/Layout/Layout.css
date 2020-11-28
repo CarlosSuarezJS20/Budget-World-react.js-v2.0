@@ -3,6 +3,27 @@
 	margin-left: 10px;
 }
 
+.Btn {
+	color: rgb(49, 49, 49);
+	font-weight: bold;
+	background: rgb(249, 253, 2);
+	display: inline-block;
+	padding: 0.6rem 0.3rem;
+	text-transform: capitalize;
+	border-radius: 5px;
+	border: 1px solid rgb(207, 211, 1);
+	box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+	transition: all 0.3s linear;
+	cursor: pointer;
+	margin: 1rem 0.5rem;
+}
+
+.Btn:hover {
+	background: rgb(49, 49, 49);
+	border: 1px solid white;
+	color: white;
+}
+
 @media (min-width: 970px) {
 	.Layout {
 		margin-top: 150px;
