@@ -5,6 +5,8 @@ import Modal from '../../UI/Modal/Modal';
 import { connect } from 'react-redux';
 import * as actions from '../../../store/actions/index';
 
+// Move modal inner code into its own component
+
 class LayOut extends Component {
 	cancelBtnHandler = () => {
 		this.props.onCancelDeletion();

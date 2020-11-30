@@ -22,6 +22,7 @@ class ItemBuilder extends Component {
 				value: '',
 				validation: {
 					required: true,
+					maxLength: 50,
 				},
 				valid: false,
 				touched: false,
@@ -48,6 +49,7 @@ class ItemBuilder extends Component {
 				value: '',
 				validation: {
 					required: true,
+					maxLength: 30,
 				},
 				valid: false,
 				touched: false,
@@ -84,17 +86,19 @@ class ItemBuilder extends Component {
 				elementType: 'select',
 				elementConfig: {
 					options: [
-						{ value: 'empty', displayValue: '--' },
-						{ value: 'Food-&-beverage', displayValue: 'food/beverage' },
+						{ value: '', displayValue: '- Select Category -' },
+						{ value: 'Food-&-beverage', displayValue: 'Food/Beverage' },
 						{ value: 'Activities', displayValue: 'Activities' },
 						{ value: 'Transport', displayValue: 'Transport' },
 						{ value: 'Souvenirs', displayValue: 'Souvenirs' },
 						{ value: 'other', displayValue: 'Other' },
 					],
 				},
-				value: 'empty',
-				validation: {},
-				valid: true,
+				value: '',
+				validation: {
+					required: true,
+				},
+				valid: false,
 			},
 		},
 		formIsValid: false,
@@ -119,6 +123,23 @@ class ItemBuilder extends Component {
 			price.value = itemToUpdate.price;
 			country.value = itemToUpdate.country;
 			description.value = itemToUpdate.description;
+
+			for (let element in this.state.newItemForm) {
+				const newItemEl = this.state.newItemForm[element];
+				newItemEl.valid = this.checkValidity(
+					this.state.newItemForm[element].value,
+					this.state.newItemForm[element].validation
+				);
+			}
+
+			let formIsValid = false;
+
+			for (let formElement in this.state.newItemForm) {
+				formIsValid = this.state.newItemForm[formElement].valid && formIsValid;
+			}
+			console.log(formIsValid);
+
+			this.setState({ formIsValid: formIsValid });
 		}
 	}
 
@@ -175,12 +196,9 @@ class ItemBuilder extends Component {
 
 	checkValidity(value, rules) {
 		let isValid = true;
-		if (!rules) {
-			return true;
-		}
 
 		if (rules.required) {
-			isValid = value.trim() !== '' && isValid;
+			isValid = value !== '' && isValid;
 		}
 
 		if (rules.minLength) {
@@ -195,7 +213,6 @@ class ItemBuilder extends Component {
 			const pattern = /^-?[\d.]+(?:e-?\d+)?$/;
 			isValid = pattern.test(value) && isValid;
 		}
-
 		return isValid;
 	}
 
@@ -210,7 +227,7 @@ class ItemBuilder extends Component {
 		updatedFormElement.value = event.target.value;
 
 		updatedFormElement.valid = this.checkValidity(
-			updatedFormElement.value,
+			updatedFormElement.value.trim(),
 			updatedFormElement.validation
 		);
 		updatedFormElement.touched = true;
@@ -220,6 +237,7 @@ class ItemBuilder extends Component {
 		for (let inputIdentifier in updatedItemForm) {
 			formIsValid = updatedItemForm[inputIdentifier].valid && formIsValid;
 		}
+
 		this.setState({ formIsValid: formIsValid });
 		this.setState({ newItemForm: updatedItemForm });
 	};
@@ -255,7 +273,10 @@ class ItemBuilder extends Component {
 						/>
 					);
 				})}
-				<Button clicked={this.addItemHandler}>
+				<Button
+					clicked={this.addItemHandler}
+					disabled={!this.state.formIsValid}
+				>
 					{this.props.updating ? 'update item' : 'add new'}
 				</Button>
 				{this.state.added || this.state.updated ? <Redirect to="/" /> : null}

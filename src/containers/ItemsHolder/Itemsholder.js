@@ -2,11 +2,13 @@ import React, { Component } from 'react';
 import classes from './Itemsholder.css';
 import SingleItem from '../../components/SingleItem/SingleItem';
 import CategoriesFilterSection from '../../components/CategoriesSection/CategoriesFilterSection';
+import Spinner from '../../components/UI/Spinner/Spinner';
 // redux
 import * as actions from '../../store/actions/index';
 import { connect } from 'react-redux';
 
 // need to add spinnere for when fetching items
+// Button Disable
 
 class ItemsHolder extends Component {
 	componentDidMount() {
@@ -41,7 +43,9 @@ class ItemsHolder extends Component {
 		}
 
 		let filteredItems =
-			items.length === 0 ? (
+			items.length === 0 && this.props.loading ? (
+				<Spinner />
+			) : items.length === 0 ? (
 				<p className={classes.NotFound}> Nothing Found :( </p>
 			) : (
 				items.map((item) => {
@@ -72,6 +76,7 @@ class ItemsHolder extends Component {
 const mapStateToProps = (state) => {
 	return {
 		items: state.items,
+		loading: state.loading,
 		search: state.search,
 		category: state.category,
 	};

@@ -12,6 +12,7 @@ const initialState = {
 	},
 	search: '',
 	category: '',
+	loading: false,
 	updating: false,
 	updateElId: '',
 	deleting: false,

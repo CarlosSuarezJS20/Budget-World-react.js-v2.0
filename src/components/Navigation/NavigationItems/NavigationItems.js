@@ -7,7 +7,7 @@ const navigationItems = () => (
 		<NavigationItem link="/add-new" exact>
 			Add New
 		</NavigationItem>
-		<NavigationItem link="/plan-your-trip">Plan Trip</NavigationItem>
+		{/* <NavigationItem link="/plan-your-trip">Plan Trip</NavigationItem> */}
 		<NavigationItem link="/log-out">Log Out</NavigationItem>
 	</ul>
 );

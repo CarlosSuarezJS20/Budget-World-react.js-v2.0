@@ -2,26 +2,46 @@
 	padding: 1rem;
 }
 
-.CardInfo h3 {
+.ItemTitle {
 	border-top: 1px solid rgb(49, 49, 49);
 	border-bottom: 1px solid rgb(49, 49, 49);
 	margin-bottom: 0.5rem;
+	width: 330px;
+	word-wrap: break-word;
+}
+
+.ItemTitle span {
+	font-weight: normal;
 }
 
 .CardTitle {
 	margin: 0.5rem 0;
+	font-weight: normal;
 	text-transform: capitalize;
 }
 
 .CardPrice {
-	font-weight: 400;
+	font-weight: bold;
 	margin-left: 0.5rem;
 	margin-top: 1rem;
 	margin-bottom: 1rem;
 }
 
+.CardPrice span {
+	width: 100%;
+	word-wrap: break-word;
+}
+
 .CardDescription {
 	margin-left: 0.5rem;
+}
+
+.CardDescription h4 {
+	width: 300px;
+	word-wrap: break-word;
+}
+.CardDescription span {
+	font-weight: normal;
 }
 
 .CardInfoText {
