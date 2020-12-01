@@ -1,0 +1,76 @@
+.Auth {
+	position: relative;
+	margin: 10px auto;
+	background: rgb(233, 233, 233);
+	width: 400px;
+	text-align: center;
+	box-shadow: 0 4px 3px rgb(153, 153, 153);
+	border: 1px solid rgb(82, 82, 82);
+	border-radius: 5px;
+	padding: 10px;
+	box-sizing: border-box;
+}
+
+.AuthBtn {
+	color: rgb(49, 49, 49);
+	font-weight: bold;
+	background: rgb(249, 253, 2);
+	display: inline-block;
+	padding: 0.5rem 1rem;
+	margin: 1rem;
+	text-transform: capitalize;
+	border: 1px solid rgb(207, 211, 1);
+	box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+	transition: all 0.3s linear;
+	cursor: pointer;
+}
+
+.AuthBtn:hover {
+	background: rgb(207, 211, 1);
+}
+
+.AuthBtn:active {
+	color: rgb(49, 49, 49);
+}
+
+.AuthBtn:disabled {
+	color: #ccc;
+	cursor: not-allowed;
+}
+
+.FormMessage {
+	color: blue;
+	cursor: pointer;
+}
+
+.FormMessage:hover {
+	color: blue;
+	text-decoration: underline;
+}
+
+.ErrorMessage {
+	color: red;
+	text-transform: capitalize;
+	font-weight: bold;
+	font-size: 1rem;
+	background: rgb(255, 196, 196);
+}
+
+@media (min-width: 770px) {
+	.Auth {
+		width: 600px;
+	}
+	.AuthBtn {
+		padding: 0.5rem 3.5rem;
+	}
+}
+
+@media (min-width: 1300px) {
+	.Auth {
+		width: 800px;
+	}
+
+	.AuthBtn {
+		padding: 0.5rem 5.5rem;
+	}
+}

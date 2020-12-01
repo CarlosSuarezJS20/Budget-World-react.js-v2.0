@@ -1,4 +1,5 @@
 import * as actionTypes from '../actions/actionTypes';
+// combine the reducers, exporting Auth reducer
 
 const initialState = {
 	items: [],
@@ -17,6 +18,11 @@ const initialState = {
 	updateElId: '',
 	deleting: false,
 	deleteItemId: null,
+	accountRegistered: false,
+	token: null,
+	userId: null,
+	errorAuthentication: null,
+	loadingAuth: false,
 };
 
 const reducer = (state = initialState, action) => {
@@ -104,6 +110,38 @@ const reducer = (state = initialState, action) => {
 			return {
 				...state,
 				...{ deleting: false },
+			};
+
+		case actionTypes.AUTH_START:
+			return {
+				...state,
+				...{ error: null, loadingAuth: true },
+			};
+
+		case actionTypes.AUTH_SUCCESS:
+			return {
+				...state,
+				...{
+					accountRegistered: true,
+					token: action.idToken,
+					userId: action.userId,
+					errorAuthentication: null,
+					loadingAuth: false,
+				},
+			};
+		case actionTypes.AUTH_FAIL:
+			return {
+				...state,
+				...{
+					errorAuthentication: action.error,
+					loadingAuth: false,
+				},
+			};
+
+		case actionTypes.AUTH_LOGOUT:
+			return {
+				...state,
+				...{ token: null, userId: null },
 			};
 
 		default:

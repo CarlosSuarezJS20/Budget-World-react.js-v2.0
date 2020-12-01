@@ -9,3 +9,5 @@ export {
 	deletingItemInServer,
 	deletedItemCancel,
 } from './items';
+
+export { auth } from './auth';

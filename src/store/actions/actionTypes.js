@@ -13,3 +13,10 @@ export const DELETE_ITEM_START = 'DELETE_ITEM_START';
 export const DELETE_ITEM_SUCCESS = 'DELETE_ITEM_SUCCESS';
 export const DELETE_ITEM_FAIL = 'DELETE_ITEM_FAIL';
 export const DELETE_ITEM_CANCEL = 'DELETE_ITEM_CANCEL';
+
+//Authentication Actions:
+
+export const AUTH_START = 'AUTH_START';
+export const AUTH_SUCCESS = 'AUTH_SUCCESS';
+export const AUTH_FAIL = 'AUTH_FAIL';
+export const AUTH_LOGOUT = 'AUTH_LOGOUT';
