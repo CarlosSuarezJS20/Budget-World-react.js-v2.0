@@ -18,7 +18,6 @@ const initialState = {
 	updateElId: '',
 	deleting: false,
 	deleteItemId: null,
-	accountRegistered: false,
 	token: null,
 	userId: null,
 	errorAuthentication: null,
@@ -91,6 +90,7 @@ const reducer = (state = initialState, action) => {
 				...state,
 				...{ deleting: true, deleteItemId: action.deletedItemId },
 			};
+
 		case actionTypes.DELETE_ITEM_SUCCESS:
 			const deletedItem = state.items.find((item) => item.id === action.id);
 			const filteredItems = state.items.filter(

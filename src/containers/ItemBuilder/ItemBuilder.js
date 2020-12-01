@@ -181,7 +181,7 @@ class ItemBuilder extends Component {
 			};
 
 			axios
-				.post('/items.json', item)
+				.post('/items.json?auth=' + this.props.token, item)
 				.then((res) => {
 					this.setState({ loading: true, added: true });
 				})
@@ -300,6 +300,7 @@ const mapStateToProps = (state) => {
 		items: state.items,
 		updating: state.updating,
 		updateElId: state.updateElId,
+		token: state.token,
 	};
 };
 

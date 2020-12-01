@@ -39,7 +39,8 @@ export const checkAuthTimeOut = (expirationTime) => {
 	};
 };
 
-export const auth = (email, password, accountRegistered) => {
+export const auth = (email, password, creatingAccount) => {
+	// only when account is registered to true
 	return (dispatch) => {
 		dispatch(authStart());
 		const authData = {
@@ -48,7 +49,7 @@ export const auth = (email, password, accountRegistered) => {
 			returnSecureToken: true,
 		};
 
-		let url = accountRegistered
+		let url = !creatingAccount
 			? 'https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyAsm2AajbLjNnGdo4cb7pVXXfaxVkt-GKs'
 			: 'https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyAsm2AajbLjNnGdo4cb7pVXXfaxVkt-GKs';
 		axios
@@ -56,6 +57,7 @@ export const auth = (email, password, accountRegistered) => {
 			.then((res) => {
 				dispatch(authSuccess(res.data));
 				dispatch(checkAuthTimeOut(res.data.expiresIn));
+				console.log('you are logged In ');
 			})
 			.catch((error) => {
 				dispatch(authFail(error.response.data.error));

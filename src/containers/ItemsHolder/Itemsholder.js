@@ -12,7 +12,7 @@ import { connect } from 'react-redux';
 
 class ItemsHolder extends Component {
 	componentDidMount() {
-		this.props.onFetchOrders();
+		this.props.onFetchOrders(this.props.token);
 	}
 
 	render() {
@@ -79,12 +79,13 @@ const mapStateToProps = (state) => {
 		loading: state.loading,
 		search: state.search,
 		category: state.category,
+		token: state.token,
 	};
 };
 
 const mapDispatchToProps = (dispatch) => {
 	return {
-		onFetchOrders: () => dispatch(actions.fetchItemsFromServer()),
+		onFetchOrders: (token) => dispatch(actions.fetchItemsFromServer(token)),
 	};
 };
 

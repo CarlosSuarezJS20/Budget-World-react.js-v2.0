@@ -39,7 +39,7 @@ class Auth extends Component {
 				touched: false,
 			},
 		},
-		accountCreated: true,
+		creatingAccount: false,
 	};
 
 	checkValidity(value, rules) {
@@ -95,20 +95,22 @@ class Auth extends Component {
 		this.props.onAuth(
 			this.state.controlsAuth.email.value,
 			this.state.controlsAuth.password.value,
-			this.state.accountCreated
+			this.state.creatingAccount
 		);
-		if (this.props.accountRegistered) {
+
+		if (this.state.creatingAccount) {
 			this.switchAuthStatusHandler();
 		}
 	};
 
 	switchAuthStatusHandler = () => {
 		this.setState((prevState) => {
-			return { accountCreated: !prevState.accountCreated };
+			return { creatingAccount: !prevState.creatingAccount };
 		});
 	};
 
 	render() {
+		console.log(this.state);
 		const formElementsArray = [];
 		for (let key in this.state.controlsAuth) {
 			formElementsArray.push({
@@ -154,16 +156,14 @@ class Auth extends Component {
 				<form>
 					{authenticationForm}
 					<button className={classes.AuthBtn} onClick={this.submitHandler}>
-						{this.state.accountCreated || this.props.accountRegistered
-							? 'Log In'
-							: 'Sign Up'}
+						{!this.state.creatingAccount ? 'Log In' : 'Sign Up'}
 					</button>
 				</form>
 				<p
 					className={classes.FormMessage}
 					onClick={this.switchAuthStatusHandler}
 				>
-					{this.state.accountCreated || this.props.accountRegistered
+					{!this.state.creatingAccount
 						? 'Register Here!'
 						: 'Already a user? Login In'}
 				</p>
@@ -174,7 +174,6 @@ class Auth extends Component {
 
 const mapStateToProps = (state) => {
 	return {
-		accountRegistered: state.accountRegistered,
 		errorAuth: state.errorAuthentication,
 		loadingAuth: state.loadingAuth,
 	};
