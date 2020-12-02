@@ -4,12 +4,16 @@ import Logo from '../../Logo/Logo';
 import Search from '../Search/Search';
 import NavigationItems from '../NavigationItems/NavigationItems';
 
-const toolBar = () => (
+const toolBar = (props) => (
 	<header className={classes.Navbar}>
 		<Logo />
-		<Search />
+		{props.isAuth ? (
+			<Search />
+		) : (
+			<div className={classes.Title}>Budget World</div>
+		)}
 		<nav>
-			<NavigationItems />
+			<NavigationItems isAuthenticated={props.isAuth} />
 		</nav>
 	</header>
 );

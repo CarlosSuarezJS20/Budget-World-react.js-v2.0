@@ -77,10 +77,12 @@ export const updateItemStart = () => {
 	};
 };
 
-export const updateItemSuccess = (res) => {
+export const updateItemSuccess = (res, id, item) => {
 	return {
 		type: actionTypes.UPDATE_ITEM_SUCCESS,
 		res: res,
+		id: id,
+		item: item,
 	};
 };
 
@@ -91,14 +93,13 @@ export const updateItemFail = (error) => {
 	};
 };
 
-export const updateItemInServer = (id, item) => {
+export const updateItemInServer = (id, item, token) => {
 	return (dispatch) => {
-		console.log(id);
 		dispatch(updateItemStart());
 		axios
-			.put(`/items/${id}.json`, item)
+			.put(`/items/${id}.json?auth=` + token, item)
 			.then((res) => {
-				dispatch(updateItemSuccess(res));
+				dispatch(updateItemSuccess(res, id, item));
 			})
 			.catch((error) => {
 				dispatch(updateItemFail(error));
@@ -128,10 +129,10 @@ export const deletingItemFail = (error) => {
 	};
 };
 
-export const deletingItemInServer = (id) => {
+export const deletingItemInServer = (id, token) => {
 	return (dispatch) => {
 		axios
-			.delete(`/items/${id}.json`)
+			.delete(`/items/${id}.json?auth=` + token)
 			.then((res) => {
 				dispatch(deletingItemSuccess(id));
 				console.log(res);

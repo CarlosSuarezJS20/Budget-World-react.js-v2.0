@@ -7,7 +7,8 @@ import ItemBuilder from './containers/ItemBuilder/ItemBuilder';
 import { Route, Switch } from 'react-router-dom';
 
 //Auth
-import Auth from './components/Auth/Auth';
+import Auth from './containers/Auth/Auth';
+import Logout from './containers/Auth/Logout/Logout';
 
 class App extends Component {
 	render() {
@@ -17,7 +18,8 @@ class App extends Component {
 					<Switch>
 						<Route path="/update" component={ItemBuilder} />
 						<Route path="/add-new" component={ItemBuilder} />
-						<Route path="/auth" component={Auth} />
+						<Route path="/login" component={Auth} />
+						<Route path="/logout" component={Logout} />
 						<Route path="/" component={Itemsholder} />
 					</Switch>
 					{/* <div>

@@ -75,9 +75,16 @@ const reducer = (state = initialState, action) => {
 				...{ updating: true },
 			};
 		case actionTypes.UPDATE_ITEM_SUCCESS:
+			const updatedItems = [...state.items];
+			const indexOfUdatingItem = updatedItems.findIndex(
+				(item) => item.id === action.id
+			);
+
+			updatedItems[indexOfUdatingItem] = action.item;
+
 			return {
 				...state,
-				...{ updating: false },
+				...{ items: updatedItems, updating: false },
 			};
 		case actionTypes.UPDATE_ITEM_FAIL:
 			return {
@@ -122,7 +129,6 @@ const reducer = (state = initialState, action) => {
 			return {
 				...state,
 				...{
-					accountRegistered: true,
 					token: action.idToken,
 					userId: action.userId,
 					errorAuthentication: null,

@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
-import Input from '../UI/Input/Input';
+import Input from '../../components/UI/Input/Input';
 import classes from './Auth.css';
 import { connect } from 'react-redux';
 import * as actions from '../../store/actions/index';
-import Spinner from '../UI/Spinner/Spinner';
+import Spinner from '../../components/UI/Spinner/Spinner';
+import { Redirect } from 'react-router-dom';
 
 // fix the auth submit form.. bug displaying wrong button name
 
@@ -97,20 +98,16 @@ class Auth extends Component {
 			this.state.controlsAuth.password.value,
 			this.state.creatingAccount
 		);
-
-		if (this.state.creatingAccount) {
-			this.switchAuthStatusHandler();
-		}
 	};
 
-	switchAuthStatusHandler = () => {
+	switchAuthStatusHandler = (error) => {
+		console.log(error);
 		this.setState((prevState) => {
 			return { creatingAccount: !prevState.creatingAccount };
 		});
 	};
 
 	render() {
-		console.log(this.state);
 		const formElementsArray = [];
 		for (let key in this.state.controlsAuth) {
 			formElementsArray.push({
@@ -142,7 +139,6 @@ class Auth extends Component {
 			const message = this.props.errorAuth.message
 				.replace(/_/g, ' ')
 				.toLowerCase();
-			console.log(message);
 			errorMessage = (
 				<p
 					className={classes.ErrorMessage}
@@ -150,15 +146,25 @@ class Auth extends Component {
 			);
 		}
 
+		let authRedirect = null;
+		if (this.props.isAuthenticated) {
+			authRedirect = <Redirect to="/" />;
+		}
 		return (
 			<div className={classes.Auth}>
+				{authRedirect}
 				{errorMessage}
-				<form>
-					{authenticationForm}
-					<button className={classes.AuthBtn} onClick={this.submitHandler}>
+				{authenticationForm}
+				<div>
+					<button
+						className={classes.AuthBtn}
+						onClick={(e) => {
+							this.submitHandler(e);
+						}}
+					>
 						{!this.state.creatingAccount ? 'Log In' : 'Sign Up'}
 					</button>
-				</form>
+				</div>
 				<p
 					className={classes.FormMessage}
 					onClick={this.switchAuthStatusHandler}
@@ -176,13 +182,14 @@ const mapStateToProps = (state) => {
 	return {
 		errorAuth: state.errorAuthentication,
 		loadingAuth: state.loadingAuth,
+		isAuthenticated: state.token !== null,
 	};
 };
 
 const mapDispatchToProps = (dispatch) => {
 	return {
-		onAuth: (email, password, isSignedIn) =>
-			dispatch(actions.auth(email, password, isSignedIn)),
+		onAuth: (email, password, creatingAccount) =>
+			dispatch(actions.auth(email, password, creatingAccount)),
 	};
 };
 

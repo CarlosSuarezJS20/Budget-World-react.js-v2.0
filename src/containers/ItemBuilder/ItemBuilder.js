@@ -137,7 +137,6 @@ class ItemBuilder extends Component {
 			for (let formElement in this.state.newItemForm) {
 				formIsValid = this.state.newItemForm[formElement].valid && formIsValid;
 			}
-			console.log(formIsValid);
 
 			this.setState({ formIsValid: formIsValid });
 		}
@@ -148,7 +147,6 @@ class ItemBuilder extends Component {
 		this.setState({ loading: true });
 
 		if (this.props.updating) {
-			this.props.onToggleActiveUpdating();
 			this.setState({ updated: true });
 
 			const updatedItem = {
@@ -158,10 +156,16 @@ class ItemBuilder extends Component {
 				description: this.state.newItemForm.description.value,
 				category: this.state.newItemForm.category.value,
 				country: this.state.newItemForm.country.value.toUpperCase(),
+				userId: this.props.userId,
+				id: this.props.updateElId,
 			};
 
-			this.props.onUpdatingItemInServer(this.props.updateElId, updatedItem);
-			this.props.onFetchItems();
+			this.props.onUpdatingItemInServer(
+				this.props.updateElId,
+				updatedItem,
+				this.props.token
+			);
+			this.props.onToggleActiveUpdating();
 		} else {
 			const itemData = {};
 
@@ -178,6 +182,7 @@ class ItemBuilder extends Component {
 				description: itemData.description,
 				category: itemData.category,
 				country: itemData.country.toUpperCase(),
+				userId: this.props.userId,
 			};
 
 			axios
@@ -283,7 +288,9 @@ class ItemBuilder extends Component {
 			</form>
 		);
 
-		return (
+		return !this.props.isAuthenticated ? (
+			<Redirect to="/login" />
+		) : (
 			<div className={classes.ItemBuilder}>
 				<NavLink to="/" onClick={this.updateStateUpdating}>
 					X
@@ -301,6 +308,8 @@ const mapStateToProps = (state) => {
 		updating: state.updating,
 		updateElId: state.updateElId,
 		token: state.token,
+		isAuthenticated: state.token != null,
+		userId: state.userId,
 	};
 };
 
@@ -308,9 +317,8 @@ const mapDispatchToProps = (dispatch) => {
 	return {
 		onToggleUpdating: () => dispatch(actions.toggleActiveUpdating()),
 		onToggleActiveUpdating: () => dispatch(actions.toggleUpdatingFalse()),
-		onUpdatingItemInServer: (id, item) =>
-			dispatch(actions.updateItemInServer(id, item)),
-		onFetchItems: () => dispatch(actions.fetchItemsFromServer()),
+		onUpdatingItemInServer: (id, item, token) =>
+			dispatch(actions.updateItemInServer(id, item, token)),
 	};
 };
 

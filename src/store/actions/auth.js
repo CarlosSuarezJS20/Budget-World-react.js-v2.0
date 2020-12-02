@@ -24,7 +24,7 @@ export const authFail = (error) => {
 	};
 };
 
-export const logOut = () => {
+export const logout = () => {
 	return {
 		type: actionTypes.AUTH_LOGOUT,
 	};
@@ -34,13 +34,12 @@ export const logOut = () => {
 export const checkAuthTimeOut = (expirationTime) => {
 	return (dispatch) => {
 		setTimeout(() => {
-			dispatch(logOut());
+			dispatch(logout());
 		}, expirationTime * 1000);
 	};
 };
 
 export const auth = (email, password, creatingAccount) => {
-	// only when account is registered to true
 	return (dispatch) => {
 		dispatch(authStart());
 		const authData = {
@@ -57,7 +56,6 @@ export const auth = (email, password, creatingAccount) => {
 			.then((res) => {
 				dispatch(authSuccess(res.data));
 				dispatch(checkAuthTimeOut(res.data.expiresIn));
-				console.log('you are logged In ');
 			})
 			.catch((error) => {
 				dispatch(authFail(error.response.data.error));

@@ -13,14 +13,15 @@ class LayOut extends Component {
 	};
 
 	deleteBtnHandler = () => {
-		this.props.onDeletingItem(this.props.deleteItmId);
+		console.log(this.props.token);
+		this.props.onDeletingItem(this.props.deleteItmId, this.props.token);
 		this.props.onFetchItems();
 	};
 
 	render() {
 		return (
 			<React.Fragment>
-				<Toolbar />
+				<Toolbar isAuth={this.props.isAuthenticated} />
 				<Modal show={this.props.deleting} clicked={this.cancelBtnHandler}>
 					<p>Are you sure you want to delete this item? </p>
 					<button className={classes.Btn} onClick={this.cancelBtnHandler}>
@@ -40,6 +41,8 @@ const mapStateToProps = (state) => {
 	return {
 		deleting: state.deleting,
 		deleteItmId: state.deleteItemId,
+		token: state.token,
+		isAuthenticated: state.token !== null,
 	};
 };
 
@@ -47,7 +50,8 @@ const mapDispatchToProps = (dispatch) => {
 	return {
 		onToggleActiveUpdating: (id) => dispatch(actions.toggleActiveUpdating(id)),
 		onDeletionItemStart: () => dispatch(actions.deletionItemStart()),
-		onDeletingItem: (id) => dispatch(actions.deletingItemInServer(id)),
+		onDeletingItem: (id, token) =>
+			dispatch(actions.deletingItemInServer(id, token)),
 		onFetchItems: () => dispatch(actions.fetchItemsFromServer()),
 		onCancelDeletion: () => dispatch(actions.deletedItemCancel()),
 	};

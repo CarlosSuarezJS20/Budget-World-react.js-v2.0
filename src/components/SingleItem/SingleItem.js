@@ -17,6 +17,7 @@ const singleItem = (props) => {
 				itemId={props.id}
 				itemCategory={props.category}
 				itemCountry={props.country}
+				itemUserId={props.userId}
 			/>
 		</article>
 	);

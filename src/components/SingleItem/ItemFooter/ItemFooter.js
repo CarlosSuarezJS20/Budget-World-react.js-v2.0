@@ -14,12 +14,10 @@ class ItemFooter extends Component {
 	};
 
 	render() {
-		return (
-			<div className={classes.CardFooter}>
-				<div className={classes.FooterInfo}>
-					<span>{this.props.itemCategory}</span>
-					<span>{this.props.itemCountry}</span>
-				</div>
+		let buttons = null;
+
+		if (this.props.userId === this.props.itemUserId) {
+			buttons = (
 				<div className={classes.CardBtns}>
 					<NavLink
 						to={'/update'}
@@ -39,10 +37,26 @@ class ItemFooter extends Component {
 						delete
 					</a>
 				</div>
+			);
+		}
+
+		return (
+			<div className={classes.CardFooter}>
+				<div className={classes.FooterInfo}>
+					<span>{this.props.itemCategory}</span>
+					<span>{this.props.itemCountry}</span>
+				</div>
+				{buttons}
 			</div>
 		);
 	}
 }
+
+const mapStateToProps = (state) => {
+	return {
+		userId: state.userId,
+	};
+};
 
 const mapDispatchToProps = (dispatch) => {
 	return {
@@ -51,4 +65,4 @@ const mapDispatchToProps = (dispatch) => {
 	};
 };
 
-export default connect(null, mapDispatchToProps)(ItemFooter);
+export default connect(mapStateToProps, mapDispatchToProps)(ItemFooter);

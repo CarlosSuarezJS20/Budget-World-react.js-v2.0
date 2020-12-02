@@ -6,13 +6,12 @@ import Spinner from '../../components/UI/Spinner/Spinner';
 // redux
 import * as actions from '../../store/actions/index';
 import { connect } from 'react-redux';
-
-// need to add spinnere for when fetching items
-// Button Disable
+// Router
+import { Redirect } from 'react-router-dom';
 
 class ItemsHolder extends Component {
 	componentDidMount() {
-		this.props.onFetchOrders(this.props.token);
+		this.props.onFetchItems(this.props.token);
 	}
 
 	render() {
@@ -49,6 +48,7 @@ class ItemsHolder extends Component {
 				<p className={classes.NotFound}> Nothing Found :( </p>
 			) : (
 				items.map((item) => {
+					console.log(item);
 					return (
 						<SingleItem
 							key={item.id}
@@ -59,12 +59,15 @@ class ItemsHolder extends Component {
 							description={item.description}
 							category={item.category}
 							country={item.country}
+							userId={item.userId}
 						/>
 					);
 				})
 			);
 
-		return (
+		return !this.props.isAuthenticated ? (
+			<Redirect to="/login" />
+		) : (
 			<section className={classes.Cards}>
 				<CategoriesFilterSection />
 				<div className={classes.CardsCenter}>{filteredItems}</div>
@@ -80,12 +83,13 @@ const mapStateToProps = (state) => {
 		search: state.search,
 		category: state.category,
 		token: state.token,
+		isAuthenticated: state.token != null,
 	};
 };
 
 const mapDispatchToProps = (dispatch) => {
 	return {
-		onFetchOrders: (token) => dispatch(actions.fetchItemsFromServer(token)),
+		onFetchItems: (token) => dispatch(actions.fetchItemsFromServer(token)),
 	};
 };
 
