@@ -4,12 +4,23 @@
 	margin-left: 0rem;
 	margin-right: 0rem;
 	display: grid;
+	grid-template-columns: repeat(2, 0.5fr);
+	justify-items: center;
+	justify-content: space-between;
+}
+
+.CardFooterWithButtons {
+	background: rgb(49, 49, 49);
+	padding: 0.5rem 1rem;
+	margin-left: 0rem;
+	margin-right: 0rem;
+	display: grid;
 	grid-template-columns: repeat(3, 0.5fr);
 	justify-items: center;
 	justify-content: space-between;
 }
 
-.CardFooter span {
+.FooterTags {
 	color: white;
 	width: 100px;
 	font-size: 0.7rem;
@@ -17,12 +28,6 @@
 	padding: 0.5rem;
 	text-transform: uppercase;
 	word-wrap: break-word;
-}
-
-.FooterInfo {
-	display: grid;
-	grid-template-columns: repeat(2, 1.5fr);
-	justify-items: center;
 }
 
 .CardBtns {

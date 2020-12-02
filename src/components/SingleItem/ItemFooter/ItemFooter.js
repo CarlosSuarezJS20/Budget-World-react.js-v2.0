@@ -41,11 +41,15 @@ class ItemFooter extends Component {
 		}
 
 		return (
-			<div className={classes.CardFooter}>
-				<div className={classes.FooterInfo}>
-					<span>{this.props.itemCategory}</span>
-					<span>{this.props.itemCountry}</span>
-				</div>
+			<div
+				className={
+					this.props.userId === this.props.itemUserId
+						? classes.CardFooterWithButtons
+						: classes.CardFooter
+				}
+			>
+				<span className={classes.FooterTags}>{this.props.itemCategory}</span>
+				<span className={classes.FooterTags}>{this.props.itemCountry}</span>
 				{buttons}
 			</div>
 		);

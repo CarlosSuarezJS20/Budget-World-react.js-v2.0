@@ -1,5 +1,4 @@
 import * as actionTypes from '../actions/actionTypes';
-// combine the reducers, exporting Auth reducer
 
 const initialState = {
 	items: [],
