@@ -48,7 +48,6 @@ class ItemsHolder extends Component {
 				<p className={classes.NotFound}> Nothing Found :( </p>
 			) : (
 				items.map((item) => {
-					console.log(item);
 					return (
 						<SingleItem
 							key={item.id}

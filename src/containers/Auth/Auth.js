@@ -102,7 +102,7 @@ class Auth extends Component {
 
 	switchAuthStatusHandler = (error) => {
 		this.setState((prevState) => {
-			return { creatingAccount: !prevState.creatingAccount };
+			return { creatingAccount: !prevState.creatingAccount, touched: false };
 		});
 	};
 
