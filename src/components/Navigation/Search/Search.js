@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
 // import classes from './Search.css';
 import Input from '../../UI/Input/Input';
-
 // redux
 import * as actions from '../../../store/actions/index';
 import { connect } from 'react-redux';
 
 class Search extends Component {
 	render() {
+		console.log(this.props.inputC.elementType);
 		return (
 			<Input
 				elementType={this.props.inputC.elementType}
@@ -21,8 +21,8 @@ class Search extends Component {
 
 const mapStateToProps = (state) => {
 	return {
-		inputC: state.inputConfig,
-		search: state.search,
+		inputC: state.itemsR.inputConfig,
+		search: state.itemsR.search,
 	};
 };
 

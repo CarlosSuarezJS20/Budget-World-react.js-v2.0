@@ -7,8 +7,13 @@
 	box-shadow: 0 4px 3px rgb(153, 153, 153);
 	border: 1px solid rgb(82, 82, 82);
 	border-radius: 5px;
-	padding: 10px;
+	padding: 20px;
 	box-sizing: border-box;
+}
+
+.BtnsHolder {
+	margin-top: 1rem;
+	border-top: 1px solid rgb(156, 156, 156);
 }
 
 .AuthBtn {
@@ -47,9 +52,7 @@
 .ErrorMessage {
 	color: red;
 	text-transform: capitalize;
-	font-weight: bold;
 	font-size: 1rem;
-	background: rgb(255, 196, 196);
 }
 
 @media (min-width: 770px) {

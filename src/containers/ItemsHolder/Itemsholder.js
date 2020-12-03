@@ -78,12 +78,12 @@ class ItemsHolder extends Component {
 
 const mapStateToProps = (state) => {
 	return {
-		items: state.items,
-		loading: state.loading,
-		search: state.search,
-		category: state.category,
-		token: state.token,
-		isAuthenticated: state.token != null,
+		items: state.itemsR.items,
+		loading: state.itemsR.loading,
+		search: state.itemsR.search,
+		category: state.itemsR.category,
+		token: state.authR.token,
+		isAuthenticated: state.authR.token != null,
 	};
 };
 

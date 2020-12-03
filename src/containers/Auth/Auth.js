@@ -29,7 +29,7 @@ class Auth extends Component {
 				elementType: 'input',
 				elementConfig: {
 					type: 'password',
-					placeholder: 'Enter New Password',
+					placeholder: 'Enter Password',
 				},
 				value: '',
 				validation: {
@@ -101,7 +101,6 @@ class Auth extends Component {
 	};
 
 	switchAuthStatusHandler = (error) => {
-		console.log(error);
 		this.setState((prevState) => {
 			return { creatingAccount: !prevState.creatingAccount };
 		});
@@ -109,6 +108,7 @@ class Auth extends Component {
 
 	render() {
 		const formElementsArray = [];
+
 		for (let key in this.state.controlsAuth) {
 			formElementsArray.push({
 				id: key,
@@ -154,8 +154,9 @@ class Auth extends Component {
 			<div className={classes.Auth}>
 				{authRedirect}
 				{errorMessage}
+				{this.state.creatingAccount ? <h2>Welcome to Budget World!</h2> : null}
 				{authenticationForm}
-				<div>
+				<div className={classes.BtnsHolder}>
 					<button
 						className={classes.AuthBtn}
 						onClick={(e) => {
@@ -180,9 +181,9 @@ class Auth extends Component {
 
 const mapStateToProps = (state) => {
 	return {
-		errorAuth: state.errorAuthentication,
-		loadingAuth: state.loadingAuth,
-		isAuthenticated: state.token !== null,
+		errorAuth: state.authR.errorAuthentication,
+		loadingAuth: state.authR.loadingAuth,
+		isAuthenticated: state.authR.token !== null,
 	};
 };
 

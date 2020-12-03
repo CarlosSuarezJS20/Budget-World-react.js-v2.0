@@ -1,4 +1,5 @@
 import * as actionTypes from '../actions/actionTypes';
+import { updateState } from './utility';
 
 const initialState = {
 	items: [],
@@ -17,138 +18,117 @@ const initialState = {
 	updateElId: '',
 	deleting: false,
 	deleteItemId: null,
-	token: null,
-	userId: null,
-	errorAuthentication: null,
-	loadingAuth: false,
+};
+
+const fetchItemsStart = (state) => {
+	return updateState(state, { loading: true });
+};
+
+const fetchItemsSuccess = (state, action) => {
+	return updateState(state, { items: action.items, loading: false });
+};
+
+const fetchItemsFail = (state) => {
+	return updateState(state, { loading: false });
+};
+
+const inputOnchangedHandler = (state, action) => {
+	const updatedSearchInput = { ...state.inputConfig };
+	updatedSearchInput.value = action.event.target.value;
+	return updateState(state, {
+		inputConfig: updatedSearchInput,
+		search: updatedSearchInput.value.toUpperCase(),
+	});
+};
+
+const categoryFilterHandler = (state, action) => {
+	return updateState(state, { category: action.event.target.value });
+};
+
+const toggleUpdating = (state, action) => {
+	return updateState(state, { updating: true, updateElId: action.id });
+};
+
+const toggleUpdatingFalse = (state) => {
+	return updateState(state, { updating: false });
+};
+
+const updateItemStart = (state) => {
+	return updateState(state, { updating: true });
+};
+
+const updateItemSuccess = (state, action) => {
+	const updatedItems = [...state.items];
+	const indexOfUdatingItem = updatedItems.findIndex(
+		(item) => item.id === action.id
+	);
+	updatedItems[indexOfUdatingItem] = action.item;
+
+	return updateState(state, { items: updatedItems, updating: false });
+};
+
+const updateItemFail = (state) => {
+	return updateState(state, { updating: false });
+};
+
+const deletionItemStart = (state, action) => {
+	return updateState(state, {
+		deleting: true,
+		deleteItemId: action.deletedItemId,
+	});
+};
+
+const deleteItemSuccess = (state, action) => {
+	const deletedItem = state.items.find((item) => item.id === action.id);
+	const filteredItems = state.items.filter(
+		(item) => item.id !== deletedItem.id
+	);
+
+	return updateState(state, {
+		items: filteredItems,
+		deleting: false,
+		deleteItemId: null,
+	});
+};
+
+const deleteItemFail = (state) => {
+	return updateState(state, { deleting: false, deleteItemId: null });
+};
+
+const deleteItemCancel = (state) => {
+	return updateState(state, { deleting: false });
 };
 
 const reducer = (state = initialState, action) => {
 	switch (action.type) {
 		case actionTypes.FETCH_ITEMS_START:
-			return {
-				...state,
-				...{ loading: true },
-			};
+			return fetchItemsStart(state);
 		case actionTypes.FETCH_ITEMS_SUCCESS:
-			return {
-				...state,
-				...{ items: action.items, loading: false },
-			};
+			return fetchItemsSuccess(state, action);
 		case actionTypes.FETCH_ITEMS_FAIL:
-			return {
-				...state,
-				...{ loading: false },
-			};
+			return fetchItemsFail(state);
 		case actionTypes.INPUT_ONCHANGED_HANDLER:
-			const updatedSearchInput = {
-				...state.inputConfig,
-			};
-
-			updatedSearchInput.value = action.event.target.value;
-			return {
-				...state,
-				...{
-					inputConfig: updatedSearchInput,
-					search: updatedSearchInput.value.toUpperCase(),
-				},
-			};
+			return inputOnchangedHandler(state, action);
 		case actionTypes.CATEGORY_FILTER_HANDLER:
-			return {
-				...state,
-				...{ category: action.event.target.value },
-			};
+			return categoryFilterHandler(state, action);
 		case actionTypes.TOGGLE_UPDATING:
-			return {
-				...state,
-				...{ updating: true, updateElId: action.id },
-			};
+			return toggleUpdating(state, action);
 		case actionTypes.TOGGLE_UPDATING_FALSE:
-			return {
-				...state,
-				...{ updating: false },
-			};
+			return toggleUpdatingFalse(state, action);
 		case actionTypes.UPDATE_ITEM_START:
-			return {
-				...state,
-				...{ updating: true },
-			};
+			return updateItemStart(state);
 		case actionTypes.UPDATE_ITEM_SUCCESS:
-			const updatedItems = [...state.items];
-			const indexOfUdatingItem = updatedItems.findIndex(
-				(item) => item.id === action.id
-			);
-
-			updatedItems[indexOfUdatingItem] = action.item;
-
-			return {
-				...state,
-				...{ items: updatedItems, updating: false },
-			};
+			return updateItemSuccess(state, action);
 		case actionTypes.UPDATE_ITEM_FAIL:
-			return {
-				...state,
-				...{ updating: false },
-			};
-
+			return updateItemFail(state);
 		case actionTypes.DELETION_ITEM_START:
-			return {
-				...state,
-				...{ deleting: true, deleteItemId: action.deletedItemId },
-			};
-
+			return deletionItemStart(state, action);
 		case actionTypes.DELETE_ITEM_SUCCESS:
-			const deletedItem = state.items.find((item) => item.id === action.id);
-			const filteredItems = state.items.filter(
-				(item) => item.id !== deletedItem.id
-			);
-
-			return {
-				...state,
-				...{ items: filteredItems, deleting: false, deleteItemId: null },
-			};
+			return deleteItemSuccess(state, action);
 		case actionTypes.DELETE_ITEM_FAIL:
-			return {
-				...state,
-				...{ deleting: false, deleteItemId: null },
-			};
+			return deleteItemFail(state, action);
 		case actionTypes.DELETE_ITEM_CANCEL:
-			return {
-				...state,
-				...{ deleting: false },
-			};
-
-		case actionTypes.AUTH_START:
-			return {
-				...state,
-				...{ error: null, loadingAuth: true },
-			};
-
-		case actionTypes.AUTH_SUCCESS:
-			return {
-				...state,
-				...{
-					token: action.idToken,
-					userId: action.userId,
-					errorAuthentication: null,
-					loadingAuth: false,
-				},
-			};
-		case actionTypes.AUTH_FAIL:
-			return {
-				...state,
-				...{
-					errorAuthentication: action.error,
-					loadingAuth: false,
-				},
-			};
-
-		case actionTypes.AUTH_LOGOUT:
-			return {
-				...state,
-				...{ token: null, userId: null },
-			};
-
+			return deleteItemCancel(state);
 		default:
 			return state;
 	}

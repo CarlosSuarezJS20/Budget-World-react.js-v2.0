@@ -10,4 +10,4 @@ export {
 	deletedItemCancel,
 } from './items';
 
-export { auth, logout } from './auth';
+export { auth, logout, errorAuthenticationClearing } from './auth';

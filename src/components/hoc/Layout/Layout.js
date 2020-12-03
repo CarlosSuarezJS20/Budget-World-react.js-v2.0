@@ -13,7 +13,6 @@ class LayOut extends Component {
 	};
 
 	deleteBtnHandler = () => {
-		console.log(this.props.token);
 		this.props.onDeletingItem(this.props.deleteItmId, this.props.token);
 		this.props.onFetchItems();
 	};
@@ -39,10 +38,10 @@ class LayOut extends Component {
 
 const mapStateToProps = (state) => {
 	return {
-		deleting: state.deleting,
-		deleteItmId: state.deleteItemId,
-		token: state.token,
-		isAuthenticated: state.token !== null,
+		deleting: state.itemsR.deleting,
+		deleteItmId: state.itemsR.deleteItemId,
+		token: state.authR.token,
+		isAuthenticated: state.authR.token !== null,
 	};
 };
 

@@ -304,12 +304,12 @@ class ItemBuilder extends Component {
 
 const mapStateToProps = (state) => {
 	return {
-		items: state.items,
-		updating: state.updating,
-		updateElId: state.updateElId,
-		token: state.token,
-		isAuthenticated: state.token != null,
-		userId: state.userId,
+		items: state.itemsR.items,
+		updating: state.itemsR.updating,
+		updateElId: state.itemsR.updateElId,
+		token: state.authR.token,
+		isAuthenticated: state.authR.token != null,
+		userId: state.authR.userId,
 	};
 };
 
