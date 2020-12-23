@@ -22,9 +22,6 @@ class App extends Component {
 						<Route path="/logout" component={Logout} />
 						<Route path="/" component={Itemsholder} />
 					</Switch>
-					{/* <div>
-						<h1>Plan Your trip</h1>
-					</div> */}
 				</Layout>
 			</div>
 		);
