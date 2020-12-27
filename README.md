@@ -15,7 +15,7 @@
 
 ## Description
 
-Fully functional version of Budget World Node.js. Travelling app with the porpose of allow users to budget their holidays and share information about activities, general transportation cost and other popular items.
+Fully functional version of Budget World Node.js. Travelling app with the purpose of allowing users to budget their holidays and share information about activities, general transportation cost and other popular items.
 
 ### Capabilities
 
