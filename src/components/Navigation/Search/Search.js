@@ -7,7 +7,6 @@ import { connect } from 'react-redux';
 
 class Search extends Component {
 	render() {
-		console.log(this.props.inputC.elementType);
 		return (
 			<Input
 				elementType={this.props.inputC.elementType}
