@@ -1,30 +1,72 @@
-.Auth {
-	position: relative;
-	margin: 100px auto;
-	background: rgb(233, 233, 233);
-	width: 350px;
+.LoginSection {
+	height: 100vh;
+}
+
+.HeroImage {
+	background: linear-gradient(transparent, rgba(255, 254, 254, 0.8)),
+		url('../../assets//images/pexels-sergio-souza-2249602.jpg') center/cover
+			no-repeat;
+	height: 50vh;
 	text-align: center;
-	box-shadow: 0 4px 3px rgb(153, 153, 153);
-	border: 1px solid rgb(82, 82, 82);
+}
+
+.HeroImage h1 {
+	padding-top: 1.5rem;
+	color: rgb(233, 229, 0);
+	font-size: 1.5rem;
+	font-weight: 500;
+}
+
+.LogoHolder {
+	position: absolute;
+	top: 46%;
+	left: 40%;
+	background-color: #fff;
+	border-radius: 50px;
+}
+
+.FormHolder {
+	height: 30vh;
+}
+
+@media (min-width: 500px) {
+	.LogoHolder {
+		left: 45%;
+	}
+}
+
+.Auth {
+	margin: 2rem auto;
+	width: 300px;
+	text-align: center;
+
 	border-radius: 5px;
 	padding: 20px;
 	box-sizing: border-box;
 }
 
+.Auth h2 {
+	font-weight: 500;
+	color: rgb(56, 56, 56);
+}
+
 .BtnsHolder {
-	margin-top: 1rem;
+	padding-top: 1rem;
 	border-top: 1px solid rgb(156, 156, 156);
+	width: 250px;
+	margin: 1rem auto;
 }
 
 .AuthBtn {
 	color: rgb(49, 49, 49);
+	width: 100%;
 	font-weight: bold;
 	background: rgb(249, 253, 2);
 	display: inline-block;
-	padding: 0.5rem 1rem;
-	margin: 1rem;
+	padding: 0.6rem 1rem;
 	text-transform: capitalize;
 	border: 1px solid rgb(207, 211, 1);
+	border-radius: 25px;
 	box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
 	transition: all 0.3s linear;
 	cursor: pointer;
@@ -52,25 +94,98 @@
 .ErrorMessage {
 	color: red;
 	text-transform: capitalize;
-	font-size: 1rem;
+	font-size: 0.6rem;
 }
 
-@media (min-width: 770px) {
+@media (min-width: 1020px) {
 	.Auth {
-		margin: 300px auto;
-		width: 600px;
+		margin: 5rem auto;
+		width: 500px;
 	}
+
+	.Auth h2 {
+		font-weight: 500;
+		font-size: 2rem;
+		color: rgb(56, 56, 56);
+	}
+
+	.BtnsHolder {
+		padding-top: 2rem;
+		border-top: 1px solid rgb(156, 156, 156);
+		width: 400px;
+		margin: 2rem auto;
+	}
+
 	.AuthBtn {
-		padding: 0.5rem 3.5rem;
+		font-size: 1.5rem;
+	}
+
+	.FormMessage {
+		font-size: 1.5rem;
+		cursor: pointer;
+	}
+
+	.FormMessage:hover {
+		color: blue;
+		text-decoration: underline;
+	}
+
+	.ErrorMessage {
+		color: red;
+		text-transform: capitalize;
+		font-size: 1.6rem;
+	}
+}
+
+@media (min-width: 1090px) {
+	.LoginSection {
+		height: 100vh;
+		display: grid;
+		grid-template-columns: 500px 1fr;
+		gap: 1rem;
+		background: rgb(2, 0, 36);
+		background: linear-gradient(
+			180deg,
+			rgba(2, 0, 36, 1) 7%,
+			rgba(234, 244, 2, 1) 62%,
+			rgba(241, 255, 0, 1) 100%
+		);
+	}
+
+	.HeroImage {
+		background: url('../../assets//images/pexels-sergio-souza-2249602.jpg')
+			center/cover no-repeat;
+		height: 100vh;
+		text-align: center;
+	}
+
+	.FormHolder {
+		background-color: #fff;
+		height: 100vh;
+	}
+
+	.LogoHolder {
+		position: absolute;
+		top: 5%;
+		left: 67%;
+		background-color: #fff;
+		border-radius: 50px;
 	}
 }
 
 @media (min-width: 1300px) {
-	.Auth {
-		width: 800px;
+	.LogoHolder {
+		position: absolute;
+		top: 5%;
+		left: 73%;
+		background-color: #fff;
+		border-radius: 50px;
 	}
 
-	.AuthBtn {
-		padding: 0.5rem 5.5rem;
+	.LoginSection {
+		height: 100vh;
+		display: grid;
+		grid-template-columns: 1fr 1fr;
+		gap: 1rem;
 	}
 }

@@ -1,18 +1,31 @@
 import React, { Component } from 'react';
 import classes from './Itemsholder.css';
+
+import Toolbar from '../../components/Navigation/Toolbar/Toolbar';
 import SingleItem from '../../components/SingleItem/SingleItem';
 import CategoriesFilterSection from '../../components/CategoriesSection/CategoriesFilterSection';
 import Spinner from '../../components/UI/Spinner/Spinner';
+import Modal from '../../components/UI/Modal/Modal';
 // redux
 import * as actions from '../../store/actions/index';
 import { connect } from 'react-redux';
 // Router
 import { Redirect } from 'react-router-dom';
+import Loader from '../../Loader/Loader';
 
 class ItemsHolder extends Component {
 	componentDidMount() {
 		this.props.onFetchItems(this.props.token);
 	}
+
+	cancelBtnHandler = () => {
+		this.props.onCancelDeletion();
+	};
+
+	deleteBtnHandler = () => {
+		this.props.onDeletingItem(this.props.deleteItmId, this.props.token);
+		this.props.onFetchItems();
+	};
 
 	render() {
 		let items = this.props.items.filter((item) => {
@@ -68,6 +81,17 @@ class ItemsHolder extends Component {
 			<Redirect to="/login" />
 		) : (
 			<section className={classes.Cards}>
+				<Loader />
+				<Toolbar isAuth={this.props.isAuthenticated} />
+				<Modal show={this.props.deleting} clicked={this.cancelBtnHandler}>
+					<p>Are you sure you want to delete this item? </p>
+					<button className={classes.Btn} onClick={this.cancelBtnHandler}>
+						cancel
+					</button>
+					<button className={classes.Btn} onClick={this.deleteBtnHandler}>
+						confirm
+					</button>
+				</Modal>
 				<CategoriesFilterSection />
 				<div className={classes.CardsCenter}>{filteredItems}</div>
 			</section>
@@ -77,6 +101,8 @@ class ItemsHolder extends Component {
 
 const mapStateToProps = (state) => {
 	return {
+		deleting: state.itemsR.deleting,
+		deleteItmId: state.itemsR.deleteItemId,
 		items: state.itemsR.items,
 		loading: state.itemsR.loading,
 		search: state.itemsR.search,
@@ -88,6 +114,10 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
 	return {
+		onDeletionItemStart: () => dispatch(actions.deletionItemStart()),
+		onDeletingItem: (id, token) =>
+			dispatch(actions.deletingItemInServer(id, token)),
+		onCancelDeletion: () => dispatch(actions.deletedItemCancel()),
 		onFetchItems: (token) => dispatch(actions.fetchItemsFromServer(token)),
 	};
 };

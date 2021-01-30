@@ -3,6 +3,7 @@ import Input from '../../components/UI/Input/Input';
 import classes from './Auth.css';
 import { connect } from 'react-redux';
 import * as actions from '../../store/actions/index';
+import Logo from '../../components/Logo/Logo';
 import Spinner from '../../components/UI/Spinner/Spinner';
 import { Redirect } from 'react-router-dom';
 
@@ -118,6 +119,7 @@ class Auth extends Component {
 
 		let authenticationForm = formElementsArray.map((inputEl) => (
 			<Input
+				active
 				key={inputEl.id}
 				elementType={inputEl.config.elementType}
 				elementConfig={inputEl.config.elementConfig}
@@ -151,30 +153,44 @@ class Auth extends Component {
 			authRedirect = <Redirect to="/" />;
 		}
 		return (
-			<div className={classes.Auth}>
-				{authRedirect}
-				{errorMessage}
-				{this.state.creatingAccount ? <h2>Welcome to Budget World!</h2> : null}
-				{authenticationForm}
-				<div className={classes.BtnsHolder}>
-					<button
-						className={classes.AuthBtn}
-						onClick={(e) => {
-							this.submitHandler(e);
-						}}
-					>
-						{!this.state.creatingAccount ? 'Log In' : 'Sign Up'}
-					</button>
+			<section className={classes.LoginSection}>
+				<div className={classes.LogoHolder}>
+					<Logo active />
 				</div>
-				<p
-					className={classes.FormMessage}
-					onClick={this.switchAuthStatusHandler}
-				>
-					{!this.state.creatingAccount
-						? 'Register Here!'
-						: 'Already a user? Login In'}
-				</p>
-			</div>
+				<header>
+					<div className={classes.HeroImage}></div>
+				</header>
+				<div className={classes.FormHolder}>
+					<div className={classes.Auth}>
+						{authRedirect}
+						{errorMessage}
+						{this.state.creatingAccount ? (
+							<h2>Welcome to Budget World!</h2>
+						) : (
+							<h2>Welcome back!</h2>
+						)}
+						{authenticationForm}
+						<div className={classes.BtnsHolder}>
+							<button
+								className={classes.AuthBtn}
+								onClick={(e) => {
+									this.submitHandler(e);
+								}}
+							>
+								{!this.state.creatingAccount ? 'Log In' : 'Sign Up'}
+							</button>
+						</div>
+						<p
+							className={classes.FormMessage}
+							onClick={this.switchAuthStatusHandler}
+						>
+							{!this.state.creatingAccount
+								? 'Register Here!'
+								: 'Already a user? Login In'}
+						</p>
+					</div>
+				</div>
+			</section>
 		);
 	}
 }

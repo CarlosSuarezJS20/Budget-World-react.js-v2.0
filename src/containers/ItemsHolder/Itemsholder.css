@@ -17,10 +17,6 @@
 	.CardsCenter {
 		margin: 5rem auto;
 	}
-
-	.Cards {
-		margin-top: 100px;
-	}
 }
 
 @media (min-width: 1200px) {

@@ -6,8 +6,30 @@
 	border-radius: 5px;
 }
 
-@media (min-width: 1300px) {
+.LogoLogin {
+	width: 75px;
+	border: 2px solid rgb(49, 49, 49);
+	border-radius: 50px;
+}
+
+@media (min-width: 500px) {
+	.LogoLogin {
+		width: 80px;
+	}
+}
+
+@media (min-width: 1000px) {
+	.LogoLogin {
+		width: 100px;
+	}
+}
+
+@media (min-width: 1090px) {
 	.LogoHolder {
 		margin-left: 1rem;
+	}
+
+	.LogoLogin {
+		width: 50px;
 	}
 }

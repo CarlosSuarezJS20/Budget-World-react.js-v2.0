@@ -3,8 +3,14 @@ import classes from './Input.css';
 
 const input = (props) => {
 	let inputElement = null;
+	let inputClasses;
 
-	const inputClasses = [classes.InputElement];
+	if (props.active) {
+		inputClasses = [classes.Inputlogin];
+	} else {
+		inputClasses = [classes.InputElement];
+	}
+
 	if (props.invalid && props.shouldValidate && props.touched) {
 		inputClasses.push(classes.Invalid);
 	}
