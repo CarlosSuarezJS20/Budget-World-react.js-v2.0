@@ -11,8 +11,8 @@ const itemInfo = (props) => {
 			</div>
 			<div className={classes.CardPrice}>
 				<h4>
-					Price ($):
-					<span>{props.itemPrice}</span>
+					Price:
+					<span>{`£${props.itemPrice}`}</span>
 				</h4>
 			</div>
 			<div className={classes.CardDescription}>

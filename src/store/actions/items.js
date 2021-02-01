@@ -24,6 +24,7 @@ export const fetchItemsStart = () => {
 };
 
 export const fetchItemsFromServer = (token) => {
+	console.log(token);
 	return (dispatch) => {
 		dispatch(fetchItemsStart());
 		axios

@@ -1,12 +1,8 @@
 .NavigationItems {
 	list-style: none;
+	display: flex;
 }
 
-@media (min-width: 970px) {
-	.NavigationItems {
-		display: inline;
-	}
-}
-
-@media (min-width: 1300px) {
+.AddNewButton {
+	font-size: 1.5rem;
 }

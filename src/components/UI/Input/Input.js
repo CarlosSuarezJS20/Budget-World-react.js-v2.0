@@ -7,6 +7,8 @@ const input = (props) => {
 
 	if (props.active) {
 		inputClasses = [classes.Inputlogin];
+	} else if (props.toolbar) {
+		inputClasses = [classes.InputSearchToolbar];
 	} else {
 		inputClasses = [classes.InputElement];
 	}

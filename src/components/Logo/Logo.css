@@ -12,6 +12,10 @@
 	border-radius: 50px;
 }
 
+.LogoNavbar {
+	display: none;
+}
+
 @media (min-width: 500px) {
 	.LogoLogin {
 		width: 80px;
@@ -19,6 +23,10 @@
 }
 
 @media (min-width: 1000px) {
+	.LogoNavbar {
+		display: block;
+	}
+
 	.LogoLogin {
 		width: 100px;
 	}

@@ -7,9 +7,6 @@ import { connect } from 'react-redux';
 import * as actions from '../../store/actions/index';
 import { NavLink, Redirect } from 'react-router-dom';
 
-// create button disable option
-// modal for deletion
-
 class ItemBuilder extends Component {
 	state = {
 		newItemForm: {
@@ -87,7 +84,7 @@ class ItemBuilder extends Component {
 				elementConfig: {
 					options: [
 						{ value: '', displayValue: '- Select Category -' },
-						{ value: 'Food-&-beverage', displayValue: 'Food/Beverage' },
+						{ value: 'Food & drinks', displayValue: 'Food & drinks' },
 						{ value: 'Activities', displayValue: 'Activities' },
 						{ value: 'Transport', displayValue: 'Transport' },
 						{ value: 'Souvenirs', displayValue: 'Souvenirs' },

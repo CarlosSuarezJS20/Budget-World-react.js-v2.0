@@ -6,7 +6,7 @@ import * as actions from '../../store/actions/index';
 class CategoriesFilterSection extends Component {
 	state = {
 		buttons: [
-			'Food-&-beverage',
+			'Food & drinks',
 			'Activities',
 			'Transport',
 			'Souvenirs',
@@ -23,7 +23,8 @@ class CategoriesFilterSection extends Component {
 	render() {
 		const { buttons, selected } = this.state;
 
-		let btns = buttons.map((btn) => {
+		let btns = buttons.sort().map((btn) => {
+			console.log(btn);
 			return (
 				<button
 					key={btn}

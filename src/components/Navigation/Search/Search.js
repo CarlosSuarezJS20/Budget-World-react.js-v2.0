@@ -9,6 +9,7 @@ class Search extends Component {
 	render() {
 		return (
 			<Input
+				toolbar
 				elementType={this.props.inputC.elementType}
 				elementConfig={this.props.inputC.elementConfig}
 				value={this.props.inputC.value}

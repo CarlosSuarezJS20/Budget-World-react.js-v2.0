@@ -4,7 +4,7 @@ import classes from './Logo.css';
 
 const logo = (props) => {
 	return (
-		<div className={classes.LogoHolder}>
+		<div className={props.LogoNavbar ? classes.LogoNavbar : classes.LogoHolder}>
 			<img
 				className={props.active ? classes.LogoLogin : classes.Logo}
 				src={bwLogo}

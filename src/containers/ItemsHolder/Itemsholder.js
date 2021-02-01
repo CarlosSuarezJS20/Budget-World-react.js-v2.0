@@ -53,10 +53,19 @@ class ItemsHolder extends Component {
 				return item.country.indexOf(this.props.search.trim()) !== -1;
 			});
 		}
+		// This is for the spinner on the main div that holds the items. Appears centered
+
+		let classForMainDisplayDiv = classes.CardsCenter;
+
+		if (items.length === 0 && this.props.loading) {
+			classForMainDisplayDiv = classes.CardsDisplayLoader;
+		}
 
 		let filteredItems =
 			items.length === 0 && this.props.loading ? (
-				<Spinner />
+				<div className={classes.SpinnerHolder}>
+					<Spinner />
+				</div>
 			) : items.length === 0 ? (
 				<p className={classes.NotFound}> Nothing Found :( </p>
 			) : (
@@ -82,7 +91,7 @@ class ItemsHolder extends Component {
 		) : (
 			<section className={classes.Cards}>
 				<Loader />
-				<Toolbar isAuth={this.props.isAuthenticated} />
+				<Toolbar />
 				<Modal show={this.props.deleting} clicked={this.cancelBtnHandler}>
 					<p>Are you sure you want to delete this item? </p>
 					<button className={classes.Btn} onClick={this.cancelBtnHandler}>
@@ -93,7 +102,7 @@ class ItemsHolder extends Component {
 					</button>
 				</Modal>
 				<CategoriesFilterSection />
-				<div className={classes.CardsCenter}>{filteredItems}</div>
+				<div className={classForMainDisplayDiv}>{filteredItems}</div>
 			</section>
 		);
 	}

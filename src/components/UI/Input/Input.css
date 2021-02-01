@@ -20,6 +20,18 @@
 	background-color: rgb(240, 240, 240);
 }
 
+.InputSearchToolbar {
+	outline: none;
+	border-radius: 50px;
+	border: 1px solid rgb(137, 139, 0);
+	background: rgb(255, 255, 255);
+	font: inherit;
+	padding: 6px 10px;
+	display: block;
+	width: 100%;
+	box-sizing: border-box;
+}
+
 .Inputlogin {
 	outline: none;
 	border-radius: 50px;
