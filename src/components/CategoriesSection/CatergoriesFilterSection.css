@@ -4,7 +4,6 @@
 	margin-left: auto;
 	padding-right: 1rem;
 	padding-left: 1rem;
-
 	display: grid;
 	min-width: 350px;
 	grid-template-columns: repeat(auto-fill, minmax(100px, 100px));
@@ -50,6 +49,33 @@
 	outline: none;
 }
 
+.ClearFilters {
+	display: flex;
+	justify-content: flex-end;
+	max-width: 1600px;
+	padding: 5px 30px;
+}
+
+.ClearFilters button {
+	outline: none;
+	border: none;
+	text-decoration: none;
+	margin: 0;
+	color: rgb(41, 41, 41);
+	background: rgb(248, 248, 248);
+	text-transform: capitalize;
+	cursor: pointer;
+	text-align: center;
+}
+
+.ClearFilters button:hover {
+	outline: none;
+	color: rgb(97, 97, 97);
+	background: rgb(248, 248, 248);
+	text-transform: capitalize;
+	text-decoration: underline;
+}
+
 @media (min-width: 700px) {
 	.ButtonsSection {
 		padding-top: 8rem;
@@ -62,10 +88,8 @@
 
 @media (min-width: 1300px) {
 	.ButtonsSection {
-		padding-top: 8rem;
-		display: grid;
-		grid-template-columns: repeat(auto-fill, minmax(250px, 250px));
+		width: 1400px;
+		grid-template-columns: repeat(5, 200px);
 		grid-column-gap: 2rem;
-		grid-row-gap: 0.5rem;
 	}
 }

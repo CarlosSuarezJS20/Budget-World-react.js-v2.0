@@ -2,6 +2,7 @@
 	margin: 0;
 	padding: 0;
 	box-sizing: border-box;
+	overflow-x: hidden;
 }
 
 html {
@@ -34,4 +35,8 @@ p {
 	font-weight: 1rem;
 	font-size: 0.7rem;
 	line-height: 2;
+}
+
+button {
+	outline: none;
 }
