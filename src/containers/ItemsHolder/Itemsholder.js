@@ -12,6 +12,7 @@ import { connect } from 'react-redux';
 // Router
 import { Redirect } from 'react-router-dom';
 import Loader from '../../Loader/Loader';
+import ToolTip from '../../components/UI/ToolTip/ToolTip';
 
 class ItemsHolder extends Component {
 	componentDidMount() {
@@ -92,6 +93,7 @@ class ItemsHolder extends Component {
 			<section className={classes.Cards}>
 				<Loader />
 				<Toolbar />
+				<ToolTip />
 				<Modal show={this.props.deleting} clicked={this.cancelBtnHandler}>
 					<p>Are you sure you want to delete this item? </p>
 					<button className={classes.Btn} onClick={this.cancelBtnHandler}>

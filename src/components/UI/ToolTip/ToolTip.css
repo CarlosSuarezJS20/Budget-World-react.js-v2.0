@@ -1,6 +1,7 @@
 .ToolTipHolder {
-	position: absolute;
-	height: 20%;
+	position: fixed;
+	width: 100%;
 	top: 0;
 	background: red;
+	z-index: 101;
 }
