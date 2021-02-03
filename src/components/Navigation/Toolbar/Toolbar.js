@@ -14,7 +14,7 @@ const toolBar = () => {
 
 		setVisible(
 			(prevScrollPos > currentScrollPos &&
-				prevScrollPos - currentScrollPos > 70) ||
+				prevScrollPos - currentScrollPos > 30) ||
 				currentScrollPos < 10
 		);
 
@@ -23,7 +23,7 @@ const toolBar = () => {
 
 	const navbarStyles = {
 		position: 'fixed',
-		top: visible ? 0 : `-100px`,
+		top: visible ? '90%' : '100%',
 		left: 0,
 		right: 0,
 		background: 'transparent',
@@ -38,7 +38,6 @@ const toolBar = () => {
 
 	return (
 		<header style={{ ...navbarStyles }}>
-			{/* <header className={classes.Navbar}> */}
 			<div className={classes.NavbarItemsHolder}>
 				<div className={classes.NavbarLogoHolder}>
 					<Logo LogoNavbar />

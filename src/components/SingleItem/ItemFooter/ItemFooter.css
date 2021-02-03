@@ -13,17 +13,6 @@
 	justify-content: space-between;
 }
 
-.CardFooterWithButtons {
-	background: rgb(49, 49, 49);
-	padding: 0.5rem 1rem;
-	margin-left: 0rem;
-	margin-right: 0rem;
-	display: grid;
-	grid-template-columns: 10px 180px 95px;
-	justify-items: center;
-	justify-content: space-between;
-}
-
 .FooterTags {
 	color: white;
 	margin: 0 auto;
@@ -37,6 +26,7 @@
 
 .CardBtns {
 	display: grid;
+	position: absolute;
 	grid-template-columns: repeat(2, 65px);
 	justify-items: center;
 }
@@ -44,23 +34,36 @@
 .FooterBtn {
 	color: rgb(49, 49, 49);
 	font-weight: bold;
-	background: rgb(249, 253, 2);
 	max-height: 40px;
-	display: inline-block;
-	margin: auto;
+	display: block;
+	margin: 1rem;
 	padding: 0.6rem 0.2rem;
 	text-transform: capitalize;
+	text-align: center;
 	border-radius: 5px;
-	border: 1px solid rgb(207, 211, 1);
 	box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
 	transition: all 0.3s linear;
 	cursor: pointer;
 }
 
 .FooterBtn:hover {
-	background: rgb(49, 49, 49);
-	border: 1px solid white;
-	color: white;
+	border: 1px solid rgb(207, 211, 1);
+}
+
+.TitleHolder {
+	padding-top: 1rem;
+	padding-bottom: 2rem;
+}
+
+.CloseOptionsModal {
+	font-size: 1.5rem;
+	cursor: pointer;
+}
+
+.TitleHolder span {
+	font-size: 1.2rem;
+	margin-left: 1rem;
+	text-transform: capitalize;
 }
 
 @media (min-width: 768px) {

@@ -3,6 +3,10 @@ import classes from './ItemFooter.css';
 import { connect } from 'react-redux';
 import * as actions from '../../../store/actions/index';
 import { NavLink } from 'react-router-dom';
+import Modal from '../../UI/Modal/Modal';
+
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faTimes } from '@fortawesome/free-solid-svg-icons';
 
 class ItemFooter extends Component {
 	updateItemHandler = (id) => {
@@ -11,6 +15,7 @@ class ItemFooter extends Component {
 
 	deleteBtnHandler = (id) => {
 		this.props.onDeletionItemStart(id);
+		this.props.hideOptionsModal();
 	};
 
 	render() {
@@ -18,7 +23,19 @@ class ItemFooter extends Component {
 
 		if (this.props.userId === this.props.itemUserId) {
 			buttons = (
-				<div className={classes.CardBtns}>
+				<Modal
+					show={this.props.showOptionsModal}
+					singleItemOptions
+					clicked={this.props.hideOptionsModal}
+				>
+					<div className={classes.TitleHolder}>
+						<FontAwesomeIcon
+							icon={faTimes}
+							className={classes.CloseOptionsModal}
+							onClick={this.props.hideOptionsModal}
+						/>
+						<span>options</span>
+					</div>
 					<NavLink
 						to={'/update'}
 						className={classes.FooterBtn}
@@ -36,18 +53,12 @@ class ItemFooter extends Component {
 					>
 						delete
 					</a>
-				</div>
+				</Modal>
 			);
 		}
 
 		return (
-			<div
-				className={
-					this.props.userId === this.props.itemUserId
-						? classes.CardFooterWithButtons
-						: classes.CardFooter
-				}
-			>
+			<div className={classes.CardFooter}>
 				<span className={classes.FooterTags}>{this.props.itemCategory}</span>
 				<span className={classes.FooterTags}>{this.props.itemCountry}</span>
 				{buttons}
