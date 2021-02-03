@@ -1,0 +1,6 @@
+.ToolTipHolder {
+	position: absolute;
+	height: 20%;
+	top: 0;
+	background: red;
+}

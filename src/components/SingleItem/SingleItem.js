@@ -10,20 +10,7 @@ import { faEllipsisV } from '@fortawesome/free-solid-svg-icons';
 import { connect } from 'react-redux';
 
 class SingleItem extends Component {
-	state = {
-		showModalOptions: false,
-	};
-
-	showModalOptionsHandler = () => {
-		this.setState({ showModalOptions: true });
-	};
-
-	hideModalOptionsHandler = () => {
-		this.setState({ showModalOptions: false });
-	};
-
 	render() {
-		console.log(this.state.showModalOptions);
 		return (
 			<article className={classes.Card}>
 				{this.props.storedUserId === this.props.userId && (
@@ -31,7 +18,6 @@ class SingleItem extends Component {
 						<FontAwesomeIcon
 							icon={faEllipsisV}
 							className={classes.ToggleSign}
-							onClick={this.showModalOptionsHandler}
 						/>
 					</div>
 				)}
@@ -43,8 +29,6 @@ class SingleItem extends Component {
 					itemDescription={this.props.description}
 				/>
 				<ItemFooter
-					showOptionsModal={this.state.showModalOptions}
-					hideOptionsModal={this.hideModalOptionsHandler}
 					itemId={this.props.id}
 					itemCategory={this.props.category}
 					itemCountry={this.props.country}

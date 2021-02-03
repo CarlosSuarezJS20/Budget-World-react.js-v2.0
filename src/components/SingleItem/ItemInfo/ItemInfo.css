@@ -1,5 +1,5 @@
 .CardInfo {
-	padding: 1rem;
+	padding: 0.4rem;
 	width: 170px;
 }
 
@@ -7,7 +7,7 @@
 	border-top: 1px solid rgb(49, 49, 49);
 	border-bottom: 1px solid rgb(49, 49, 49);
 	margin-bottom: 0.5rem;
-	font-size: 1rem;
+	font-size: 0.8rem;
 	width: 100%;
 	word-wrap: break-word;
 }
@@ -15,7 +15,7 @@
 .ItemTitle span {
 	font-weight: normal;
 	margin-left: 0.5rem;
-	font-size: 1rem;
+	font-size: 0.8rem;
 }
 
 .CardTitle {
@@ -26,9 +26,9 @@
 
 .CardPrice {
 	font-weight: bold;
-	margin-left: 0.5rem;
-	margin-top: 1rem;
-	margin-bottom: 1rem;
+	font-size: 0.8rem;
+	padding-left: 0.5rem;
+	margin: 0.2rem 0;
 }
 
 .CardPrice span {
@@ -43,10 +43,12 @@
 
 .CardDescription h4 {
 	width: 140px;
+	font-size: 0.8rem;
 	word-wrap: break-word;
 }
 .CardDescription span {
 	font-weight: normal;
+	font-size: 0.8rem;
 }
 
 .CardInfoText {

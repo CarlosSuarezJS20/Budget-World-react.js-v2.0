@@ -3,19 +3,18 @@ import classes from './ItemFooter.css';
 import { connect } from 'react-redux';
 import * as actions from '../../../store/actions/index';
 import { NavLink } from 'react-router-dom';
-import Modal from '../../UI/Modal/Modal';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTimes } from '@fortawesome/free-solid-svg-icons';
 
 class ItemFooter extends Component {
 	updateItemHandler = (id) => {
+		console.log(id);
 		this.props.onToggleActiveUpdating(id);
 	};
 
 	deleteBtnHandler = (id) => {
 		this.props.onDeletionItemStart(id);
-		this.props.hideOptionsModal();
 	};
 
 	render() {
@@ -23,16 +22,11 @@ class ItemFooter extends Component {
 
 		if (this.props.userId === this.props.itemUserId) {
 			buttons = (
-				<Modal
-					show={this.props.showOptionsModal}
-					singleItemOptions
-					clicked={this.props.hideOptionsModal}
-				>
+				<React.Fragment>
 					<div className={classes.TitleHolder}>
 						<FontAwesomeIcon
 							icon={faTimes}
 							className={classes.CloseOptionsModal}
-							onClick={this.props.hideOptionsModal}
 						/>
 						<span>options</span>
 					</div>
@@ -53,7 +47,7 @@ class ItemFooter extends Component {
 					>
 						delete
 					</a>
-				</Modal>
+				</React.Fragment>
 			);
 		}
 
