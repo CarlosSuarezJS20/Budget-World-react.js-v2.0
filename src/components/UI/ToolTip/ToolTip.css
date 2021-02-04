@@ -1,7 +1,14 @@
 .ToolTipHolder {
 	position: fixed;
+	background: #fff;
 	width: 100%;
-	top: 0;
-	background: red;
+	bottom: 0;
+	overflow: hidden;
 	z-index: 101;
+	transition: all 0.3s ease-out;
+	height: 0;
+}
+
+.Open {
+	height: 300px;
 }

@@ -24,7 +24,6 @@ export const fetchItemsStart = () => {
 };
 
 export const fetchItemsFromServer = (token) => {
-	console.log(token);
 	return (dispatch) => {
 		dispatch(fetchItemsStart());
 		axios
@@ -148,5 +147,22 @@ export const deletingItemInServer = (id, token) => {
 export const deletedItemCancel = () => {
 	return {
 		type: actionTypes.DELETE_ITEM_CANCEL,
+	};
+};
+
+// Update or Delete Tooltip:
+
+export const requestTooltipHandler = () => {
+	return { type: actionTypes.REQUESTED_TOOL_TIP };
+};
+
+export const closeTooltipHandler = () => {
+	return { type: actionTypes.CLOSE_TOOL_TIP };
+};
+
+export const itemIdForTooltip = (id) => {
+	return {
+		type: actionTypes.ITEM_ID_FOR_TOOL_TIP,
+		elementId: id,
 	};
 };

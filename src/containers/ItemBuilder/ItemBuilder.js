@@ -105,7 +105,7 @@ class ItemBuilder extends Component {
 	};
 
 	// I had to use componentWillMout, but looking for a more actual solution:
-	componentWillMount() {
+	UNSAFE_componentWillMount() {
 		if (this.props.updating && this.props.items) {
 			const itemToUpdate = this.props.items.find((item) => {
 				return item.id === this.props.updateElId;
@@ -189,7 +189,6 @@ class ItemBuilder extends Component {
 				})
 				.catch((error) => {
 					this.setState({ loading: true, added: true });
-					console.log(error);
 				});
 
 			this.setState({ added: false });

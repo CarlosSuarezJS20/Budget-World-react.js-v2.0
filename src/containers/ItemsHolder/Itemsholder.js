@@ -92,8 +92,8 @@ class ItemsHolder extends Component {
 		) : (
 			<section className={classes.Cards}>
 				<Loader />
-				<Toolbar />
 				<ToolTip />
+				<Toolbar />
 				<Modal show={this.props.deleting} clicked={this.cancelBtnHandler}>
 					<p>Are you sure you want to delete this item? </p>
 					<button className={classes.Btn} onClick={this.cancelBtnHandler}>

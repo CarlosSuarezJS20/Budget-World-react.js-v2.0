@@ -8,16 +8,21 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEllipsisV } from '@fortawesome/free-solid-svg-icons';
 
 import { connect } from 'react-redux';
+import * as actions from '../../store/actions/index';
 
 class SingleItem extends Component {
 	render() {
 		return (
-			<article className={classes.Card}>
+			<article className={classes.Card} id={this.props.id}>
 				{this.props.storedUserId === this.props.userId && (
 					<div className={classes.ToggleOptionsHandler}>
 						<FontAwesomeIcon
 							icon={faEllipsisV}
 							className={classes.ToggleSign}
+							onClick={() => {
+								this.props.onOpenTooltip();
+								this.props.onElementIdForToolTip(this.props.id);
+							}}
 						/>
 					</div>
 				)}
@@ -45,4 +50,11 @@ const mapStateToProps = (state) => {
 	};
 };
 
-export default connect(mapStateToProps, null)(SingleItem);
+const mapDispatchToProps = (dispatch) => {
+	return {
+		onOpenTooltip: () => dispatch(actions.requestTooltipHandler()),
+		onElementIdForToolTip: (id) => dispatch(actions.itemIdForTooltip(id)),
+	};
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(SingleItem);

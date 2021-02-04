@@ -21,3 +21,9 @@ export const AUTH_SUCCESS = 'AUTH_SUCCESS';
 export const AUTH_FAIL = 'AUTH_FAIL';
 export const ERROR_AUTHENTICATION_CLEARING = 'ERROR_AUTHENTICATION_CLEARING';
 export const AUTH_LOGOUT = 'AUTH_LOGOUT';
+
+// Update or Delete ToolTip:
+
+export const REQUESTED_TOOL_TIP = 'REQUESTED_TOOL_TIP';
+export const CLOSE_TOOL_TIP = 'CLOSE_TOOL_TIP';
+export const ITEM_ID_FOR_TOOL_TIP = 'ITEM_ID_FOR_TOOL_TIP';

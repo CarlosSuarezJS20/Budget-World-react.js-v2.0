@@ -18,6 +18,8 @@ const initialState = {
 	updateElId: '',
 	deleting: false,
 	deleteItemId: null,
+	requestedTooltip: false,
+	tooltipElId: null,
 };
 
 const fetchItemsStart = (state) => {
@@ -99,6 +101,20 @@ const deleteItemCancel = (state) => {
 	return updateState(state, { deleting: false });
 };
 
+// Deals with toolTip requests
+
+const openTooltip = (state) => {
+	return updateState(state, { requestedTooltip: true });
+};
+
+const closeTooltip = (state) => {
+	return updateState(state, { requestedTooltip: false });
+};
+
+const itemIdForToolTip = (state, action) => {
+	return updateState(state, { tooltipElId: action.elementId });
+};
+
 const reducer = (state = initialState, action) => {
 	switch (action.type) {
 		case actionTypes.FETCH_ITEMS_START:
@@ -129,6 +145,12 @@ const reducer = (state = initialState, action) => {
 			return deleteItemFail(state, action);
 		case actionTypes.DELETE_ITEM_CANCEL:
 			return deleteItemCancel(state);
+		case actionTypes.REQUESTED_TOOL_TIP:
+			return openTooltip(state);
+		case actionTypes.CLOSE_TOOL_TIP:
+			return closeTooltip(state);
+		case actionTypes.ITEM_ID_FOR_TOOL_TIP:
+			return itemIdForToolTip(state, action);
 		default:
 			return state;
 	}
