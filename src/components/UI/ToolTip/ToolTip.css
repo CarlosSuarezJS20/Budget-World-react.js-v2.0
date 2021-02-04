@@ -1,14 +1,97 @@
 .ToolTipHolder {
 	position: fixed;
 	background: #fff;
+	border-top: 2px solid yellow;
+	border-top-left-radius: 15px;
+	border-top-right-radius: 15px;
+	padding: 15px;
 	width: 100%;
 	bottom: 0;
 	overflow: hidden;
 	z-index: 101;
-	transition: all 0.3s ease-out;
+	transition: all 0.2s ease-out;
 	height: 0;
+	opacity: 0;
 }
 
 .Open {
-	height: 300px;
+	height: 250px;
+	opacity: 1;
+}
+
+.TitleHolder {
+	padding-bottom: 3rem;
+}
+
+.TitleHolder span {
+	text-transform: capitalize;
+	margin-left: 1rem;
+}
+
+.CloseOptionsModal {
+	font-size: 1.2rem;
+}
+
+.TooltipBtn {
+	display: block;
+	margin: 0.4rem;
+	text-transform: capitalize;
+	color: black;
+	border: 1px solid yellow;
+	background: yellow;
+	padding: 0.3rem;
+	text-align: center;
+	border-radius: 10px;
+	cursor: pointer;
+	transition: all 0.3s ease-out;
+}
+
+.TooltipBtn:hover {
+	background: rgb(190, 190, 46);
+	font-weight: bold;
+}
+
+@media (min-width: 768px) {
+	.ToolTipHolder {
+		position: fixed;
+		background: #fff;
+		padding: 15px;
+		top: 10%;
+		right: 0%;
+		height: 0;
+		width: 0;
+		overflow: hidden;
+		transition: all 0.3s ease-out;
+		box-shadow: 1px 1px 7px black;
+		border-top-left-radius: 15px;
+		border-bottom-left-radius: 15px;
+		border-top-right-radius: 0;
+		border-left: 2px solid yellow;
+		border-top: none;
+		opacity: 0;
+		z-index: 101;
+	}
+
+	.TooltipBtn {
+		display: block;
+		margin: 0.4rem;
+		text-transform: capitalize;
+		color: black;
+		border: 1px solid rgb(141, 141, 141);
+		padding: 0.3rem;
+		text-align: center;
+		border-radius: 5px;
+		cursor: pointer;
+		transition: all 0.3s ease-out;
+	}
+
+	.Open {
+		width: 250px;
+		height: 150px;
+		opacity: 1;
+	}
+
+	.TitleHolder {
+		padding-bottom: 1rem;
+	}
 }

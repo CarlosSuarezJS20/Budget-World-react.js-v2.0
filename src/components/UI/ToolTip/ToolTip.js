@@ -43,7 +43,7 @@ class Tooltip extends Component {
 					clicked={this.props.onClosingTooltip}
 				/>
 				<div className={initialClass.join(' ')}>
-					<div className={classes.Info}>
+					<div>
 						<div className={classes.TitleHolder}>
 							<FontAwesomeIcon
 								icon={faTimes}
@@ -54,7 +54,7 @@ class Tooltip extends Component {
 						</div>
 						<NavLink
 							to={'/update'}
-							className={classes.FooterBtn}
+							className={classes.TooltipBtn}
 							onClick={() => {
 								this.updateItemHandler(this.props.tooltipElId);
 							}}
@@ -62,7 +62,7 @@ class Tooltip extends Component {
 							update
 						</NavLink>
 						<a
-							className={classes.FooterBtn}
+							className={classes.TooltipBtn}
 							onClick={() => {
 								this.deleteBtnHandler(this.props.tooltipElId);
 							}}
