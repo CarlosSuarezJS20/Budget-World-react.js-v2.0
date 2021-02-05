@@ -154,15 +154,15 @@ class Auth extends Component {
 		}
 		return (
 			<section className={classes.LoginSection}>
-				<div className={classes.LogoHolder}>
-					<Logo active />
-				</div>
 				<header>
 					<div className={classes.HeroImage}></div>
 				</header>
 				<div className={classes.FormHolder}>
 					<div className={classes.Auth}>
 						{authRedirect}
+						<div className={classes.LogoHolder}>
+							<Logo active />
+						</div>
 						{errorMessage}
 						{this.state.creatingAccount ? (
 							<h2>Welcome to Budget World!</h2>

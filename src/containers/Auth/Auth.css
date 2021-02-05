@@ -18,30 +18,41 @@
 }
 
 .LogoHolder {
-	position: absolute;
-	top: 46%;
-	left: 40%;
-	background-color: #fff;
-	border-radius: 50px;
+	display: block;
 }
 
 .FormHolder {
 	height: 50vh;
+	overflow: hidden;
+}
+
+@media (min-width: 400px) {
+	.HeroImage {
+		height: 40vh;
+	}
 }
 
 @media (min-width: 500px) {
+	.HeroImage {
+		height: 50vh;
+	}
+
 	.LogoHolder {
 		left: 45%;
+		display: block;
+	}
+
+	.FormHolder {
+		height: 50vh;
+		overflow: scroll;
 	}
 }
 
 .Auth {
-	margin: 2rem auto;
+	margin: 1.5rem auto;
 	width: 300px;
 	text-align: center;
-
 	border-radius: 5px;
-	padding: 20px;
 	box-sizing: border-box;
 }
 
@@ -166,8 +177,8 @@
 
 	.LogoHolder {
 		position: absolute;
-		top: 5%;
-		left: 67%;
+		top: 3%;
+		left: 70%;
 		background-color: #fff;
 		border-radius: 50px;
 	}
@@ -176,7 +187,7 @@
 @media (min-width: 1300px) {
 	.LogoHolder {
 		position: absolute;
-		top: 5%;
+		top: 3%;
 		left: 73%;
 		background-color: #fff;
 		border-radius: 50px;

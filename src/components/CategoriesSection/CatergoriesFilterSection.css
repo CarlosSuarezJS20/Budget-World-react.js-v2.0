@@ -1,5 +1,5 @@
 .ButtonsSection {
-	padding-top: 1rem;
+	padding-top: 6rem;
 	margin-right: auto;
 	margin-left: auto;
 	padding-right: 1rem;
@@ -79,6 +79,7 @@
 @media (min-width: 700px) {
 	.ButtonsSection {
 		display: grid;
+		padding-top: 6.6rem;
 		grid-template-columns: repeat(auto-fill, minmax(200px, 200px));
 		grid-column-gap: 0.5rem;
 		grid-row-gap: 0.5rem;

@@ -23,9 +23,10 @@ const toolBar = () => {
 
 	const navbarStyles = {
 		position: 'fixed',
-		top: visible ? '90%' : '100%',
+		top: visible ? '1%' : '-30%',
 		left: 0,
 		right: 0,
+		height: '100px',
 		background: 'transparent',
 		zIndex: 100,
 		transition: 'top 0.6s',
