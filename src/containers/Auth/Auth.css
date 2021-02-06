@@ -7,7 +7,6 @@
 		url('../../assets//images/pexels-sergio-souza-2249602.jpg') center/cover
 			no-repeat;
 	height: 50vh;
-	text-align: center;
 }
 
 .HeroImage h1 {
@@ -177,20 +176,24 @@
 
 	.LogoHolder {
 		position: absolute;
-		top: 3%;
-		left: 70%;
+		top: 5%;
+		left: 73%;
 		background-color: #fff;
 		border-radius: 50px;
 	}
 }
 
+@media (min-width: 1100px) {
+	.LogoHolder {
+		top: 5%;
+		left: 68%;
+	}
+}
+
 @media (min-width: 1300px) {
 	.LogoHolder {
-		position: absolute;
 		top: 3%;
-		left: 73%;
-		background-color: #fff;
-		border-radius: 50px;
+		left: 74%;
 	}
 
 	.LoginSection {

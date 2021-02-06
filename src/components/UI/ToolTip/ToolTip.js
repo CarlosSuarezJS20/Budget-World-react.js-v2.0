@@ -11,6 +11,16 @@ import { connect } from 'react-redux';
 import * as actions from '../../../store/actions/index';
 
 class Tooltip extends Component {
+	componentDidMount() {
+		document.body.onresize = () => {
+			let backDrop = document.getElementById('back-drop');
+
+			if (backDrop) {
+				document.getElementById('back-drop').click();
+			}
+		};
+	}
+
 	shouldComponentUpdate(nextProps, nextState) {
 		return (
 			nextProps.requestedTooltip !== this.props.requestedTooltip ||
@@ -29,10 +39,38 @@ class Tooltip extends Component {
 	};
 
 	render() {
-		let initialClass = [classes.ToolTipHolder];
+		console.log(window.innerWidth);
+		// Conditions the initial class depending on the screen size. This helps to swich styling depending on screen size
+		let initialClass = [
+			window.innerWidth >= 768
+				? classes.ToolTipHolderAbove700px
+				: classes.ToolTipHolder,
+		];
+		let style;
 
 		if (this.props.requestedTooltip) {
-			initialClass = [classes.ToolTipHolder, classes.Open];
+			initialClass = [
+				window.innerWidth >= 768
+					? classes.ToolTipHolderAbove700px
+					: classes.ToolTipHolder,
+				classes.Open,
+			];
+		}
+
+		if (this.props.requestedTooltip && window.innerWidth >= 768) {
+			let elementRequiringToolTip = document.getElementById(
+				this.props.tooltipElId
+			);
+			const hostElPositionLeft = elementRequiringToolTip.offsetLeft;
+			const hostElPositionTop = elementRequiringToolTip.offsetTop;
+
+			style = {
+				top: hostElPositionTop,
+				left: hostElPositionLeft,
+				height: '200px',
+				width: '230px',
+			};
+			console.log(hostElPositionLeft, hostElPositionTop, style);
 		}
 
 		return (
@@ -42,13 +80,15 @@ class Tooltip extends Component {
 					show={this.props.requestedTooltip}
 					clicked={this.props.onClosingTooltip}
 				/>
-				<div className={initialClass.join(' ')}>
+				<div className={initialClass.join(' ')} style={style}>
 					<div>
-						<div className={classes.TitleHolder}>
+						<div
+							className={classes.TitleHolder}
+							onClick={this.props.onClosingTooltip}
+						>
 							<FontAwesomeIcon
 								icon={faTimes}
 								className={classes.CloseOptionsModal}
-								onClick={this.props.onClosingTooltip}
 							/>
 							<span>options</span>
 						</div>

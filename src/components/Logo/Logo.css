@@ -28,16 +28,6 @@
 	}
 
 	.LogoLogin {
-		width: 100px;
-	}
-}
-
-@media (min-width: 1090px) {
-	.LogoHolder {
-		margin-left: 1rem;
-	}
-
-	.LogoLogin {
-		width: 50px;
+		width: 45px;
 	}
 }

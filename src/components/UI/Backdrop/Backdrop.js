@@ -10,7 +10,11 @@ const backdrop = (props) => {
 	}
 
 	return props.show ? (
-		<div className={classForBackdrop} onClick={props.clicked}></div>
+		<div
+			className={classForBackdrop}
+			onClick={props.clicked}
+			id="back-drop"
+		></div>
 	) : null;
 };
 

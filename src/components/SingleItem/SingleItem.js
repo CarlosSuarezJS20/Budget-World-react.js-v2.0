@@ -15,15 +15,19 @@ class SingleItem extends Component {
 		return (
 			<article className={classes.Card} id={this.props.id}>
 				{this.props.storedUserId === this.props.userId && (
-					<div className={classes.ToggleOptionsHandler}>
-						<FontAwesomeIcon
-							icon={faEllipsisV}
-							className={classes.ToggleSign}
+					<div className={classes.ToggleOptionsSection}>
+						<div
+							className={classes.ToggleOptionsHolder}
 							onClick={() => {
 								this.props.onOpenTooltip();
 								this.props.onElementIdForToolTip(this.props.id);
 							}}
-						/>
+						>
+							<FontAwesomeIcon
+								icon={faEllipsisV}
+								className={classes.ToggleSign}
+							/>
+						</div>
 					</div>
 				)}
 

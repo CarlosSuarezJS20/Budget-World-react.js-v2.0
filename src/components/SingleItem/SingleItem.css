@@ -12,18 +12,29 @@
 	box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
 }
 
-.ToggleOptionsHandler {
+.ToggleOptionsSection {
 	position: absolute;
 	z-index: 99;
 	display: flex;
 	justify-content: flex-end;
 	width: 100%;
-	padding: 1rem;
+	padding: 0.4rem;
+	cursor: pointer;
+}
+
+.ToggleOptionsHolder {
+	background: rgba(0, 0, 0, 0.466);
+	padding: 10px 15px;
+	border-radius: 50px;
+}
+
+.ToggleOptionsHolder:hover {
+	background: rgba(0, 0, 0, 0.7);
 }
 
 .ToggleSign {
 	color: #fff;
-	font-size: 1.5rem;
+	font-size: 1rem;
 	text-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
 	cursor: pointer;
 }
