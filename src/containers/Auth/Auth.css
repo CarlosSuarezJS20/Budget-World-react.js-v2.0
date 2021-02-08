@@ -6,7 +6,7 @@
 	background: linear-gradient(transparent, rgba(255, 254, 254, 0.8)),
 		url('../../assets//images/pexels-sergio-souza-2249602.jpg') center/cover
 			no-repeat;
-	height: 50vh;
+	height: 35vh;
 }
 
 .HeroImage h1 {
@@ -27,7 +27,7 @@
 
 @media (min-width: 400px) {
 	.HeroImage {
-		height: 40vh;
+		height: 30vh;
 	}
 }
 

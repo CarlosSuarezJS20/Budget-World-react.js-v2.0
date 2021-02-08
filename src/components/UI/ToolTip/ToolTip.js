@@ -99,7 +99,7 @@ class Tooltip extends Component {
 								this.updateItemHandler(this.props.tooltipElId);
 							}}
 						>
-							update
+							edit
 						</NavLink>
 						<a
 							className={classes.TooltipBtn}

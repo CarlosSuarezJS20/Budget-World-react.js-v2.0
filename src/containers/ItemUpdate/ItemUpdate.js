@@ -1,15 +1,12 @@
 import React, { Component } from 'react';
-import classes from './ItemBuilder.css';
+import classes from './ItemUpdate.css';
 import Input from '../../components/UI/Input/Input';
-import axios from '../../axios';
+import Button from '../../components/UI/Button/Button';
 import { connect } from 'react-redux';
 import * as actions from '../../store/actions/index';
 import { NavLink, Redirect } from 'react-router-dom';
 
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCheck, faChevronLeft } from '@fortawesome/free-solid-svg-icons';
-
-class ItemBuilder extends Component {
+class ItemUpdate extends Component {
 	state = {
 		newItemForm: {
 			itemName: {
@@ -100,40 +97,71 @@ class ItemBuilder extends Component {
 				valid: false,
 			},
 		},
+		itemToUpdateImg: null,
 		formIsValid: false,
-		added: false,
 		updated: false,
 	};
 
-	addItemHandler = (event) => {
-		event.preventDefault();
-
-		const itemData = {};
-
-		for (let formElementName in this.state.newItemForm) {
-			itemData[formElementName] = this.state.newItemForm[formElementName].value;
-		}
-
-		const item = {
-			image: itemData.imageURL,
-			itemName: itemData.itemName,
-			price: +itemData.price,
-			description: itemData.description,
-			category: itemData.category,
-			country: itemData.country.toUpperCase(),
-			userId: this.props.userId,
-		};
-
-		axios
-			.post('/items.json?auth=' + this.props.token, item)
-			.then((res) => {
-				this.setState({ added: true });
-			})
-			.catch((error) => {
-				this.setState({ added: true });
+	componentDidMount() {
+		if (this.props.items) {
+			const itemToUpdate = this.props.items.find((item) => {
+				return item.id === this.props.updateElId;
 			});
 
-		this.setState({ added: false });
+			const { image } = itemToUpdate;
+
+			this.setState({ itemToUpdateImg: image });
+
+			// Updates the item with previous values if it is updating
+			const { itemName, imageURL, price, country, description, category } = {
+				...this.state.newItemForm,
+			};
+
+			itemName.value = itemToUpdate.itemName;
+			imageURL.value = itemToUpdate.image;
+			price.value = itemToUpdate.price;
+			country.value = itemToUpdate.country;
+			description.value = itemToUpdate.description;
+			category.value = itemToUpdate.category;
+
+			for (let element in this.state.newItemForm) {
+				const newItemEl = this.state.newItemForm[element];
+				newItemEl.valid = this.checkValidity(
+					this.state.newItemForm[element].value,
+					this.state.newItemForm[element].validation
+				);
+			}
+
+			let formIsValid = false;
+
+			for (let formElement in this.state.newItemForm) {
+				formIsValid = this.state.newItemForm[formElement].valid && formIsValid;
+			}
+
+			this.setState({ formIsValid: formIsValid });
+		}
+	}
+
+	addItemHandler = (event) => {
+		event.preventDefault();
+		this.setState({ updated: true });
+
+		const updatedItem = {
+			image: this.state.newItemForm.imageURL.value,
+			itemName: this.state.newItemForm.itemName.value,
+			price: +this.state.newItemForm.price.value,
+			description: this.state.newItemForm.description.value,
+			category: this.state.newItemForm.category.value,
+			country: this.state.newItemForm.country.value.toUpperCase(),
+			userId: this.props.userId,
+			id: this.props.updateElId,
+		};
+
+		this.props.onUpdatingItemInServer(
+			this.props.updateElId,
+			updatedItem,
+			this.props.token
+		);
 	};
 
 	checkValidity(value, rules) {
@@ -185,12 +213,14 @@ class ItemBuilder extends Component {
 	};
 
 	render() {
+		console.log(this.state.itemToUpdateImg);
 		const formElementsArray = [];
 		for (let key in this.state.newItemForm) {
-			formElementsArray.push({
-				id: key,
-				config: this.state.newItemForm[key],
-			});
+			if (key !== 'imageURL' && key !== 'category')
+				formElementsArray.push({
+					id: key,
+					config: this.state.newItemForm[key],
+				});
 		}
 
 		let form = (
@@ -211,7 +241,13 @@ class ItemBuilder extends Component {
 						/>
 					);
 				})}
-				{this.state.added || this.state.updated ? <Redirect to="/" /> : null}
+				<Button
+					clicked={this.addItemHandler}
+					disabled={!this.state.formIsValid}
+				>
+					save
+				</Button>
+				{this.state.updated ? <Redirect to="/" /> : null}
 			</form>
 		);
 
@@ -219,19 +255,12 @@ class ItemBuilder extends Component {
 			<Redirect to="/login" />
 		) : (
 			<div className={classes.FormHolder}>
-				<header className={classes.AddNewHeader}>
-					<NavLink to="/">
-						<FontAwesomeIcon icon={faChevronLeft} className={classes.Return} />
-					</NavLink>
-					<h2>new post</h2>
-					<button
-						onClick={this.addItemHandler}
-						disabled={!this.state.formIsValid}
-					>
-						<FontAwesomeIcon icon={faCheck} />
-					</button>
-				</header>
-				<div className={classes.ItemBuilder}>{form}</div>
+				<div className={classes.ItemBuilder}>
+					<NavLink to="/">X</NavLink>
+					<h2 className={classes.FormTitle}> Item Info </h2>
+					<img src={this.state.itemToUpdateImg} alt="image_item" />
+					{form}
+				</div>
 			</div>
 		);
 	}
@@ -240,7 +269,6 @@ class ItemBuilder extends Component {
 const mapStateToProps = (state) => {
 	return {
 		items: state.itemsR.items,
-		updating: state.itemsR.updating,
 		updateElId: state.itemsR.updateElId,
 		token: state.authR.token,
 		isAuthenticated: state.authR.token != null,
@@ -256,4 +284,4 @@ const mapDispatchToProps = (dispatch) => {
 	};
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(ItemBuilder);
+export default connect(mapStateToProps, mapDispatchToProps)(ItemUpdate);

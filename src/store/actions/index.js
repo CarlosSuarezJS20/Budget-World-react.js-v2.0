@@ -3,7 +3,6 @@ export {
 	inputHandler,
 	categoryFilterHandler,
 	toggleActiveUpdating,
-	toggleUpdatingFalse,
 	updateItemInServer,
 	deletionItemStart,
 	deletingItemInServer,

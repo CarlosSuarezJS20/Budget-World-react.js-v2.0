@@ -65,12 +65,6 @@ export const toggleActiveUpdating = (id) => {
 	};
 };
 
-export const toggleUpdatingFalse = () => {
-	return {
-		type: actionTypes.TOGGLE_UPDATING_FALSE,
-	};
-};
-
 export const updateItemStart = () => {
 	return {
 		type: actionTypes.UPDATE_ITEM_START,

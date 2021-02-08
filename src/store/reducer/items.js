@@ -14,7 +14,6 @@ const initialState = {
 	search: '',
 	category: '',
 	loading: false,
-	updating: false,
 	updateElId: '',
 	deleting: false,
 	deleteItemId: null,
@@ -48,15 +47,7 @@ const categoryFilterHandler = (state, action) => {
 };
 
 const toggleUpdating = (state, action) => {
-	return updateState(state, { updating: true, updateElId: action.id });
-};
-
-const toggleUpdatingFalse = (state) => {
-	return updateState(state, { updating: false });
-};
-
-const updateItemStart = (state) => {
-	return updateState(state, { updating: true });
+	return updateState(state, { updateElId: action.id });
 };
 
 const updateItemSuccess = (state, action) => {
@@ -66,11 +57,11 @@ const updateItemSuccess = (state, action) => {
 	);
 	updatedItems[indexOfUdatingItem] = action.item;
 
-	return updateState(state, { items: updatedItems, updating: false });
+	return updateState(state, { items: updatedItems });
 };
 
 const updateItemFail = (state) => {
-	return updateState(state, { updating: false });
+	return updateState(state);
 };
 
 const deletionItemStart = (state, action) => {
@@ -129,10 +120,6 @@ const reducer = (state = initialState, action) => {
 			return categoryFilterHandler(state, action);
 		case actionTypes.TOGGLE_UPDATING:
 			return toggleUpdating(state, action);
-		case actionTypes.TOGGLE_UPDATING_FALSE:
-			return toggleUpdatingFalse(state, action);
-		case actionTypes.UPDATE_ITEM_START:
-			return updateItemStart(state);
 		case actionTypes.UPDATE_ITEM_SUCCESS:
 			return updateItemSuccess(state, action);
 		case actionTypes.UPDATE_ITEM_FAIL:
