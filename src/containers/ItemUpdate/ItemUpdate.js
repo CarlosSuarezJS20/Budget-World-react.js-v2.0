@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import classes from './ItemUpdate.css';
 import Input from '../../components/UI/Input/Input';
-import Button from '../../components/UI/Button/Button';
 import { connect } from 'react-redux';
 import * as actions from '../../store/actions/index';
-import { NavLink, Redirect } from 'react-router-dom';
+import { Redirect } from 'react-router-dom';
+import FormsHeader from '../../components/UI/FormsHeader/FormsHeader';
 
 class ItemUpdate extends Component {
 	state = {
@@ -16,6 +16,7 @@ class ItemUpdate extends Component {
 					placeholder: 'Item Name',
 				},
 				value: '',
+				length: 0,
 				validation: {
 					required: true,
 					maxLength: 50,
@@ -43,6 +44,7 @@ class ItemUpdate extends Component {
 					placeholder: 'Country',
 				},
 				value: '',
+				length: 0,
 				validation: {
 					required: true,
 					maxLength: 30,
@@ -70,6 +72,7 @@ class ItemUpdate extends Component {
 					placeholder: 'description',
 				},
 				value: '',
+				length: 0,
 				validation: {
 					required: true,
 					minLength: 10,
@@ -103,7 +106,8 @@ class ItemUpdate extends Component {
 	};
 
 	componentDidMount() {
-		if (this.props.items) {
+		window.scrollTo(0, 0);
+		if (this.props.items.length !== 0) {
 			const itemToUpdate = this.props.items.find((item) => {
 				return item.id === this.props.updateElId;
 			});
@@ -142,7 +146,7 @@ class ItemUpdate extends Component {
 		}
 	}
 
-	addItemHandler = (event) => {
+	updateItemHandler = (event) => {
 		event.preventDefault();
 		this.setState({ updated: true });
 
@@ -195,6 +199,7 @@ class ItemUpdate extends Component {
 		};
 
 		updatedFormElement.value = event.target.value;
+		updatedFormElement.length = event.target.value.length;
 
 		updatedFormElement.valid = this.checkValidity(
 			updatedFormElement.value.trim(),
@@ -213,7 +218,6 @@ class ItemUpdate extends Component {
 	};
 
 	render() {
-		console.log(this.state.itemToUpdateImg);
 		const formElementsArray = [];
 		for (let key in this.state.newItemForm) {
 			if (key !== 'imageURL' && key !== 'category')
@@ -224,16 +228,19 @@ class ItemUpdate extends Component {
 		}
 
 		let form = (
-			<form>
+			<form className={classes.UpdateForm}>
 				{formElementsArray.map((formElement) => {
 					return (
 						<Input
 							key={formElement.id}
+							itemUdateClass
 							elementType={formElement.config.elementType}
 							elementConfig={formElement.config.elementConfig}
 							value={formElement.config.value}
 							invalid={!formElement.config.valid}
 							shouldValidate={formElement.config.validation}
+							maxCharacters={formElement.config.validation.maxLength}
+							valueLength={formElement.config.length}
 							touched={formElement.config.touched}
 							changed={(event) =>
 								this.inputChangedHandler(event, formElement.id)
@@ -241,12 +248,6 @@ class ItemUpdate extends Component {
 						/>
 					);
 				})}
-				<Button
-					clicked={this.addItemHandler}
-					disabled={!this.state.formIsValid}
-				>
-					save
-				</Button>
 				{this.state.updated ? <Redirect to="/" /> : null}
 			</form>
 		);
@@ -254,14 +255,23 @@ class ItemUpdate extends Component {
 		return !this.props.isAuthenticated ? (
 			<Redirect to="/login" />
 		) : (
-			<div className={classes.FormHolder}>
+			<React.Fragment>
 				<div className={classes.ItemBuilder}>
-					<NavLink to="/">X</NavLink>
-					<h2 className={classes.FormTitle}> Item Info </h2>
-					<img src={this.state.itemToUpdateImg} alt="image_item" />
+					<FormsHeader
+						clicked={this.updateItemHandler}
+						name="Edit Post"
+						disabled={!this.state.formIsValid}
+					/>
+					<div className={classes.ImageHolder}>
+						<img
+							src={this.state.itemToUpdateImg}
+							alt="image_item"
+							className={classes.UpdateItemImage}
+						/>
+					</div>
 					{form}
 				</div>
-			</div>
+			</React.Fragment>
 		);
 	}
 }

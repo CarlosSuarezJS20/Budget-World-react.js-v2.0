@@ -23,6 +23,7 @@ const input = (props) => {
 				<input
 					className={inputClasses.join(' ')}
 					{...props.elementConfig}
+					maxLength={props.maxCharacters}
 					value={props.value}
 					onChange={props.changed}
 				/>
@@ -34,6 +35,7 @@ const input = (props) => {
 					className={inputClasses.join(' ')}
 					{...props.elementConfig}
 					value={props.value}
+					maxLength={props.maxCharacters}
 					onChange={props.changed}
 				/>
 			);
@@ -59,12 +61,25 @@ const input = (props) => {
 					className={inputClasses.join(' ')}
 					{...props.elementConfig}
 					value={props.value}
+					maxLength={props.maxCharacters}
 					onChange={props.changed}
 				/>
 			);
 	}
 
-	return <div className={classes.Input}>{inputElement}</div>;
+	return (
+		<div className={classes.Input}>
+			{inputElement}
+			{props.maxCharacters ? (
+				<p
+					style={{
+						color:
+							props.maxCharacters - props.valueLength === 0 ? 'red' : '#ffff',
+					}}
+				>{`max. lenght ${props.maxCharacters - props.valueLength}`}</p>
+			) : null}
+		</div>
+	);
 };
 
 export default input;

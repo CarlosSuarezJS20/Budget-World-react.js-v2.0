@@ -170,6 +170,19 @@ class Auth extends Component {
 							<h2>Welcome back!</h2>
 						)}
 						{authenticationForm}
+						{this.state.creatingAccount ? (
+							<p
+								style={{
+									textAlign: 'center',
+									paddingLeft: '10px',
+									color: 'rgba(0, 0, 0, 0.712);',
+									textTransform: 'capitalize',
+								}}
+							>
+								password requires min. 7 characters
+							</p>
+						) : null}
+
 						<div className={classes.BtnsHolder}>
 							<button
 								className={classes.AuthBtn}

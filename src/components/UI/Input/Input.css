@@ -3,6 +3,11 @@
 	padding: 10px;
 }
 
+.Input p {
+	text-align: right;
+	color: white;
+}
+
 .InputElement {
 	outline: none;
 	border-radius: 5px;

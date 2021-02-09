@@ -28,7 +28,7 @@ const toolBar = () => {
 		right: 0,
 		height: '100px',
 		background: 'transparent',
-		zIndex: 100,
+		zIndex: 90,
 		transition: 'top 0.6s',
 	};
 

@@ -4,7 +4,7 @@
 
 .HeroImage {
 	background: linear-gradient(transparent, rgba(255, 254, 254, 0.8)),
-		url('../../assets//images/pexels-sergio-souza-2249602.jpg') center/cover
+		url('../../assets/images/pexels-sergio-souza-2249602.jpg') center/cover
 			no-repeat;
 	height: 35vh;
 }

@@ -12,7 +12,6 @@ class CategoriesFilterSection extends Component {
 
 	classActiveHandler = (name) => {
 		this.setState({ selected: name });
-		console.log(this.state.selected);
 	};
 
 	render() {

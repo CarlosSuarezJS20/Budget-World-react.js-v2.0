@@ -11,11 +11,12 @@ import * as actions from '../../store/actions/index';
 import { connect } from 'react-redux';
 // Router
 import { Redirect } from 'react-router-dom';
-import Loader from '../../Loader/Loader';
+import Loader from '../../components/UI/Loader/Loader';
 import ToolTip from '../../components/UI/ToolTip/ToolTip';
 
 class ItemsHolder extends Component {
 	componentDidMount() {
+		window.scrollTo(0, 0);
 		this.props.onFetchItems(this.props.token);
 	}
 

@@ -4,10 +4,8 @@ import Input from '../../components/UI/Input/Input';
 import axios from '../../axios';
 import { connect } from 'react-redux';
 import * as actions from '../../store/actions/index';
-import { NavLink, Redirect } from 'react-router-dom';
-
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCheck, faChevronLeft } from '@fortawesome/free-solid-svg-icons';
+import { Redirect } from 'react-router-dom';
+import FormsHeader from '../../components/UI/FormsHeader/FormsHeader';
 
 class ItemBuilder extends Component {
 	state = {
@@ -19,6 +17,7 @@ class ItemBuilder extends Component {
 					placeholder: 'Item Name',
 				},
 				value: '',
+				length: 0,
 				validation: {
 					required: true,
 					maxLength: 50,
@@ -46,6 +45,7 @@ class ItemBuilder extends Component {
 					placeholder: 'Country',
 				},
 				value: '',
+				length: 0,
 				validation: {
 					required: true,
 					maxLength: 30,
@@ -73,6 +73,7 @@ class ItemBuilder extends Component {
 					placeholder: 'description',
 				},
 				value: '',
+				length: 0,
 				validation: {
 					required: true,
 					minLength: 10,
@@ -103,7 +104,12 @@ class ItemBuilder extends Component {
 		formIsValid: false,
 		added: false,
 		updated: false,
+		valueLength: 0,
 	};
+
+	componentDidMount() {
+		window.scrollTo(0, 0);
+	}
 
 	addItemHandler = (event) => {
 		event.preventDefault();
@@ -167,6 +173,7 @@ class ItemBuilder extends Component {
 		};
 
 		updatedFormElement.value = event.target.value;
+		updatedFormElement.length = event.target.value.length;
 
 		updatedFormElement.valid = this.checkValidity(
 			updatedFormElement.value.trim(),
@@ -205,13 +212,18 @@ class ItemBuilder extends Component {
 							invalid={!formElement.config.valid}
 							shouldValidate={formElement.config.validation}
 							touched={formElement.config.touched}
-							changed={(event) =>
-								this.inputChangedHandler(event, formElement.id)
-							}
+							maxCharacters={formElement.config.validation.maxLength}
+							valueLength={formElement.config.length}
+							changed={(event) => {
+								this.inputChangedHandler(event, formElement.id);
+							}}
 						/>
 					);
 				})}
 				{this.state.added || this.state.updated ? <Redirect to="/" /> : null}
+				<p className={classes.ThankyouMessage}>
+					thank you for your contribution!
+				</p>
 			</form>
 		);
 
@@ -219,7 +231,12 @@ class ItemBuilder extends Component {
 			<Redirect to="/login" />
 		) : (
 			<div className={classes.FormHolder}>
-				<header className={classes.AddNewHeader}>
+				<FormsHeader
+					clicked={this.addItemHandler}
+					disabled={!this.state.formIsValid}
+					name="new post"
+				/>
+				{/* <header className={classes.AddNewHeader}>
 					<NavLink to="/">
 						<FontAwesomeIcon icon={faChevronLeft} className={classes.Return} />
 					</NavLink>
@@ -230,7 +247,7 @@ class ItemBuilder extends Component {
 					>
 						<FontAwesomeIcon icon={faCheck} />
 					</button>
-				</header>
+				</header> */}
 				<div className={classes.ItemBuilder}>{form}</div>
 			</div>
 		);

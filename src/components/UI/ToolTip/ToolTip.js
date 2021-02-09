@@ -39,7 +39,6 @@ class Tooltip extends Component {
 	};
 
 	render() {
-		console.log(window.innerWidth);
 		// Conditions the initial class depending on the screen size. This helps to swich styling depending on screen size
 		let initialClass = [
 			window.innerWidth >= 768
@@ -70,7 +69,6 @@ class Tooltip extends Component {
 				height: '200px',
 				width: '230px',
 			};
-			console.log(hostElPositionLeft, hostElPositionTop, style);
 		}
 
 		return (

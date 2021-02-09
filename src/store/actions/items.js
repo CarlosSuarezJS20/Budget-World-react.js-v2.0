@@ -97,7 +97,6 @@ export const updateItemInServer = (id, item, token) => {
 			})
 			.catch((error) => {
 				dispatch(updateItemFail(error));
-				console.log(error);
 			});
 	};
 };
@@ -129,11 +128,9 @@ export const deletingItemInServer = (id, token) => {
 			.delete(`/items/${id}.json?auth=` + token)
 			.then((res) => {
 				dispatch(deletingItemSuccess(id));
-				console.log(res);
 			})
 			.catch((error) => {
 				dispatch(deletingItemFail(error));
-				console.log(error);
 			});
 	};
 };
