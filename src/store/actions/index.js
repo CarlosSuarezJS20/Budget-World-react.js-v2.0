@@ -4,7 +4,7 @@ export {
 	categoryFilterHandler,
 	toggleActiveUpdating,
 	updateItemInServer,
-	deletionItemStart,
+	deletingItemStart,
 	deletingItemInServer,
 	deletedItemCancel,
 	requestTooltipHandler,

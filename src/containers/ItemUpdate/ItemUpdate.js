@@ -27,7 +27,7 @@ class ItemUpdate extends Component {
 			imageURL: {
 				elementType: 'input',
 				elementConfig: {
-					type: 'text',
+					type: 'file',
 					placeholder: 'imageURL',
 				},
 				value: '',
@@ -262,13 +262,12 @@ class ItemUpdate extends Component {
 						name="Edit Post"
 						disabled={!this.state.formIsValid}
 					/>
-					<div className={classes.ImageHolder}>
-						<img
-							src={this.state.itemToUpdateImg}
-							alt="image_item"
-							className={classes.UpdateItemImage}
-						/>
-					</div>
+					<div
+						className={classes.ImageHolder}
+						style={{
+							background: `url(${this.state.itemToUpdateImg}) center/cover no-repeat`,
+						}}
+					></div>
 					{form}
 				</div>
 			</React.Fragment>

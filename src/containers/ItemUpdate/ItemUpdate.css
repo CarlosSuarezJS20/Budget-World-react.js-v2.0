@@ -3,8 +3,9 @@
 }
 
 .ImageHolder {
-	width: 100%;
-	text-align: center;
+	width: 300px;
+	height: 300px;
+	margin: 0 auto;
 }
 
 .UpdateItemImage {
@@ -13,7 +14,7 @@
 }
 
 .UpdateForm {
-	margin: 3.7rem 0 auto auto;
+	margin: 3rem 0 auto auto;
 	padding: 3rem 2rem;
 	border-top: 1px solid black;
 	border-top-left-radius: 50px;
@@ -25,26 +26,37 @@
 		rgba(9, 119, 108, 0.9752275910364145) 51%,
 		rgba(240, 252, 20, 1) 100%
 	);
-	height: 56vh;
+	height: 47.2vh;
 	overflow-y: hidden;
 }
 
 @media (min-width: 400px) {
+	.ImageHolder {
+		width: 250px;
+		height: 250px;
+	}
+
 	.UpdateForm {
 		margin: 1.5rem 0 auto auto;
-		height: 52.5vh;
+		height: 51.5vh;
 	}
 }
 
 @media (min-width: 765px) {
+	.ImageHolder {
+		width: 400px;
+		height: 400px;
+		margin: 0 auto;
+	}
+
 	.UpdateItemImage {
 		width: 500px;
 	}
 
 	.UpdateForm {
-		margin: 5.3rem 0 auto auto;
-		padding: 4rem 5rem;
-		height: 47vh;
+		margin: 3rem 0 auto auto;
+		padding: 4rem 7rem;
+		height: 48.4vh;
 		overflow-y: unset;
 	}
 }

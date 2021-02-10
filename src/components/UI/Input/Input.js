@@ -78,6 +78,16 @@ const input = (props) => {
 					}}
 				>{`max. lenght ${props.maxCharacters - props.valueLength}`}</p>
 			) : null}
+			{props.elementConfig.type === 'file' ? (
+				<button
+					onClick={(e) => {
+						e.preventDefault();
+						props.saveImg();
+					}}
+				>
+					upload
+				</button>
+			) : null}
 		</div>
 	);
 };

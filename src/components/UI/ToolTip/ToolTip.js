@@ -34,7 +34,7 @@ class Tooltip extends Component {
 	};
 
 	deleteBtnHandler = (id) => {
-		this.props.onDeletionItemStart(id);
+		this.props.onDeletingItemStart(id);
 		this.props.onClosingTooltip();
 	};
 
@@ -125,7 +125,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
 	return {
 		onToggleActiveUpdating: (id) => dispatch(actions.toggleActiveUpdating(id)),
-		onDeletionItemStart: (id) => dispatch(actions.deletionItemStart(id)),
+		onDeletingItemStart: (id) => dispatch(actions.deletingItemStart(id)),
 		onClosingTooltip: () => dispatch(actions.closeTooltipHandler()),
 	};
 };

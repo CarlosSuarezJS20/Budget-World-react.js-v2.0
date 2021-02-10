@@ -26,7 +26,7 @@ class ItemsHolder extends Component {
 
 	deleteBtnHandler = () => {
 		this.props.onDeletingItem(this.props.deleteItmId, this.props.token);
-		this.props.onFetchItems();
+		this.props.onFetchItems(this.props.token);
 	};
 
 	render() {
@@ -94,7 +94,6 @@ class ItemsHolder extends Component {
 			<section className={classes.Cards}>
 				<Loader />
 				<ToolTip />
-				<Toolbar />
 				<Modal show={this.props.deleting} clicked={this.cancelBtnHandler}>
 					<p>Are you sure you want to delete this item? </p>
 					<button className={classes.Btn} onClick={this.cancelBtnHandler}>
@@ -104,6 +103,7 @@ class ItemsHolder extends Component {
 						confirm
 					</button>
 				</Modal>
+				<Toolbar />
 				<CategoriesFilterSection />
 				<div className={classForMainDisplayDiv}>{filteredItems}</div>
 			</section>
@@ -126,7 +126,6 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
 	return {
-		onDeletionItemStart: () => dispatch(actions.deletionItemStart()),
 		onDeletingItem: (id, token) =>
 			dispatch(actions.deletingItemInServer(id, token)),
 		onCancelDeletion: () => dispatch(actions.deletedItemCancel()),

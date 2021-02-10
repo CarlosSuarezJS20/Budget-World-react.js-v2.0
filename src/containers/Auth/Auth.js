@@ -175,7 +175,7 @@ class Auth extends Component {
 								style={{
 									textAlign: 'center',
 									paddingLeft: '10px',
-									color: 'rgba(0, 0, 0, 0.712);',
+									color: 'rgba(0, 0, 0, 0.712)',
 									textTransform: 'capitalize',
 								}}
 							>

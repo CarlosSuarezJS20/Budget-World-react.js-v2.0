@@ -59,7 +59,7 @@
 
 @media (min-width: 765px) {
 	.ItemBuilder {
-		width: 700px;
+		margin-top: 5.5rem;
 	}
 
 	.ItemBuilder a {
@@ -71,7 +71,6 @@
 	.ItemBuilder {
 		margin: 2rem auto;
 		width: 800px;
-		height: 80%;
 		border: 1.5px solid #ffff;
 		padding: 25px 50px;
 		border-radius: 50px;

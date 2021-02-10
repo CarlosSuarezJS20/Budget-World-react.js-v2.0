@@ -7,6 +7,9 @@ import * as actions from '../../store/actions/index';
 import { Redirect } from 'react-router-dom';
 import FormsHeader from '../../components/UI/FormsHeader/FormsHeader';
 
+// Firebase
+import firebase from '../../firebase';
+
 class ItemBuilder extends Component {
 	state = {
 		newItemForm: {
@@ -28,7 +31,7 @@ class ItemBuilder extends Component {
 			imageURL: {
 				elementType: 'input',
 				elementConfig: {
-					type: 'text',
+					type: 'file',
 					placeholder: 'imageURL',
 				},
 				value: '',
@@ -105,41 +108,58 @@ class ItemBuilder extends Component {
 		added: false,
 		updated: false,
 		valueLength: 0,
+		image: null,
 	};
 
-	componentDidMount() {
-		window.scrollTo(0, 0);
-	}
+	saveImage = () => {
+		let bucketName = 'images';
+		let file = this.state.image;
+		let storageRef = firebase.storage().ref(`${bucketName}/${file.name}`);
+		let uploadImage = storageRef.put(file);
+		uploadImage.on(firebase.storage.TaskEvent.STATE_CHANGED, () => {
+			let downloadURL = uploadImage.snapshot.downloadURL;
+		});
+	};
 
 	addItemHandler = (event) => {
 		event.preventDefault();
 
 		const itemData = {};
+		let item = {};
 
+		// All data from Inputs
 		for (let formElementName in this.state.newItemForm) {
 			itemData[formElementName] = this.state.newItemForm[formElementName].value;
 		}
 
-		const item = {
-			image: itemData.imageURL,
-			itemName: itemData.itemName,
-			price: +itemData.price,
-			description: itemData.description,
-			category: itemData.category,
-			country: itemData.country.toUpperCase(),
-			userId: this.props.userId,
-		};
+		// Image URL form Firebase
+		let storageRef = firebase.storage().ref();
+		let spaceRef = storageRef.child(`images/${this.state.image.name}`);
+		storageRef
+			.child(`images/${this.state.image.name}`)
+			.getDownloadURL()
+			.then((url) => {
+				item = {
+					image: url,
+					itemName: itemData.itemName,
+					price: +itemData.price,
+					description: itemData.description,
+					category: itemData.category,
+					country: itemData.country.toUpperCase(),
+					userId: this.props.userId,
+				};
 
-		axios
-			.post('/items.json?auth=' + this.props.token, item)
-			.then((res) => {
-				this.setState({ added: true });
-			})
-			.catch((error) => {
-				this.setState({ added: true });
+				axios
+					.post('/items.json?auth=' + this.props.token, item)
+					.then((res) => {
+						this.setState({ added: true });
+					})
+					.catch((error) => {
+						this.setState({ added: true });
+					});
+
+				this.setState({ added: false });
 			});
-
-		this.setState({ added: false });
 	};
 
 	checkValidity(value, rules) {
@@ -165,6 +185,10 @@ class ItemBuilder extends Component {
 	}
 
 	inputChangedHandler = (event, inputIdentifier) => {
+		if (event.target.files) {
+			this.setState({ image: event.target.files[0] });
+		}
+
 		const updatedItemForm = {
 			...this.state.newItemForm,
 		};
@@ -214,6 +238,7 @@ class ItemBuilder extends Component {
 							touched={formElement.config.touched}
 							maxCharacters={formElement.config.validation.maxLength}
 							valueLength={formElement.config.length}
+							saveImg={this.saveImage}
 							changed={(event) => {
 								this.inputChangedHandler(event, formElement.id);
 							}}
@@ -236,18 +261,6 @@ class ItemBuilder extends Component {
 					disabled={!this.state.formIsValid}
 					name="new post"
 				/>
-				{/* <header className={classes.AddNewHeader}>
-					<NavLink to="/">
-						<FontAwesomeIcon icon={faChevronLeft} className={classes.Return} />
-					</NavLink>
-					<h2>new post</h2>
-					<button
-						onClick={this.addItemHandler}
-						disabled={!this.state.formIsValid}
-					>
-						<FontAwesomeIcon icon={faCheck} />
-					</button>
-				</header> */}
 				<div className={classes.ItemBuilder}>{form}</div>
 			</div>
 		);
@@ -267,7 +280,6 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
 	return {
-		onToggleUpdating: () => dispatch(actions.toggleActiveUpdating()),
 		onUpdatingItemInServer: (id, item, token) =>
 			dispatch(actions.updateItemInServer(id, item, token)),
 	};

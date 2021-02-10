@@ -64,7 +64,7 @@ const updateItemFail = (state) => {
 	return updateState(state);
 };
 
-const deletionItemStart = (state, action) => {
+const deletingItemStart = (state, action) => {
 	return updateState(state, {
 		deleting: true,
 		deleteItemId: action.deletedItemId,
@@ -125,7 +125,7 @@ const reducer = (state = initialState, action) => {
 		case actionTypes.UPDATE_ITEM_FAIL:
 			return updateItemFail(state);
 		case actionTypes.DELETION_ITEM_START:
-			return deletionItemStart(state, action);
+			return deletingItemStart(state, action);
 		case actionTypes.DELETE_ITEM_SUCCESS:
 			return deleteItemSuccess(state, action);
 		case actionTypes.DELETE_ITEM_FAIL:

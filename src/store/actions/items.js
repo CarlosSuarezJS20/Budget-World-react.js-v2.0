@@ -101,7 +101,7 @@ export const updateItemInServer = (id, item, token) => {
 	};
 };
 
-export const deletionItemStart = (id) => {
+export const deletingItemStart = (id) => {
 	return {
 		type: actionTypes.DELETION_ITEM_START,
 		deletedItemId: id,
