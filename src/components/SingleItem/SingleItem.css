@@ -14,7 +14,7 @@
 
 .ToggleOptionsSection {
 	position: absolute;
-	z-index: 99;
+	z-index: 50;
 	display: flex;
 	justify-content: flex-end;
 	width: 100%;

@@ -3,9 +3,10 @@ import classes from './ImageHolder.css';
 
 const imageHolder = (props) => {
 	return (
-		<div className={classes.ImageContainer}>
-			<img className={classes.Img} src={props.image} alt="item-img" />
-		</div>
+		<div
+			className={classes.ImageContainer}
+			style={{ background: `url(${props.image}) center/cover no-repeat` }}
+		></div>
 	);
 };
 

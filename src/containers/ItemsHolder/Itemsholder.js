@@ -17,6 +17,7 @@ import ToolTip from '../../components/UI/ToolTip/ToolTip';
 class ItemsHolder extends Component {
 	componentDidMount() {
 		window.scrollTo(0, 0);
+
 		this.props.onFetchItems(this.props.token);
 	}
 
@@ -26,7 +27,6 @@ class ItemsHolder extends Component {
 
 	deleteBtnHandler = () => {
 		this.props.onDeletingItem(this.props.deleteItmId, this.props.token);
-		this.props.onFetchItems(this.props.token);
 	};
 
 	render() {
