@@ -220,7 +220,6 @@ class ItemBuilder extends Component {
 	};
 
 	render() {
-		console.log(this.state.uploadImageProgress);
 		const formElementsArray = [];
 		for (let key in this.state.newItemForm) {
 			formElementsArray.push({

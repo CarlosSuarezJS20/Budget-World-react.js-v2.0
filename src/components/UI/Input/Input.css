@@ -71,6 +71,7 @@
 
 .ProgressSection {
 	display: flex;
+	align-items: center;
 	justify-content: flex-end;
 	padding: 0.3rem;
 }
@@ -82,12 +83,14 @@
 .ProgressSection label {
 	color: #fff;
 	text-transform: capitalize;
+	font-size: 0.8rem;
 	margin: 0 0.5rem;
 }
 
 .ProgressSection progress {
 	border-radius: 0;
 	margin: 0 0.3rem;
+	width: 110px;
 }
 
 .ProgressSection button {

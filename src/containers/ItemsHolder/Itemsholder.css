@@ -42,9 +42,9 @@
 
 @media (min-width: 410px) {
 	.CardsCenter {
-		grid-template-columns: repeat(auto-fill, minmax(190px, 180px));
+		grid-template-columns: repeat(auto-fill, minmax(192px, 193px));
 
-		grid-column-gap: 1rem;
+		grid-column-gap: 0.3rem;
 	}
 }
 
