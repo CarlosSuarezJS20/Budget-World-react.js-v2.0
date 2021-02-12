@@ -5,20 +5,13 @@ const itemInfo = (props) => {
 	return (
 		<div className={classes.CardInfo}>
 			<div className={classes.CardTitle}>
-				<h3 className={classes.ItemTitle}>
-					Item Name:<span>{props.itemName}</span>
-				</h3>
+				<h2>{props.itemName}</h2>
 			</div>
 			<div className={classes.CardPrice}>
-				<h4>
-					Price:
-					<span>{`£${props.itemPrice}`}</span>
-				</h4>
+				<h3>{`£ ${props.itemPrice}`}</h3>
 			</div>
 			<div className={classes.CardDescription}>
-				<h4>
-					Description: <span>{props.itemDescription}</span>
-				</h4>
+				<h3>{props.itemDescription}</h3>
 			</div>
 		</div>
 	);

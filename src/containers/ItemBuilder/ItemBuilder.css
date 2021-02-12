@@ -69,10 +69,28 @@
 
 @media (min-width: 1020px) {
 	.ItemBuilder {
+		margin: 10rem auto;
+		padding: 10rem 10rem;
+		border-radius: 50px;
+	}
+}
+
+@media (min-width: 1090px) {
+	.ItemBuilder {
+		margin: 2rem auto;
+		width: 700px;
+		padding: 2rem 10rem;
+		border-radius: 50px;
+		height: 80%;
+	}
+}
+
+@media (min-width: 1300px) {
+	.ItemBuilder {
 		margin: 2rem auto;
 		width: 800px;
-		border: 1.5px solid #ffff;
-		padding: 25px 50px;
+		padding: 4rem 6rem;
 		border-radius: 50px;
+		height: 60%;
 	}
 }

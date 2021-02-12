@@ -109,6 +109,7 @@ class ItemBuilder extends Component {
 		updated: false,
 		valueLength: 0,
 		image: null,
+		uploadImageProgress: 0,
 	};
 
 	saveImage = () => {
@@ -116,8 +117,11 @@ class ItemBuilder extends Component {
 		let file = this.state.image;
 		let storageRef = firebase.storage().ref(`${bucketName}/${file.name}`);
 		let uploadImage = storageRef.put(file);
-		uploadImage.on(firebase.storage.TaskEvent.STATE_CHANGED, () => {
-			let downloadURL = uploadImage.snapshot.downloadURL;
+		uploadImage.on(firebase.storage.TaskEvent.STATE_CHANGED, (snapshot) => {
+			const progress = Math.round(
+				(snapshot.bytesTransferred / snapshot.totalBytes) * 100
+			);
+			this.setState({ uploadImageProgress: progress });
 		});
 	};
 
@@ -216,6 +220,7 @@ class ItemBuilder extends Component {
 	};
 
 	render() {
+		console.log(this.state.uploadImageProgress);
 		const formElementsArray = [];
 		for (let key in this.state.newItemForm) {
 			formElementsArray.push({
@@ -239,6 +244,8 @@ class ItemBuilder extends Component {
 							maxCharacters={formElement.config.validation.maxLength}
 							valueLength={formElement.config.length}
 							saveImg={this.saveImage}
+							uploadProgress={this.state.uploadImageProgress}
+							imageSelected={this.state.image}
 							changed={(event) => {
 								this.inputChangedHandler(event, formElement.id);
 							}}
@@ -258,7 +265,9 @@ class ItemBuilder extends Component {
 			<div className={classes.FormHolder}>
 				<FormsHeader
 					clicked={this.addItemHandler}
-					disabled={!this.state.formIsValid}
+					disabled={
+						!this.state.formIsValid || this.state.uploadImageProgress !== 100
+					}
 					name="new post"
 				/>
 				<div className={classes.ItemBuilder}>{form}</div>

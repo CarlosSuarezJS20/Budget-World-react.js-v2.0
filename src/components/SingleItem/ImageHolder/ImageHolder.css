@@ -1,11 +1,11 @@
 .ImageContainer {
 	position: relative;
-	width: 170px;
-	height: 180px;
 }
 
-.Img {
-	display: block;
+.ItemImage {
+	height: 180px;
+	width: 100%;
+	object-fit: cover;
 	border-top-left-radius: 15px;
 	border-top-right-radius: 15px;
 }
@@ -13,6 +13,6 @@
 @media (min-width: 768px) {
 	.ImageContainer {
 		min-width: 230px;
-		height: 230px;
+		height: 200px;
 	}
 }

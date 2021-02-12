@@ -2,6 +2,7 @@ export {
 	fetchItemsFromServer,
 	inputHandler,
 	categoryFilterHandler,
+	categoryResettingHandler,
 	toggleActiveUpdating,
 	updateItemInServer,
 	deletingItemStart,

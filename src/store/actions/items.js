@@ -58,6 +58,12 @@ export const categoryFilterHandler = (event) => {
 	};
 };
 
+export const categoryResettingHandler = () => {
+	return {
+		type: actionTypes.CATEGORY_RESETTING_HANDLER,
+	};
+};
+
 export const toggleActiveUpdating = (id) => {
 	return {
 		type: actionTypes.TOGGLE_UPDATING,

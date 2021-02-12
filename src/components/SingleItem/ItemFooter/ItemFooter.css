@@ -9,8 +9,13 @@
 	display: grid;
 	grid-template-columns: repeat(2, 70px);
 	grid-column-gap: 0.5rem;
-	justify-items: center;
-	justify-content: space-between;
+	align-items: center;
+}
+
+@media (min-width: 410px) {
+	.CardFooter {
+		width: auto;
+	}
 }
 
 .FooterTags {

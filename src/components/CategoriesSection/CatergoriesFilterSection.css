@@ -13,11 +13,11 @@
 }
 
 .Button {
-	color: rgb(49, 49, 49);
+	color: #ffff;
 	text-transform: capitalize;
 	font-weight: bold;
 	padding: 10px 0;
-	background: rgb(249, 253, 2);
+	background: rgb(49, 49, 49);
 	border: 1px solid rgb(97, 97, 97);
 	border-radius: 90px;
 	transition: all 0.3s linear;
@@ -80,7 +80,7 @@
 	.ButtonsSection {
 		display: grid;
 		padding-top: 6.6rem;
-		grid-template-columns: repeat(auto-fill, minmax(200px, 240px));
+		grid-template-columns: repeat(auto-fit, minmax(150px, 150px));
 		grid-column-gap: 0.5rem;
 		grid-row-gap: 0.5rem;
 	}

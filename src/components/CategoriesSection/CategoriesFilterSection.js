@@ -35,8 +35,14 @@ class CategoriesFilterSection extends Component {
 				<button
 					key={btn}
 					onClick={(e) => {
-						this.props.onClickedValueHandler(e);
-						this.classActiveHandler(btn);
+						if (this.props.category === '') {
+							this.props.onClickedValueHandler(e);
+							this.classActiveHandler(btn);
+						} else {
+							this.props.onClickReSettingCategory();
+							// allows to resert the class to origil by adding an empty value
+							this.classActiveHandler('');
+						}
 					}}
 					value={btn}
 					className={classes.Button}
@@ -47,32 +53,27 @@ class CategoriesFilterSection extends Component {
 			);
 		});
 
-		return (
-			<React.Fragment>
-				<div className={classes.ButtonsSection}>{btns}</div>
-				{this.state.selected.length > 0 && (
-					<div className={classes.ClearFilters}>
-						<button
-							value="ALL"
-							onClick={(e) => {
-								this.classActiveHandler(e);
-								this.props.onClickedValueHandler(e);
-							}}
-						>
-							clear filter
-						</button>
-					</div>
-				)}
-			</React.Fragment>
-		);
+		return <div className={classes.ButtonsSection}>{btns}</div>;
 	}
 }
+
+const mapStateToProps = (state) => {
+	return {
+		category: state.itemsR.category,
+	};
+};
 
 const mapDispatchToProps = (dispatch) => {
 	return {
 		onClickedValueHandler: (event) =>
 			dispatch(actions.categoryFilterHandler(event)),
+		onClickReSettingCategory: () => {
+			dispatch(actions.categoryResettingHandler());
+		},
 	};
 };
 
-export default connect(null, mapDispatchToProps)(CategoriesFilterSection);
+export default connect(
+	mapStateToProps,
+	mapDispatchToProps
+)(CategoriesFilterSection);

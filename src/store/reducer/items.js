@@ -42,9 +42,17 @@ const inputOnchangedHandler = (state, action) => {
 	});
 };
 
+// Filter Functionality
+
 const categoryFilterHandler = (state, action) => {
 	return updateState(state, { category: action.event.target.value });
 };
+
+const categoryResettingHandler = (state) => {
+	return updateState(state, { category: '' });
+};
+
+// Update Functionality
 
 const toggleUpdating = (state, action) => {
 	return updateState(state, { updateElId: action.id });
@@ -118,6 +126,8 @@ const reducer = (state = initialState, action) => {
 			return inputOnchangedHandler(state, action);
 		case actionTypes.CATEGORY_FILTER_HANDLER:
 			return categoryFilterHandler(state, action);
+		case actionTypes.CATEGORY_RESETTING_HANDLER:
+			return categoryResettingHandler(state);
 		case actionTypes.TOGGLE_UPDATING:
 			return toggleUpdating(state, action);
 		case actionTypes.UPDATE_ITEM_SUCCESS:

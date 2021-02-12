@@ -79,14 +79,21 @@ const input = (props) => {
 				>{`max. lenght ${props.maxCharacters - props.valueLength}`}</p>
 			) : null}
 			{props.elementConfig.type === 'file' ? (
-				<button
-					onClick={(e) => {
-						e.preventDefault();
-						props.saveImg();
-					}}
-				>
-					upload
-				</button>
+				<div className={classes.ProgressSection}>
+					<div className={classes.ProgressbarHolder}>
+						<label>{props.uploadProgress === 100 ? 'downloaded!' : ''}</label>
+						<progress value={props.uploadProgress} max="100" />
+					</div>
+					<button
+						onClick={(e) => {
+							e.preventDefault();
+							props.saveImg();
+						}}
+						disabled={props.imageSelected === null}
+					>
+						upload
+					</button>
+				</div>
 			) : null}
 		</div>
 	);

@@ -17,7 +17,6 @@ import ToolTip from '../../components/UI/ToolTip/ToolTip';
 class ItemsHolder extends Component {
 	componentDidMount() {
 		window.scrollTo(0, 0);
-
 		this.props.onFetchItems(this.props.token);
 	}
 
@@ -33,6 +32,7 @@ class ItemsHolder extends Component {
 		let items = this.props.items.filter((item) => {
 			return item.country.indexOf(this.props.search.trim()) !== -1;
 		});
+		console.log(this.props.category);
 
 		if (this.props.search && this.props.category) {
 			items = this.props.items
