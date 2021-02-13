@@ -2,10 +2,11 @@ import React, { Component } from 'react';
 import classes from './Itemsholder.css';
 
 import Toolbar from '../../components/Navigation/Toolbar/Toolbar';
-import SingleItem from '../../components/SingleItem/SingleItem';
+import DeleteConfirmation from '../../components/DeleteConfirmation/DeleteConfirmation';
+import Items from '../../components/Items/Items';
 import CategoriesFilterSection from '../../components/CategoriesSection/CategoriesFilterSection';
 import Spinner from '../../components/UI/Spinner/Spinner';
-import Modal from '../../components/UI/Modal/Modal';
+
 // redux
 import * as actions from '../../store/actions/index';
 import { connect } from 'react-redux';
@@ -29,6 +30,7 @@ class ItemsHolder extends Component {
 	};
 
 	render() {
+		//Filters
 		let items = this.props.items.filter((item) => {
 			return item.country.indexOf(this.props.search.trim()) !== -1;
 		});
@@ -39,21 +41,20 @@ class ItemsHolder extends Component {
 					return item.country.indexOf(this.props.search.trim()) !== -1;
 				})
 				.filter((item) => item.category === this.props.category);
-		} else if (this.props.search) {
+		}
+
+		if (this.props.search) {
 			items = this.props.items.filter((item) => {
 				return item.country.indexOf(this.props.search.trim()) !== -1;
 			});
-		} else if (this.props.category) {
+		}
+
+		if (this.props.category) {
 			items = this.props.items.filter(
 				(item) => item.category === this.props.category
 			);
 		}
 
-		if (this.props.category === 'ALL' || this.props.seach) {
-			items = this.props.items.filter((item) => {
-				return item.country.indexOf(this.props.search.trim()) !== -1;
-			});
-		}
 		// This is for the spinner on the main div that holds the items. Appears centered
 
 		let classForMainDisplayDiv = classes.CardsCenter;
@@ -70,21 +71,7 @@ class ItemsHolder extends Component {
 			) : items.length === 0 ? (
 				<p className={classes.NotFound}> Nothing Found :( </p>
 			) : (
-				items.map((item) => {
-					return (
-						<SingleItem
-							key={item.id}
-							id={item.id}
-							image={item.image}
-							title={item.itemName}
-							price={item.price}
-							description={item.description}
-							category={item.category}
-							country={item.country}
-							userId={item.userId}
-						/>
-					);
-				})
+				<Items items={items} />
 			);
 
 		return !this.props.isAuthenticated ? (
@@ -93,15 +80,11 @@ class ItemsHolder extends Component {
 			<section className={classes.Cards}>
 				<Loader />
 				<ToolTip />
-				<Modal show={this.props.deleting} clicked={this.cancelBtnHandler}>
-					<p>Are you sure you want to delete this item? </p>
-					<button className={classes.Btn} onClick={this.cancelBtnHandler}>
-						cancel
-					</button>
-					<button className={classes.Btn} onClick={this.deleteBtnHandler}>
-						confirm
-					</button>
-				</Modal>
+				<DeleteConfirmation
+					deletingShowModal={this.props.deleting}
+					cancelled={this.cancelBtnHandler}
+					confirmedDeletion={this.deleteBtnHandler}
+				/>
 				<Toolbar />
 				<CategoriesFilterSection />
 				<div className={classForMainDisplayDiv}>{filteredItems}</div>

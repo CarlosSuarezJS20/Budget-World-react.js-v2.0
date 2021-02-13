@@ -8,7 +8,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEllipsisV } from '@fortawesome/free-solid-svg-icons';
 
 import { connect } from 'react-redux';
-import * as actions from '../../store/actions/index';
+import * as actions from '../../../store/actions/index';
 
 class SingleItem extends Component {
 	render() {

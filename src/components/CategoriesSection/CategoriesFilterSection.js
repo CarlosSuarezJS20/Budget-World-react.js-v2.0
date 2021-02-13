@@ -40,7 +40,7 @@ class CategoriesFilterSection extends Component {
 							this.classActiveHandler(btn);
 						} else {
 							this.props.onClickReSettingCategory();
-							// allows to resert the class to origil by adding an empty value
+							// allows to resert the class to original by adding an empty value
 							this.classActiveHandler('');
 						}
 					}}
