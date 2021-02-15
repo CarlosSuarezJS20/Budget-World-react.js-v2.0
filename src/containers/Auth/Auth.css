@@ -172,6 +172,7 @@
 	.FormHolder {
 		background-color: #fff;
 		height: 100vh;
+		overflow: unset;
 	}
 
 	.LogoHolder {
@@ -185,13 +186,23 @@
 
 @media (min-width: 1100px) {
 	.LogoHolder {
+		margin-top: 4rem;
 		top: 5%;
 		left: 68%;
+	}
+
+	.Auth {
+		margin: 10rem auto;
 	}
 }
 
 @media (min-width: 1300px) {
+	.Auth {
+		margin: 16rem auto;
+	}
+
 	.LogoHolder {
+		margin-top: 10rem;
 		top: 3%;
 		left: 74%;
 	}

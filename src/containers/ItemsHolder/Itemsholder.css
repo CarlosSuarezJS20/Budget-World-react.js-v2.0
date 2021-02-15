@@ -9,17 +9,24 @@
 	justify-content: space-between;
 }
 
+.NotCardsClass {
+	display: block;
+	margin: 0 auto;
+}
+
 .CardsDisplayLoader {
 	display: block;
 }
 
 .SpinnerHolder {
-	padding-top: 10rem;
+	margin-top: 10rem;
 	width: 100%;
 	height: 60vh;
 }
 
 .NotFound {
+	text-align: center;
+	margin-top: 10rem;
 	color: rgb(97, 97, 97);
 	font-weight: bold;
 	font-size: 2rem;

@@ -263,6 +263,7 @@ class ItemBuilder extends Component {
 		) : (
 			<div className={classes.FormHolder}>
 				<FormsHeader
+					clearFilter={this.props.onClickReSettingCategory()}
 					clicked={this.addItemHandler}
 					disabled={
 						!this.state.formIsValid || this.state.uploadImageProgress !== 100
@@ -288,8 +289,9 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
 	return {
-		onUpdatingItemInServer: (id, item, token) =>
-			dispatch(actions.updateItemInServer(id, item, token)),
+		onClickReSettingCategory: () => {
+			dispatch(actions.categoryResettingHandler());
+		},
 	};
 };
 

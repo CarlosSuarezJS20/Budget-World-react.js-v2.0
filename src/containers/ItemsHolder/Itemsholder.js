@@ -15,8 +15,12 @@ import { Redirect } from 'react-router-dom';
 import Loader from '../../components/UI/Loader/Loader';
 import ToolTip from '../../components/UI/ToolTip/ToolTip';
 
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faSadCry } from '@fortawesome/free-solid-svg-icons';
+
 class ItemsHolder extends Component {
 	componentDidMount() {
+		//ensures the page is reloaded at the top when routing
 		window.scrollTo(0, 0);
 		this.props.onFetchItems(this.props.token);
 	}
@@ -54,10 +58,15 @@ class ItemsHolder extends Component {
 				(item) => item.category === this.props.category
 			);
 		}
-
 		// This is for the spinner on the main div that holds the items. Appears centered
 
-		let classForMainDisplayDiv = classes.CardsCenter;
+		let classForMainDisplayDiv;
+
+		if (items.length === 0) {
+			classForMainDisplayDiv = classes.NotCardsClass;
+		} else {
+			classForMainDisplayDiv = classes.CardsCenter;
+		}
 
 		if (items.length === 0 && this.props.loading) {
 			classForMainDisplayDiv = classes.CardsDisplayLoader;
@@ -69,7 +78,9 @@ class ItemsHolder extends Component {
 					<Spinner />
 				</div>
 			) : items.length === 0 ? (
-				<p className={classes.NotFound}> Nothing Found :( </p>
+				<p className={classes.NotFound}>
+					Nothing Found <FontAwesomeIcon icon={faSadCry} />
+				</p>
 			) : (
 				<Items items={items} />
 			);

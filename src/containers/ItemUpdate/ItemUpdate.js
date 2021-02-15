@@ -258,6 +258,7 @@ class ItemUpdate extends Component {
 			<React.Fragment>
 				<div className={classes.ItemBuilder}>
 					<FormsHeader
+						clearFilter={this.props.onClickReSettingCategory()}
 						clicked={this.updateItemHandler}
 						name="Edit Post"
 						disabled={!this.state.formIsValid}
@@ -290,6 +291,9 @@ const mapDispatchToProps = (dispatch) => {
 		onToggleUpdating: () => dispatch(actions.toggleActiveUpdating()),
 		onUpdatingItemInServer: (id, item, token) =>
 			dispatch(actions.updateItemInServer(id, item, token)),
+		onClickReSettingCategory: () => {
+			dispatch(actions.categoryResettingHandler());
+		},
 	};
 };
 

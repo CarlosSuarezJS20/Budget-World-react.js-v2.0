@@ -38,6 +38,9 @@ class CategoriesFilterSection extends Component {
 						if (this.props.category === '') {
 							this.props.onClickedValueHandler(e);
 							this.classActiveHandler(btn);
+						} else if (this.props.category !== e.target.value) {
+							this.props.onClickedValueHandler(e);
+							this.classActiveHandler(btn);
 						} else {
 							this.props.onClickReSettingCategory();
 							// allows to resert the class to original by adding an empty value
