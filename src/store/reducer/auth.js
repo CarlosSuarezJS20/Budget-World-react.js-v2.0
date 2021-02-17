@@ -6,6 +6,7 @@ const initialState = {
 	userId: null,
 	errorAuthentication: null,
 	loadingAuth: false,
+	creatingAccount: false,
 };
 
 const authStart = (state) => {
@@ -30,8 +31,19 @@ const authLogout = (state) => {
 	return updateState(state, { token: null, userId: null });
 };
 
+const creatingAccountStatusToggle = (state) => {
+	console.log(state.creatingAccount);
+	if (state.creatingAccount) {
+		return updateState(state, { creatingAccount: false });
+	} else {
+		return updateState(state, { creatingAccount: true });
+	}
+};
+
 const reducer = (state = initialState, action) => {
 	switch (action.type) {
+		case actionTypes.CREATING_ACCOUNT_STATUS_TOGGLE:
+			return creatingAccountStatusToggle(state);
 		case actionTypes.AUTH_START:
 			return authStart(state);
 		case actionTypes.AUTH_SUCCESS:

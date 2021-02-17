@@ -106,7 +106,6 @@ class ItemUpdate extends Component {
 	};
 
 	componentDidMount() {
-		window.scrollTo(0, 0);
 		if (this.props.items.length !== 0) {
 			const itemToUpdate = this.props.items.find((item) => {
 				return item.id === this.props.updateElId;
@@ -256,9 +255,9 @@ class ItemUpdate extends Component {
 			<Redirect to="/login" />
 		) : (
 			<React.Fragment>
-				<div className={classes.ItemBuilder}>
+				<div className={classes.ItemUpdate}>
 					<FormsHeader
-						clearFilter={this.props.onClickReSettingCategory()}
+						clearFilter={this.props.onClickReSettingCategory}
 						clicked={this.updateItemHandler}
 						name="Edit Post"
 						disabled={!this.state.formIsValid}
@@ -288,7 +287,6 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
 	return {
-		onToggleUpdating: () => dispatch(actions.toggleActiveUpdating()),
 		onUpdatingItemInServer: (id, item, token) =>
 			dispatch(actions.updateItemInServer(id, item, token)),
 		onClickReSettingCategory: () => {

@@ -13,4 +13,4 @@ export {
 	itemIdForTooltip,
 } from './items';
 
-export { auth, logout, errorAuthenticationClearing } from './auth';
+export { auth, logout, creatingAccountStatusToggle } from './auth';

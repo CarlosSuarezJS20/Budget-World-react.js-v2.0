@@ -1,6 +1,12 @@
 import * as actionTypes from './actionTypes';
 import axios from 'axios';
 
+export const creatingAccountStatusToggle = () => {
+	return {
+		type: actionTypes.CREATING_ACCOUNT_STATUS_TOGGLE,
+	};
+};
+
 export const authStart = () => {
 	// No need for payload.
 	return {

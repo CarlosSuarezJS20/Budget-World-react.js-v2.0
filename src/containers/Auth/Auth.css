@@ -21,7 +21,7 @@
 }
 
 .FormHolder {
-	height: 50vh;
+	height: 60vh;
 	overflow: hidden;
 }
 
@@ -43,7 +43,7 @@
 
 	.FormHolder {
 		height: 50vh;
-		overflow: scroll;
+		overflow: unset;
 	}
 }
 

@@ -263,7 +263,7 @@ class ItemBuilder extends Component {
 		) : (
 			<div className={classes.FormHolder}>
 				<FormsHeader
-					clearFilter={this.props.onClickReSettingCategory()}
+					clearFilter={this.props.onClickReSettingCategory}
 					clicked={this.addItemHandler}
 					disabled={
 						!this.state.formIsValid || this.state.uploadImageProgress !== 100

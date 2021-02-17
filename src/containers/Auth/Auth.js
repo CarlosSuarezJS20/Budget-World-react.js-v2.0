@@ -41,7 +41,6 @@ class Auth extends Component {
 				touched: false,
 			},
 		},
-		creatingAccount: false,
 	};
 
 	checkValidity(value, rules) {
@@ -101,12 +100,6 @@ class Auth extends Component {
 		);
 	};
 
-	switchAuthStatusHandler = (error) => {
-		this.setState((prevState) => {
-			return { creatingAccount: !prevState.creatingAccount, touched: false };
-		});
-	};
-
 	render() {
 		const formElementsArray = [];
 
@@ -150,7 +143,7 @@ class Auth extends Component {
 
 		let authRedirect = null;
 		if (this.props.isAuthenticated) {
-			authRedirect = <Redirect to="/" />;
+			authRedirect = <Redirect to="/home" />;
 		}
 		return (
 			<section className={classes.LoginSection}>
@@ -164,13 +157,13 @@ class Auth extends Component {
 							<Logo active />
 						</div>
 						{errorMessage}
-						{this.state.creatingAccount ? (
+						{this.props.isCreatingAccount ? (
 							<h2>Welcome to Budget World!</h2>
 						) : (
 							<h2>Welcome back!</h2>
 						)}
 						{authenticationForm}
-						{this.state.creatingAccount ? (
+						{this.props.isCreatingAccount ? (
 							<p
 								style={{
 									textAlign: 'center',
@@ -190,14 +183,14 @@ class Auth extends Component {
 									this.submitHandler(e);
 								}}
 							>
-								{!this.state.creatingAccount ? 'Log In' : 'Sign Up'}
+								{!this.props.isCreatingAccount ? 'Log In' : 'Sign Up'}
 							</button>
 						</div>
 						<p
 							className={classes.FormMessage}
-							onClick={this.switchAuthStatusHandler}
+							onClick={this.props.onCreatingAccountStatus}
 						>
-							{!this.state.creatingAccount
+							{!this.props.isCreatingAccount
 								? 'Register Here!'
 								: 'Already a user? Login In'}
 						</p>
@@ -213,6 +206,7 @@ const mapStateToProps = (state) => {
 		errorAuth: state.authR.errorAuthentication,
 		loadingAuth: state.authR.loadingAuth,
 		isAuthenticated: state.authR.token !== null,
+		isCreatingAccount: state.authR.creatingAccount,
 	};
 };
 
@@ -220,6 +214,8 @@ const mapDispatchToProps = (dispatch) => {
 	return {
 		onAuth: (email, password, creatingAccount) =>
 			dispatch(actions.auth(email, password, creatingAccount)),
+		onCreatingAccountStatus: () =>
+			dispatch(actions.creatingAccountStatusToggle()),
 	};
 };
 

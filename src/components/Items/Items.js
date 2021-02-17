@@ -1,8 +1,8 @@
 import React from 'react';
 import SingleItem from '../Items/SingleItem/SingleItem';
 
-export const items = (props) =>
-	props.items.map((item) => {
+export const items = (props) => {
+	const items = props.items.map((item) => {
 		return (
 			<SingleItem
 				key={item.id}
@@ -17,5 +17,8 @@ export const items = (props) =>
 			/>
 		);
 	});
+
+	return items;
+};
 
 export default items;

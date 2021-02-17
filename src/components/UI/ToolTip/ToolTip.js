@@ -80,13 +80,11 @@ class Tooltip extends Component {
 				/>
 				<div className={initialClass.join(' ')} style={style}>
 					<div>
-						<div
-							className={classes.TitleHolder}
-							onClick={this.props.onClosingTooltip}
-						>
+						<div className={classes.TitleHolder}>
 							<FontAwesomeIcon
 								icon={faTimes}
 								className={classes.CloseOptionsModal}
+								onClick={this.props.onClosingTooltip}
 							/>
 							<span>options</span>
 						</div>
@@ -130,4 +128,6 @@ const mapDispatchToProps = (dispatch) => {
 	};
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Tooltip);
+export default React.memo(
+	connect(mapStateToProps, mapDispatchToProps)(Tooltip)
+);
