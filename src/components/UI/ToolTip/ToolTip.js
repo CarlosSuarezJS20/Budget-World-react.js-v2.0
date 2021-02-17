@@ -11,17 +11,7 @@ import { connect } from 'react-redux';
 import * as actions from '../../../store/actions/index';
 
 class Tooltip extends Component {
-	componentDidMount() {
-		document.body.onresize = () => {
-			let backDrop = document.getElementById('back-drop');
-
-			if (backDrop) {
-				document.getElementById('back-drop').click();
-			}
-		};
-	}
-
-	shouldComponentUpdate(nextProps, nextState) {
+	shouldComponentUpdate(nextProps) {
 		return (
 			nextProps.requestedTooltip !== this.props.requestedTooltip ||
 			nextProps.tooltipElId !== this.props.tooltipElId
@@ -45,6 +35,7 @@ class Tooltip extends Component {
 				? classes.ToolTipHolderAbove700px
 				: classes.ToolTipHolder,
 		];
+
 		let style;
 
 		if (this.props.requestedTooltip) {
