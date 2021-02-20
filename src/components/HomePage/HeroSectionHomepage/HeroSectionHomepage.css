@@ -1,36 +1,83 @@
-.MainHeroDiv {
+.Hero {
 	height: 100vh;
+	background: rgb(0, 0, 0);
+	background: linear-gradient(
+		180deg,
+		rgba(0, 0, 0, 0) 80%,
+		rgba(255, 255, 255, 1) 100%
+	);
 }
 
 .TitleHolder {
 	position: relative;
-	width: 300px;
-	height: 150px;
+	height: 600px;
+	margin-top: -20rem;
 	background: #ffff;
-	border-radius: 20px;
-	margin: 20rem auto;
+	-moz-border-radius: 100px / 50px;
+	-webkit-border-radius: 100px / 178px;
+	border-radius: 500px / 500px;
+	z-index: 4;
 	padding: 1rem;
 }
 
 .TitleHolder h2 {
 	text-align: center;
+	font-size: 3rem;
+	margin-top: 25rem;
+	margin-bottom: 0.5rem;
 }
 
 .World {
 	color: rgb(209, 209, 16);
 }
 
-.TitleHolder p {
+.Container {
+	width: 100%;
+	position: relative;
 	text-align: center;
-	font-size: 1rem;
-	margin-bottom: 1.5rem;
+}
+
+.Height {
+	position: relative;
+	padding-bottom: 50px;
+}
+
+.Text {
+	left: 0px;
+	width: 100%;
+	text-transform: capitalize;
+	color: black;
+	font-weight: bolder;
+	font-size: 1.6rem;
+	position: absolute;
+	transition: 2.5s ease-in-out;
+	opacity: 0;
+}
+
+.MessageHolder {
+	height: 60px;
+}
+
+.MessagesDiv {
+	position: absolute;
+	display: flex;
+	justify-content: center;
 }
 
 .BtnsHolder {
 	margin: 0 auto;
+	position: relative;
 	display: flex;
 	justify-content: center;
 	width: 150px;
+}
+
+.BtnsCover {
+	position: absolute;
+	height: 100vh;
+	width: 100vw;
+	background: transparent;
+	display: none;
 }
 
 .Btn {
@@ -41,6 +88,61 @@
 	margin: 0 10px;
 }
 
+.Active {
+	background: rgb(209, 209, 16);
+}
+
 .Btn:hover {
 	background: rgb(209, 209, 16);
+}
+
+.HeroImage {
+	z-index: -5;
+	position: absolute;
+	height: 100vh;
+	width: 100vw;
+	object-fit: cover;
+	min-height: 100vh;
+	transition: 1s ease-in-out;
+	opacity: 1;
+}
+
+.HeroImage1 {
+	z-index: -5;
+	position: absolute;
+	height: 100vh;
+	width: 100vw;
+	object-fit: cover;
+	transition: 1s ease-in-out;
+	opacity: 0;
+}
+
+.HeroImage2 {
+	z-index: -5;
+	position: absolute;
+	height: 100vh;
+	width: 100vw;
+	transition: 1s ease-in-out;
+	object-fit: cover;
+	opacity: 0;
+}
+
+.HeroImage3 {
+	z-index: -5;
+	position: absolute;
+	transition: 1s ease-in-out;
+	height: 100vh;
+	width: 100vw;
+	object-fit: cover;
+	opacity: 0;
+}
+
+.HeroImage4 {
+	z-index: -5;
+	position: absolute;
+	height: 100vh;
+	width: 100vw;
+	transition: 1s ease-in-out;
+	object-fit: cover;
+	opacity: 0;
 }
