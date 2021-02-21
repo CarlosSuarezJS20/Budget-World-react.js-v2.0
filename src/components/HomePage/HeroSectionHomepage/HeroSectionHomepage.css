@@ -13,6 +13,7 @@
 	height: 600px;
 	margin-top: -20rem;
 	background: #ffff;
+	box-shadow: 0 2px 2px rgba(0, 0, 0, 0.5);
 	-moz-border-radius: 100px / 50px;
 	-webkit-border-radius: 100px / 178px;
 	border-radius: 500px / 500px;
@@ -43,25 +44,21 @@
 }
 
 .Text {
-	left: 0px;
+	position: absolute;
+	left: 0%;
+	bottom: 10%;
 	width: 100%;
 	text-transform: capitalize;
 	color: black;
 	font-weight: bolder;
-	font-size: 1.6rem;
-	position: absolute;
-	transition: 2.5s ease-in-out;
+	font-size: 1.8rem;
+	transform: translateY(-55px);
+	transition: 1.2s ease-in-out;
 	opacity: 0;
 }
 
 .MessageHolder {
 	height: 60px;
-}
-
-.MessagesDiv {
-	position: absolute;
-	display: flex;
-	justify-content: center;
 }
 
 .BtnsHolder {
@@ -88,12 +85,36 @@
 	margin: 0 10px;
 }
 
-.Active {
-	background: rgb(209, 209, 16);
+.ActivitiesBtnActive {
+	padding: 4px;
+	border-radius: 50px;
+	border: none;
+	margin: 0 10px;
+	background: rgb(24, 124, 20);
 }
 
-.Btn:hover {
-	background: rgb(209, 209, 16);
+.PlacesBtnActive {
+	padding: 4px;
+	border-radius: 50px;
+	border: none;
+	margin: 0 10px;
+	background: rgb(233, 153, 5);
+}
+
+.FoodBtnActive {
+	padding: 4px;
+	border-radius: 50px;
+	border: none;
+	margin: 0 10px;
+	background: rgb(233, 38, 38);
+}
+
+.TransportBtnActive {
+	padding: 4px;
+	border-radius: 50px;
+	border: none;
+	margin: 0 10px;
+	background: rgb(34, 172, 226);
 }
 
 .HeroImage {
@@ -145,4 +166,46 @@
 	transition: 1s ease-in-out;
 	object-fit: cover;
 	opacity: 0;
+}
+
+.BtnDownHolder {
+	width: 100%;
+	top: 40%;
+	position: relative;
+	text-align: center;
+}
+
+.Height {
+	position: relative;
+	padding-bottom: 50px;
+}
+
+.NextBtn {
+	position: fixed;
+	margin-left: -30px;
+	font-size: 2rem;
+	height: 50px;
+	border-radius: 180px;
+	box-shadow: 0 2px 2px rgba(0, 0, 0, 0.5);
+	border: none;
+	width: 50px;
+	animation: updown 2s ease infinite;
+}
+
+.Arrow {
+	color: #ffff;
+}
+
+@keyframes updown {
+	0% {
+		transform: translateY(-50%);
+	}
+
+	50% {
+		transform: translateY(50%);
+	}
+
+	100% {
+		transform: translateY(-50%);
+	}
 }

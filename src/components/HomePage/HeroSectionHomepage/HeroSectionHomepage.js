@@ -1,19 +1,19 @@
 /* eslint-disable default-case */
-import React, { useRef, useEffect } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import classes from './HeroSectionHomepage.css';
 import compass from '../../../assets/images/compass.jpeg';
 import activitiesPhoto from '../../../assets/images/activities.jpeg';
 import placesPhoto from '../../../assets/images/places.jpeg';
 import foodPhoto from '../../../assets/images/food.jpeg';
 import transportPhoto from '../../../assets/images/transport.jpeg';
-import { changeStyles } from './HelperFunction';
-import { useState } from 'react/cjs/react.development';
+import { changeStyles, messageSwapper } from './HelperFunction';
+
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faChevronDown } from '@fortawesome/free-solid-svg-icons';
 
 const HeroSectionHomepage = () => {
-	const [classesInitialMessage, setClassesInitialMessage] = useState([
-		classes.Text,
-	]);
-
+	const [buttonName, setButtonName] = useState('');
+	const [buttonDownColor, setButtonDownColor] = useState('black');
 	// paragh ref
 	const initialMessage = useRef();
 	const activitiesMessage = useRef();
@@ -45,30 +45,35 @@ const HeroSectionHomepage = () => {
 		transportImgRef,
 	];
 
+	// btns refs
+
+	const activitiesBtn = useRef();
+	const placesBtn = useRef();
+	const foodBtn = useRef();
+	const transportBtn = useRef();
+
 	useEffect(() => {
 		initialMessage.current.style.opacity = 1;
+		initialMessage.current.style.transform = 'translateY(0px)';
+
 		const activitiesTimer = setTimeout(() => {
-			activities();
-		}, 5000);
+			activitiesBtn.current.click();
+		}, 3000);
 		const placesTimer = setTimeout(() => {
+			placesBtn.current.click();
 			places();
-		}, 10000);
+		}, 8000);
 		const foodTimer = setTimeout(() => {
-			food();
-		}, 15000);
+			foodBtn.current.click();
+		}, 13000);
 		const transportTimer = setTimeout(() => {
-			transport();
-		}, 20000);
+			transportBtn.current.click();
+		}, 18000);
 		const initialTimer = setTimeout(() => {
-			for (let ref of messagesRef) {
-				if (ref.current.id === 'initial-message') {
-					ref.current.style.opacity = 1;
-				} else {
-					ref.current.style.opacity = 0;
-				}
-			}
+			messageSwapper('initial', messagesRef);
 			changeStyles('initial', imagesRefs);
-		}, 25000);
+			transportBtn.current.style.background = 'rgb(185, 185, 185)';
+		}, 23000);
 		return () => {
 			clearTimeout(activitiesTimer);
 			clearTimeout(placesTimer);
@@ -79,51 +84,48 @@ const HeroSectionHomepage = () => {
 	}, []);
 
 	const activities = () => {
-		for (let ref of messagesRef) {
-			if (ref.current.id === 'activities-message') {
-				ref.current.style.color = 'rgb(24, 124, 20)';
-				ref.current.style.opacity = 1;
-			} else {
-				ref.current.style.opacity = 0;
-			}
-		}
+		messageSwapper('activities', messagesRef);
 		changeStyles('activities', imagesRefs);
 	};
 
 	const places = () => {
-		for (let ref of messagesRef) {
-			if (ref.current.id === 'places-message') {
-				ref.current.style.opacity = 1;
-				ref.current.style.color = 'rgb(233, 153, 5)';
-			} else {
-				ref.current.style.opacity = 0;
-			}
-		}
+		messageSwapper('places', messagesRef);
 		changeStyles('places', imagesRefs);
 	};
 
 	const food = () => {
-		for (let ref of messagesRef) {
-			if (ref.current.id === 'food-message') {
-				ref.current.style.opacity = 1;
-				ref.current.style.color = 'rgb(233, 38, 38)';
-			} else {
-				ref.current.style.opacity = 0;
-			}
-		}
+		messageSwapper('food', messagesRef);
 		changeStyles('food', imagesRefs);
 	};
 
 	const transport = () => {
-		for (let ref of messagesRef) {
-			if (ref.current.id === 'transport-message') {
-				ref.current.style.opacity = 1;
-				ref.current.style.color = 'rgb(34, 172, 226)';
-			} else {
-				ref.current.style.opacity = 0;
-			}
-		}
+		messageSwapper('transport', messagesRef);
 		changeStyles('transport', imagesRefs);
+	};
+
+	const activeBtn = (e) => {
+		const btnName = e.target.name;
+		switch (btnName) {
+			case 'activities':
+				setButtonName(btnName);
+				setButtonDownColor('rgb(24, 124, 20)');
+				activities();
+				break;
+			case 'places':
+				setButtonName(btnName);
+				setButtonDownColor('rgb(233, 153, 5)');
+				places();
+				break;
+			case 'food':
+				setButtonName(btnName);
+				setButtonDownColor('rgb(233, 38, 38)');
+				food();
+				break;
+			case 'transport':
+				setButtonName(btnName);
+				setButtonDownColor('rgb(34, 172, 226)');
+				transport();
+		}
 	};
 
 	return (
@@ -173,35 +175,27 @@ const HeroSectionHomepage = () => {
 					<div className={classes.Height}>
 						<p
 							ref={initialMessage}
-							className={classesInitialMessage.join(' ')}
+							className={classes.Text}
 							id="initial-message"
 						>
 							Explore new places!
 						</p>
 						<p
 							ref={activitiesMessage}
-							className={classesInitialMessage.join(' ')}
+							className={classes.Text}
 							id="activities-message"
 						>
 							plan your activities
 						</p>
-						<p
-							ref={placesMessage}
-							className={classesInitialMessage.join(' ')}
-							id="places-message"
-						>
+						<p ref={placesMessage} className={classes.Text} id="places-message">
 							find your next trip
 						</p>
-						<p
-							ref={foodMessage}
-							className={classesInitialMessage.join(' ')}
-							id="food-message"
-						>
+						<p ref={foodMessage} className={classes.Text} id="food-message">
 							discover great food
 						</p>
 						<p
 							ref={transportMessage}
-							className={classesInitialMessage.join(' ')}
+							className={classes.Text}
 							id="transport-message"
 						>
 							share your advetures!
@@ -210,10 +204,62 @@ const HeroSectionHomepage = () => {
 				</div>
 				<div className={classes.BtnsHolder}>
 					<div className={classes.BtnsCover}></div>
-					<button onClick={activities} className={classes.Btn} />
-					<button onClick={places} className={classes.Btn} />
-					<button onClick={food} className={classes.Btn} />
-					<button onClick={transport} className={classes.Btn} />
+					<button
+						ref={activitiesBtn}
+						name="activities"
+						onClick={(e) => {
+							activeBtn(e);
+						}}
+						className={
+							buttonName === 'activities'
+								? classes.ActivitiesBtnActive
+								: classes.Btn
+						}
+					/>
+					<button
+						ref={placesBtn}
+						name="places"
+						onClick={(e) => {
+							activeBtn(e);
+						}}
+						className={
+							buttonName === 'places' ? classes.PlacesBtnActive : classes.Btn
+						}
+					/>
+					<button
+						ref={foodBtn}
+						name="food"
+						onClick={(e) => {
+							activeBtn(e);
+						}}
+						className={
+							buttonName === 'food' ? classes.FoodBtnActive : classes.Btn
+						}
+					/>
+					<button
+						ref={transportBtn}
+						name="transport"
+						onClick={(e) => {
+							activeBtn(e);
+						}}
+						className={
+							buttonName === 'transport'
+								? classes.TransportBtnActive
+								: classes.Btn
+						}
+					/>
+				</div>
+			</div>
+			<div className={classes.BtnDownHolder}>
+				<div className={classes.BtnDownHolderHeight}>
+					<button
+						className={classes.NextBtn}
+						style={{
+							background: buttonDownColor,
+						}}
+					>
+						<FontAwesomeIcon icon={faChevronDown} className={classes.Arrow} />
+					</button>
 				</div>
 			</div>
 		</div>
