@@ -1,8 +1,42 @@
 /* eslint-disable default-case */
 import React, { useState, useRef, useEffect } from 'react';
 import classes from './HeroSectionHomepage.css';
-import compass from '../../../assets/images/compass.jpeg';
 import activitiesPhoto from '../../../assets/images/activities.jpeg';
+
+import placesOne from '../../../assets/images/placesOne.jpg';
+import placesTwo from '../../../assets/images/placesTwo.jpg';
+import placesThree from '../../../assets/images/placesThree.jpg';
+import placesFour from '../../../assets/images/placesFour.jpg';
+import placesFive from '../../../assets/images/placesFive.jpg';
+import placesSix from '../../../assets/images/placesSix.jpg';
+import placesSeven from '../../../assets/images/placesSeven.jpg';
+import placesEight from '../../../assets/images/placesEight.jpg';
+import placesNine from '../../../assets/images/placesNine.jpg';
+import placesTen from '../../../assets/images/placesTen.jpg';
+import placesEleven from '../../../assets/images/placesEleven.jpg';
+import placesTwelve from '../../../assets/images/placesTwelve.jpg';
+import placesThirteen from '../../../assets/images/placesThirteen.jpg';
+import placesFourteen from '../../../assets/images/placesFourteen.jpg';
+import placesFifteen from '../../../assets/images/placesFifteen.jpg';
+import placesSixteen from '../../../assets/images/placesSixteen.jpg';
+
+import activityOne from '../../../assets/images/activityOne.jpg';
+import activityTwo from '../../../assets/images/activityTwo.jpg';
+import activityThree from '../../../assets/images/activityThree.jpg';
+import activityFour from '../../../assets/images/activityFour.jpg';
+import activityFive from '../../../assets/images/activityFive.jpg';
+import activitySix from '../../../assets/images/activitySix.jpg';
+import activitySeven from '../../../assets/images/activitySeven.jpg';
+import activityEight from '../../../assets/images/activityEight.jpg';
+import activityNine from '../../../assets/images/activityNine.jpg';
+import activityTen from '../../../assets/images/activityTen.jpg';
+import activityEleven from '../../../assets/images/activityEleven.jpg';
+import activityTwelve from '../../../assets/images/activityTwelve.jpg';
+import activityThirteen from '../../../assets/images/activityThirteen.jpg';
+import activityFourteen from '../../../assets/images/activityFourteen.jpg';
+import activityFifteen from '../../../assets/images/activityFifteen.jpg';
+import activitySixteen from '../../../assets/images/activitySixteen.jpg';
+
 import placesPhoto from '../../../assets/images/places.jpeg';
 import foodPhoto from '../../../assets/images/food.jpeg';
 import transportPhoto from '../../../assets/images/transport.jpeg';
@@ -13,16 +47,14 @@ import { faChevronDown } from '@fortawesome/free-solid-svg-icons';
 
 const HeroSectionHomepage = () => {
 	const [buttonName, setButtonName] = useState('');
-	const [buttonDownColor, setButtonDownColor] = useState('black');
+	const [buttonDownColor, setButtonDownColor] = useState('');
 	// paragh ref
-	const initialMessage = useRef();
 	const activitiesMessage = useRef();
 	const placesMessage = useRef();
 	const foodMessage = useRef();
 	const transportMessage = useRef();
 
 	const messagesRef = [
-		initialMessage,
 		activitiesMessage,
 		placesMessage,
 		foodMessage,
@@ -30,7 +62,6 @@ const HeroSectionHomepage = () => {
 	];
 
 	// Images Ref
-	const initialImgRef = useRef();
 	const activitiesImgRef = useRef();
 	const placesImgRef = useRef();
 	const foodImgRef = useRef();
@@ -38,7 +69,6 @@ const HeroSectionHomepage = () => {
 
 	// exectute function
 	const imagesRefs = [
-		initialImgRef,
 		activitiesImgRef,
 		placesImgRef,
 		foodImgRef,
@@ -53,29 +83,23 @@ const HeroSectionHomepage = () => {
 	const transportBtn = useRef();
 
 	useEffect(() => {
-		initialMessage.current.style.opacity = 1;
-		initialMessage.current.style.transform = 'translateY(0px)';
+		activitiesBtn.current.click();
 
-		const activitiesTimer = setTimeout(() => {
-			activitiesBtn.current.click();
-		}, 3000);
 		const placesTimer = setTimeout(() => {
 			placesBtn.current.click();
 			places();
-		}, 8000);
+		}, 2500);
 		const foodTimer = setTimeout(() => {
 			foodBtn.current.click();
-		}, 13000);
+		}, 5000);
 		const transportTimer = setTimeout(() => {
 			transportBtn.current.click();
-		}, 18000);
+		}, 7500);
 		const initialTimer = setTimeout(() => {
-			messageSwapper('initial', messagesRef);
-			changeStyles('initial', imagesRefs);
-			transportBtn.current.style.background = 'rgb(185, 185, 185)';
-		}, 23000);
+			// initialSetUp();
+			activitiesBtn.current.click();
+		}, 10000);
 		return () => {
-			clearTimeout(activitiesTimer);
 			clearTimeout(placesTimer);
 			clearTimeout(transportTimer);
 			clearTimeout(foodTimer);
@@ -130,28 +154,221 @@ const HeroSectionHomepage = () => {
 
 	return (
 		<div className={classes.Hero}>
-			<img
-				ref={initialImgRef}
-				src={compass}
-				className={classes.HeroImage}
-				id="initial"
-				alt="image_url"
-			/>
-			<img
+			<div
 				ref={activitiesImgRef}
-				src={activitiesPhoto}
 				id="activities"
 				className={classes.HeroImage1}
-				alt="image_url"
-			/>
-
-			<img
+			>
+				<div className={classes.HeroDivOne}>
+					<article className={classes.HeroImageContainer}>
+						<img src={activityOne} className={classes.Image} alt="image_item" />
+					</article>
+					<article className={classes.HeroImageContainer}>
+						<img
+							src={activitySixteen}
+							className={classes.Image}
+							alt="image_item"
+						/>
+					</article>
+				</div>
+				<div className={classes.HeroDivTwo}>
+					<article className={classes.HeroImageContainer}>
+						<img src={activityTwo} className={classes.Image} alt="image_item" />
+					</article>
+					<article className={classes.HeroImageContainer}>
+						<img
+							src={activityFifteen}
+							className={classes.Image}
+							alt="image_item"
+						/>
+					</article>
+				</div>
+				<div className={classes.HeroDivThree}>
+					<article className={classes.HeroImageContainer}>
+						<img
+							src={activityThree}
+							className={classes.Image}
+							alt="image_item"
+						/>
+					</article>
+					<article className={classes.HeroImageContainer}>
+						<img
+							src={activityFour}
+							className={classes.Image}
+							alt="image_item"
+						/>
+					</article>
+				</div>
+				<div className={classes.HeroDivFour}>
+					<article className={classes.HeroImageContainer}>
+						<img
+							src={activityFive}
+							className={classes.Image}
+							alt="image_item"
+						/>
+					</article>
+					<article className={classes.HeroImageContainer}>
+						<img src={activitySix} className={classes.Image} alt="image_item" />
+					</article>
+				</div>
+				<div className={classes.HeroDivFive}>
+					<article className={classes.HeroImageContainer}>
+						<img
+							src={activitySeven}
+							className={classes.Image}
+							alt="image_item"
+						/>
+					</article>
+					<article className={classes.HeroImageContainer}>
+						<img
+							src={activityEight}
+							className={classes.Image}
+							alt="image_item"
+						/>
+					</article>
+				</div>
+				<div className={classes.HeroDivSix}>
+					<article className={classes.HeroImageContainer}>
+						<img
+							src={activityNine}
+							className={classes.Image}
+							alt="image_item"
+						/>
+					</article>
+					<article className={classes.HeroImageContainer}>
+						<img src={activityTen} className={classes.Image} alt="image_item" />
+					</article>
+				</div>
+				<div className={classes.HeroDivSeven}>
+					<article className={classes.HeroImageContainer}>
+						<img
+							src={placesEleven}
+							className={classes.Image}
+							alt="image_item"
+						/>
+					</article>
+					<article className={classes.HeroImageContainer}>
+						<img
+							src={activityTwelve}
+							className={classes.Image}
+							alt="image_item"
+						/>
+					</article>
+				</div>
+				<div className={classes.HeroDivEight}>
+					<article className={classes.HeroImageContainer}>
+						<img
+							src={activityThirteen}
+							className={classes.Image}
+							alt="image_item"
+						/>
+					</article>
+					<article className={classes.HeroImageContainer}>
+						<img
+							src={activityFourteen}
+							className={classes.Image}
+							alt="image_item"
+						/>
+					</article>
+				</div>
+			</div>
+			{/* <img
 				ref={placesImgRef}
 				src={placesPhoto}
 				id="places"
 				className={classes.HeroImage2}
 				alt="image_url"
-			/>
+			/> */}
+			<div ref={placesImgRef} id="places" className={classes.HeroImage2}>
+				<div className={classes.HeroDivOne}>
+					<article className={classes.HeroImageContainer}>
+						<img src={placesOne} className={classes.Image} alt="image_item" />
+					</article>
+					<article className={classes.HeroImageContainer}>
+						<img
+							src={placesSixteen}
+							className={classes.Image}
+							alt="image_item"
+						/>
+					</article>
+				</div>
+				<div className={classes.HeroDivTwo}>
+					<article className={classes.HeroImageContainer}>
+						<img src={placesTwo} className={classes.Image} alt="image_item" />
+					</article>
+					<article className={classes.HeroImageContainer}>
+						<img
+							src={placesFifteen}
+							className={classes.Image}
+							alt="image_item"
+						/>
+					</article>
+				</div>
+				<div className={classes.HeroDivThree}>
+					<article className={classes.HeroImageContainer}>
+						<img src={placesThree} className={classes.Image} alt="image_item" />
+					</article>
+					<article className={classes.HeroImageContainer}>
+						<img src={placesFour} className={classes.Image} alt="image_item" />
+					</article>
+				</div>
+				<div className={classes.HeroDivFour}>
+					<article className={classes.HeroImageContainer}>
+						<img src={placesFive} className={classes.Image} alt="image_item" />
+					</article>
+					<article className={classes.HeroImageContainer}>
+						<img src={placesSix} className={classes.Image} alt="image_item" />
+					</article>
+				</div>
+				<div className={classes.HeroDivFive}>
+					<article className={classes.HeroImageContainer}>
+						<img src={placesSeven} className={classes.Image} alt="image_item" />
+					</article>
+					<article className={classes.HeroImageContainer}>
+						<img src={placesEight} className={classes.Image} alt="image_item" />
+					</article>
+				</div>
+				<div className={classes.HeroDivSix}>
+					<article className={classes.HeroImageContainer}>
+						<img src={placesNine} className={classes.Image} alt="image_item" />
+					</article>
+					<article className={classes.HeroImageContainer}>
+						<img src={placesTen} className={classes.Image} alt="image_item" />
+					</article>
+				</div>
+				<div className={classes.HeroDivSeven}>
+					<article className={classes.HeroImageContainer}>
+						<img
+							src={activityEleven}
+							className={classes.Image}
+							alt="image_item"
+						/>
+					</article>
+					<article className={classes.HeroImageContainer}>
+						<img
+							src={placesTwelve}
+							className={classes.Image}
+							alt="image_item"
+						/>
+					</article>
+				</div>
+				<div className={classes.HeroDivEight}>
+					<article className={classes.HeroImageContainer}>
+						<img
+							src={placesThirteen}
+							className={classes.Image}
+							alt="image_item"
+						/>
+					</article>
+					<article className={classes.HeroImageContainer}>
+						<img
+							src={placesFourteen}
+							className={classes.Image}
+							alt="image_item"
+						/>
+					</article>
+				</div>
+			</div>
 			<img
 				ref={foodImgRef}
 				src={foodPhoto}
@@ -173,13 +390,6 @@ const HeroSectionHomepage = () => {
 				</h2>
 				<div className={classes.Container}>
 					<div className={classes.Height}>
-						<p
-							ref={initialMessage}
-							className={classes.Text}
-							id="initial-message"
-						>
-							Explore new places!
-						</p>
 						<p
 							ref={activitiesMessage}
 							className={classes.Text}

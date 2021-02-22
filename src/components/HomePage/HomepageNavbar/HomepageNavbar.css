@@ -11,6 +11,7 @@
 	max-width: 370px;
 	margin: auto;
 	background: transparent;
+	overflow-x: hidden;
 }
 
 .LogoTitleHolder {
@@ -71,7 +72,7 @@
 	background: rgb(202, 202, 202);
 }
 
-@media (min-width: 765px) {
+@media (min-width: 1200px) {
 	.HomepageNavbar {
 		max-width: 80%;
 	}

@@ -27,7 +27,6 @@
 		rgba(240, 252, 20, 1) 100%
 	);
 	height: 47.2vh;
-	overflow-y: hidden;
 }
 
 @media (min-width: 400px) {
@@ -39,6 +38,7 @@
 	.UpdateForm {
 		margin: 1.5rem 0 auto auto;
 		height: 51.5vh;
+		overflow-y: unset;
 	}
 }
 
@@ -57,7 +57,6 @@
 		margin: 3rem 0 auto auto;
 		padding: 4rem 7rem;
 		height: 48.4vh;
-		overflow-y: unset;
 	}
 }
 

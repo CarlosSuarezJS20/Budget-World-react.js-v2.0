@@ -1,5 +1,7 @@
 .ImageContainer {
 	position: relative;
+	width: 180px;
+	height: 100px;
 }
 
 .ItemImage {

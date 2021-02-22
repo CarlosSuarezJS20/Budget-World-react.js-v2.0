@@ -1,4 +1,5 @@
 .Hero {
+	/* width: 100vh; */
 	height: 100vh;
 	background: rgb(0, 0, 0);
 	background: linear-gradient(
@@ -117,34 +118,98 @@
 	background: rgb(34, 172, 226);
 }
 
+/* Divs for Hero */
+
 .HeroImage {
-	z-index: -5;
 	position: absolute;
-	height: 100vh;
-	width: 100vw;
-	object-fit: cover;
-	min-height: 100vh;
+	display: flex;
+	max-height: 100vh;
+	min-width: 350px;
+	z-index: -5;
 	transition: 1s ease-in-out;
 	opacity: 1;
 }
 
-.HeroImage1 {
-	z-index: -5;
-	position: absolute;
-	height: 100vh;
-	width: 100vw;
+.HeroImageContainer {
+	position: relative;
+	width: 240px;
+}
+
+.Image {
+	height: 300px;
+	margin: 0.3rem 0.3rem;
+	width: 180px;
 	object-fit: cover;
+	border-radius: 15px;
+}
+
+.HeroDivOne {
+	display: none;
+	overflow-y: hidden;
+	transition: 2s ease-in-out;
+	margin-top: 6rem;
+}
+
+.HeroDivTwo {
+	transition: 2s ease-in-out;
+	overflow-y: hidden;
+}
+
+.HeroDivThree {
+	display: none;
+	overflow-y: hidden;
+	transition: 2s ease-in-out;
+	margin-top: 6rem;
+}
+
+.HeroDivFour {
+	display: none;
+	transition: 2s ease-in-out;
+	overflow-y: hidden;
+}
+
+.HeroDivFive {
+	display: none;
+	overflow-y: hidden;
+	transition: 2s ease-in-out;
+	margin-top: 6rem;
+}
+
+.HeroDivSix {
+	display: none;
+	transition: 2s ease-in-out;
+	overflow-y: hidden;
+}
+
+.HeroDivSeven {
+	display: none;
+	transition: 2s ease-in-out;
+	overflow-y: hidden;
+	margin-top: 6rem;
+}
+.HeroDivEight {
+	display: none;
+	transition: 2s ease-in-out;
+	overflow-y: hidden;
+}
+
+.HeroImage1 {
+	position: absolute;
+	display: flex;
+	max-height: 100vh;
+	width: 100vw;
+	z-index: -5;
 	transition: 1s ease-in-out;
 	opacity: 0;
 }
 
 .HeroImage2 {
-	z-index: -5;
 	position: absolute;
-	height: 100vh;
+	display: flex;
+	max-height: 100vh;
 	width: 100vw;
+	z-index: -5;
 	transition: 1s ease-in-out;
-	object-fit: cover;
 	opacity: 0;
 }
 
@@ -168,6 +233,181 @@
 	opacity: 0;
 }
 
+@media (min-width: 370px) {
+	.HeroImage {
+		top: 10%;
+	}
+
+	.HeroImage1 {
+		top: 10%;
+	}
+
+	.HeroImage2 {
+		top: 10%;
+	}
+
+	.HeroDivOne {
+		display: block;
+	}
+	.HeroDivTwo {
+		display: block;
+	}
+}
+
+@media (min-width: 410px) {
+	.HeroImage {
+		top: 3%;
+	}
+
+	.HeroImage1 {
+		top: 3%;
+	}
+
+	.HeroImage2 {
+		top: 3%;
+	}
+
+	.Image {
+		margin: 0rem 0.8rem;
+	}
+}
+
+@media (min-width: 700px) {
+	.HeroImage {
+		top: 15%;
+	}
+
+	.HeroImage1 {
+		top: 15%;
+	}
+
+	.HeroImage2 {
+		top: 15%;
+	}
+
+	.Image {
+		margin: 2rem 3rem;
+	}
+
+	.HeroDivOne {
+		display: block;
+	}
+	.HeroDivTwo {
+		display: block;
+	}
+	.HeroDivThree {
+		display: block;
+	}
+}
+
+@media (min-width: 1020px) {
+	.HeroImage {
+		top: 30%;
+	}
+
+	.HeroImage1 {
+		top: 30%;
+	}
+
+	.HeroImage2 {
+		top: 30%;
+	}
+
+	.Image {
+		margin: 2rem 3.5rem;
+	}
+
+	.HeroDivOne {
+		display: block;
+	}
+	.HeroDivTwo {
+		display: block;
+	}
+	.HeroDivThree {
+		display: block;
+	}
+	.HeroDivFour {
+		display: block;
+	}
+}
+
+@media (min-width: 1200px) {
+	.HeroImage {
+		top: 0%;
+	}
+
+	.HeroImage1 {
+		top: 0%;
+	}
+
+	.HeroImage2 {
+		top: 0%;
+	}
+
+	.Image {
+		margin: 2rem 3.5rem;
+	}
+
+	.HeroDivOne {
+		display: block;
+	}
+	.HeroDivTwo {
+		display: block;
+	}
+	.HeroDivThree {
+		display: block;
+	}
+	.HeroDivFour {
+		display: block;
+	}
+	.HeroDivFive {
+		display: block;
+	}
+}
+
+@media (min-width: 1700px) {
+	.HeroImage {
+		top: 10%;
+	}
+
+	.HeroImage1 {
+		top: 10%;
+	}
+
+	.HeroImage2 {
+		top: 10%;
+	}
+
+	.Image {
+		margin: 2rem 2rem;
+	}
+
+	.HeroDivOne {
+		display: block;
+	}
+	.HeroDivTwo {
+		display: block;
+	}
+	.HeroDivThree {
+		display: block;
+	}
+	.HeroDivFour {
+		display: block;
+	}
+	.HeroDivFive {
+		display: block;
+	}
+	.HeroDivSix {
+		display: block;
+	}
+	.HeroDivSeven {
+		display: block;
+	}
+	.HeroDivEight {
+		display: block;
+	}
+}
+
 .BtnDownHolder {
 	width: 100%;
 	top: 40%;
@@ -182,9 +422,10 @@
 
 .NextBtn {
 	position: fixed;
+	top: 86%;
 	margin-left: -30px;
 	font-size: 2rem;
-	height: 50px;
+	height: 45px;
 	border-radius: 180px;
 	box-shadow: 0 2px 2px rgba(0, 0, 0, 0.5);
 	border: none;
@@ -209,3 +450,5 @@
 		transform: translateY(-50%);
 	}
 }
+
+/* HERO Background */
