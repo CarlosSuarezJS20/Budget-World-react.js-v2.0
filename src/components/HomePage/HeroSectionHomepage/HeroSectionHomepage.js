@@ -1,8 +1,6 @@
 /* eslint-disable default-case */
 import React, { useState, useRef, useEffect } from 'react';
 import classes from './HeroSectionHomepage.css';
-import activitiesPhoto from '../../../assets/images/activities.jpeg';
-
 import placesOne from '../../../assets/images/placesOne.jpg';
 import placesTwo from '../../../assets/images/placesTwo.jpg';
 import placesThree from '../../../assets/images/placesThree.jpg';
@@ -30,20 +28,48 @@ import activitySeven from '../../../assets/images/activitySeven.jpg';
 import activityEight from '../../../assets/images/activityEight.jpg';
 import activityNine from '../../../assets/images/activityNine.jpg';
 import activityTen from '../../../assets/images/activityTen.jpg';
-import activityEleven from '../../../assets/images/activityEleven.jpg';
 import activityTwelve from '../../../assets/images/activityTwelve.jpg';
 import activityThirteen from '../../../assets/images/activityThirteen.jpg';
 import activityFourteen from '../../../assets/images/activityFourteen.jpg';
 import activityFifteen from '../../../assets/images/activityFifteen.jpg';
 import activitySixteen from '../../../assets/images/activitySixteen.jpg';
 
-import placesPhoto from '../../../assets/images/places.jpeg';
-import foodPhoto from '../../../assets/images/food.jpeg';
-import transportPhoto from '../../../assets/images/transport.jpeg';
-import { changeStyles, messageSwapper } from './HelperFunction';
+import foodOne from '../../../assets/images/foodOne.jpg';
+import foodTwo from '../../../assets/images/foodTwo.jpg';
+import foodThree from '../../../assets/images/foodThree.jpg';
+import foodFour from '../../../assets/images/foodFour.jpg';
+import foodFive from '../../../assets/images/foodFive.jpg';
+import foodSix from '../../../assets/images/foodSix.jpg';
+import foodSeven from '../../../assets/images/foodSeven.jpg';
+import foodEight from '../../../assets/images/foodEight.jpg';
+import foodNine from '../../../assets/images/foodNine.jpg';
+import foodTen from '../../../assets/images/foodTen.jpg';
+import foodEleven from '../../../assets/images/foodEleven.jpg';
+import foodTwelve from '../../../assets/images/foodTwelve.jpg';
+import foodThirteen from '../../../assets/images/foodThirteen.jpg';
+import foodFourteen from '../../../assets/images/foodFourteen.jpg';
+import foodFifteen from '../../../assets/images/foodFifteen.jpg';
+import foodSixteen from '../../../assets/images/foodSixteen.jpg';
 
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faChevronDown } from '@fortawesome/free-solid-svg-icons';
+import transOne from '../../../assets/images/transOne.jpg';
+import transTwo from '../../../assets/images/transTwo.jpg';
+import transThree from '../../../assets/images/transThree.jpg';
+import transFour from '../../../assets/images/transFour.jpg';
+import transFive from '../../../assets/images/transFive.jpg';
+import transSix from '../../../assets/images/transSix.jpg';
+import transSeven from '../../../assets/images/transSeven.jpg';
+import transEight from '../../../assets/images/transEight.jpg';
+import transNine from '../../../assets/images/transNine.jpg';
+import transTen from '../../../assets/images/transTen.jpg';
+import transEleven from '../../../assets/images/transEleven.jpg';
+import transTwelve from '../../../assets/images/transTwelve.jpg';
+import transThirteen from '../../../assets/images/transThirteen.jpg';
+import transFourteen from '../../../assets/images/transFourteen.jpg';
+import transFifteen from '../../../assets/images/transFifteen.jpg';
+import transSixteen from '../../../assets/images/transSixteen.jpg';
+
+import { changeStyles, messageSwapper } from './HelperFunction';
+import { NavLink } from 'react-router-dom';
 
 const HeroSectionHomepage = () => {
 	const [buttonName, setButtonName] = useState('');
@@ -76,7 +102,7 @@ const HeroSectionHomepage = () => {
 	];
 
 	// btns refs
-
+	const btnsCover = useRef();
 	const activitiesBtn = useRef();
 	const placesBtn = useRef();
 	const foodBtn = useRef();
@@ -84,7 +110,6 @@ const HeroSectionHomepage = () => {
 
 	useEffect(() => {
 		activitiesBtn.current.click();
-
 		const placesTimer = setTimeout(() => {
 			placesBtn.current.click();
 			places();
@@ -98,12 +123,15 @@ const HeroSectionHomepage = () => {
 		const initialTimer = setTimeout(() => {
 			// initialSetUp();
 			activitiesBtn.current.click();
+			btnsCover.current.style.display = 'none';
 		}, 10000);
 		return () => {
 			clearTimeout(placesTimer);
 			clearTimeout(transportTimer);
 			clearTimeout(foodTimer);
 			clearTimeout(initialTimer);
+			document.body.style.overflow = 'unset';
+			document.body.style.overflowX = 'hidden';
 		};
 	}, []);
 
@@ -154,6 +182,82 @@ const HeroSectionHomepage = () => {
 
 	return (
 		<div className={classes.Hero}>
+			<div className={classes.TitleHolder}>
+				<h2>
+					Budget <span className={classes.World}>World</span>
+				</h2>
+				<div className={classes.Container}>
+					<div className={classes.Height}>
+						<p
+							ref={activitiesMessage}
+							className={classes.Text}
+							id="activities-message"
+						>
+							plan your activities
+						</p>
+						<p ref={placesMessage} className={classes.Text} id="places-message">
+							find your next trip
+						</p>
+						<p ref={foodMessage} className={classes.Text} id="food-message">
+							discover great food
+						</p>
+						<p
+							ref={transportMessage}
+							className={classes.Text}
+							id="transport-message"
+						>
+							find the best get around
+						</p>
+					</div>
+				</div>
+				<div className={classes.BtnsHolder}>
+					<div ref={btnsCover} className={classes.BtnsCover}></div>
+					<button
+						ref={activitiesBtn}
+						name="activities"
+						onClick={(e) => {
+							activeBtn(e);
+						}}
+						className={
+							buttonName === 'activities'
+								? classes.ActivitiesBtnActive
+								: classes.Btn
+						}
+					/>
+					<button
+						ref={placesBtn}
+						name="places"
+						onClick={(e) => {
+							activeBtn(e);
+						}}
+						className={
+							buttonName === 'places' ? classes.PlacesBtnActive : classes.Btn
+						}
+					/>
+					<button
+						ref={foodBtn}
+						name="food"
+						onClick={(e) => {
+							activeBtn(e);
+						}}
+						className={
+							buttonName === 'food' ? classes.FoodBtnActive : classes.Btn
+						}
+					/>
+					<button
+						ref={transportBtn}
+						name="transport"
+						onClick={(e) => {
+							activeBtn(e);
+						}}
+						className={
+							buttonName === 'transport'
+								? classes.TransportBtnActive
+								: classes.Btn
+						}
+					/>
+				</div>
+			</div>
 			<div
 				ref={activitiesImgRef}
 				id="activities"
@@ -272,13 +376,6 @@ const HeroSectionHomepage = () => {
 					</article>
 				</div>
 			</div>
-			{/* <img
-				ref={placesImgRef}
-				src={placesPhoto}
-				id="places"
-				className={classes.HeroImage2}
-				alt="image_url"
-			/> */}
 			<div ref={placesImgRef} id="places" className={classes.HeroImage2}>
 				<div className={classes.HeroDivOne}>
 					<article className={classes.HeroImageContainer}>
@@ -339,7 +436,7 @@ const HeroSectionHomepage = () => {
 				<div className={classes.HeroDivSeven}>
 					<article className={classes.HeroImageContainer}>
 						<img
-							src={activityEleven}
+							src={placesEleven}
 							className={classes.Image}
 							alt="image_item"
 						/>
@@ -369,107 +466,173 @@ const HeroSectionHomepage = () => {
 					</article>
 				</div>
 			</div>
-			<img
-				ref={foodImgRef}
-				src={foodPhoto}
-				id="food"
-				className={classes.HeroImage3}
-				alt="image_url"
-			/>
-			<img
-				ref={transportImgRef}
-				src={transportPhoto}
-				id="transport"
-				className={classes.HeroImage4}
-				alt="image_url"
-			/>
-
-			<div className={classes.TitleHolder}>
-				<h2>
-					Budget <span className={classes.World}>World</span>
-				</h2>
-				<div className={classes.Container}>
-					<div className={classes.Height}>
-						<p
-							ref={activitiesMessage}
-							className={classes.Text}
-							id="activities-message"
-						>
-							plan your activities
-						</p>
-						<p ref={placesMessage} className={classes.Text} id="places-message">
-							find your next trip
-						</p>
-						<p ref={foodMessage} className={classes.Text} id="food-message">
-							discover great food
-						</p>
-						<p
-							ref={transportMessage}
-							className={classes.Text}
-							id="transport-message"
-						>
-							share your advetures!
-						</p>
-					</div>
+			<div ref={foodImgRef} id="food" className={classes.HeroImage2}>
+				<div className={classes.HeroDivOne}>
+					<article className={classes.HeroImageContainer}>
+						<img src={foodOne} className={classes.Image} alt="image_item" />
+					</article>
+					<article className={classes.HeroImageContainer}>
+						<img src={foodSixteen} className={classes.Image} alt="image_item" />
+					</article>
 				</div>
-				<div className={classes.BtnsHolder}>
-					<div className={classes.BtnsCover}></div>
-					<button
-						ref={activitiesBtn}
-						name="activities"
-						onClick={(e) => {
-							activeBtn(e);
-						}}
-						className={
-							buttonName === 'activities'
-								? classes.ActivitiesBtnActive
-								: classes.Btn
-						}
-					/>
-					<button
-						ref={placesBtn}
-						name="places"
-						onClick={(e) => {
-							activeBtn(e);
-						}}
-						className={
-							buttonName === 'places' ? classes.PlacesBtnActive : classes.Btn
-						}
-					/>
-					<button
-						ref={foodBtn}
-						name="food"
-						onClick={(e) => {
-							activeBtn(e);
-						}}
-						className={
-							buttonName === 'food' ? classes.FoodBtnActive : classes.Btn
-						}
-					/>
-					<button
-						ref={transportBtn}
-						name="transport"
-						onClick={(e) => {
-							activeBtn(e);
-						}}
-						className={
-							buttonName === 'transport'
-								? classes.TransportBtnActive
-								: classes.Btn
-						}
-					/>
+				<div className={classes.HeroDivTwo}>
+					<article className={classes.HeroImageContainer}>
+						<img src={foodTwo} className={classes.Image} alt="image_item" />
+					</article>
+					<article className={classes.HeroImageContainer}>
+						<img src={foodFifteen} className={classes.Image} alt="image_item" />
+					</article>
+				</div>
+				<div className={classes.HeroDivThree}>
+					<article className={classes.HeroImageContainer}>
+						<img src={foodThree} className={classes.Image} alt="image_item" />
+					</article>
+					<article className={classes.HeroImageContainer}>
+						<img src={foodFour} className={classes.Image} alt="image_item" />
+					</article>
+				</div>
+				<div className={classes.HeroDivFour}>
+					<article className={classes.HeroImageContainer}>
+						<img src={foodFive} className={classes.Image} alt="image_item" />
+					</article>
+					<article className={classes.HeroImageContainer}>
+						<img src={foodSix} className={classes.Image} alt="image_item" />
+					</article>
+				</div>
+				<div className={classes.HeroDivFive}>
+					<article className={classes.HeroImageContainer}>
+						<img src={foodSeven} className={classes.Image} alt="image_item" />
+					</article>
+					<article className={classes.HeroImageContainer}>
+						<img src={foodEight} className={classes.Image} alt="image_item" />
+					</article>
+				</div>
+				<div className={classes.HeroDivSix}>
+					<article className={classes.HeroImageContainer}>
+						<img src={foodNine} className={classes.Image} alt="image_item" />
+					</article>
+					<article className={classes.HeroImageContainer}>
+						<img src={foodTen} className={classes.Image} alt="image_item" />
+					</article>
+				</div>
+				<div className={classes.HeroDivSeven}>
+					<article className={classes.HeroImageContainer}>
+						<img src={foodEleven} className={classes.Image} alt="image_item" />
+					</article>
+					<article className={classes.HeroImageContainer}>
+						<img src={foodTwelve} className={classes.Image} alt="image_item" />
+					</article>
+				</div>
+				<div className={classes.HeroDivEight}>
+					<article className={classes.HeroImageContainer}>
+						<img
+							src={foodThirteen}
+							className={classes.Image}
+							alt="image_item"
+						/>
+					</article>
+					<article className={classes.HeroImageContainer}>
+						<img
+							src={foodFourteen}
+							className={classes.Image}
+							alt="image_item"
+						/>
+					</article>
+				</div>
+			</div>
+			<div ref={transportImgRef} id="transport" className={classes.HeroImage2}>
+				<div className={classes.HeroDivOne}>
+					<article className={classes.HeroImageContainer}>
+						<img src={transOne} className={classes.Image} alt="image_item" />
+					</article>
+					<article className={classes.HeroImageContainer}>
+						<img
+							src={transSixteen}
+							className={classes.Image}
+							alt="image_item"
+						/>
+					</article>
+				</div>
+				<div className={classes.HeroDivTwo}>
+					<article className={classes.HeroImageContainer}>
+						<img src={transTwo} className={classes.Image} alt="image_item" />
+					</article>
+					<article className={classes.HeroImageContainer}>
+						<img
+							src={transFifteen}
+							className={classes.Image}
+							alt="image_item"
+						/>
+					</article>
+				</div>
+				<div className={classes.HeroDivThree}>
+					<article className={classes.HeroImageContainer}>
+						<img src={transThree} className={classes.Image} alt="image_item" />
+					</article>
+					<article className={classes.HeroImageContainer}>
+						<img src={transFour} className={classes.Image} alt="image_item" />
+					</article>
+				</div>
+				<div className={classes.HeroDivFour}>
+					<article className={classes.HeroImageContainer}>
+						<img src={transFive} className={classes.Image} alt="image_item" />
+					</article>
+					<article className={classes.HeroImageContainer}>
+						<img src={transSix} className={classes.Image} alt="image_item" />
+					</article>
+				</div>
+				<div className={classes.HeroDivFive}>
+					<article className={classes.HeroImageContainer}>
+						<img src={transSeven} className={classes.Image} alt="image_item" />
+					</article>
+					<article className={classes.HeroImageContainer}>
+						<img src={transEight} className={classes.Image} alt="image_item" />
+					</article>
+				</div>
+				<div className={classes.HeroDivSix}>
+					<article className={classes.HeroImageContainer}>
+						<img src={transNine} className={classes.Image} alt="image_item" />
+					</article>
+					<article className={classes.HeroImageContainer}>
+						<img src={transTen} className={classes.Image} alt="image_item" />
+					</article>
+				</div>
+				<div className={classes.HeroDivSeven}>
+					<article className={classes.HeroImageContainer}>
+						<img src={transEleven} className={classes.Image} alt="image_item" />
+					</article>
+					<article className={classes.HeroImageContainer}>
+						<img src={transTwelve} className={classes.Image} alt="image_item" />
+					</article>
+				</div>
+				<div className={classes.HeroDivEight}>
+					<article className={classes.HeroImageContainer}>
+						<img
+							src={transThirteen}
+							className={classes.Image}
+							alt="image_item"
+						/>
+					</article>
+					<article className={classes.HeroImageContainer}>
+						<img
+							src={transFourteen}
+							className={classes.Image}
+							alt="image_item"
+						/>
+					</article>
 				</div>
 			</div>
 			<div className={classes.BtnDownHolder}>
 				<div className={classes.BtnDownHolderHeight}>
-					<button
+					<NavLink
+						to="/discover"
 						className={classes.NextBtn}
 						style={{
 							background: buttonDownColor,
 						}}
 					>
-						<FontAwesomeIcon icon={faChevronDown} className={classes.Arrow} />
-					</button>
+						Explore!
+					</NavLink>
 				</div>
 			</div>
 		</div>

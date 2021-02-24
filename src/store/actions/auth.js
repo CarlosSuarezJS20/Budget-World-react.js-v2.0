@@ -62,6 +62,9 @@ export const auth = (email, password, creatingAccount) => {
 			.then((res) => {
 				dispatch(authSuccess(res.data));
 				dispatch(checkAuthTimeOut(res.data.expiresIn));
+				if (creatingAccount) {
+					dispatch(creatingAccountStatusToggle());
+				}
 			})
 			.catch((error) => {
 				dispatch(authFail(error.response.data.error));

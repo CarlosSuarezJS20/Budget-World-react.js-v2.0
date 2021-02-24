@@ -43,6 +43,10 @@ class Auth extends Component {
 		},
 	};
 
+	componentDidMount() {
+		document.body.style.overflowY = 'unset';
+	}
+
 	checkValidity(value, rules) {
 		let isValid = true;
 		if (!rules) {
@@ -92,11 +96,12 @@ class Auth extends Component {
 	};
 
 	submitHandler = (event) => {
+		console.log(this.state);
 		event.preventDefault();
 		this.props.onAuth(
 			this.state.controlsAuth.email.value,
 			this.state.controlsAuth.password.value,
-			this.state.creatingAccount
+			this.props.isCreatingAccount
 		);
 	};
 
@@ -143,7 +148,7 @@ class Auth extends Component {
 
 		let authRedirect = null;
 		if (this.props.isAuthenticated) {
-			authRedirect = <Redirect to="/home" />;
+			authRedirect = <Redirect to="/discover" />;
 		}
 		return (
 			<section className={classes.LoginSection}>

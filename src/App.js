@@ -17,7 +17,7 @@ class App extends Component {
 				<Switch>
 					<Route path="/update" component={ItemUpdate} />
 					<Route path="/add-new" component={ItemBuilder} />
-					<Route path="/home" component={Itemsholder} />
+					<Route path="/discover" exact component={Itemsholder} />
 					<Route path="/logout" component={Logout} />
 					<Route path="/login" component={Auth} />
 					<Route path="/" component={HomePage} />

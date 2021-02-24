@@ -1,17 +1,13 @@
 .Hero {
 	/* width: 100vh; */
 	height: 100vh;
-	background: rgb(0, 0, 0);
-	background: linear-gradient(
-		180deg,
-		rgba(0, 0, 0, 0) 80%,
-		rgba(255, 255, 255, 1) 100%
-	);
 }
 
 .TitleHolder {
-	position: relative;
+	position: fixed;
+	min-width: 390px;
 	height: 600px;
+	width: 100vw;
 	margin-top: -20rem;
 	background: #ffff;
 	box-shadow: 0 2px 2px rgba(0, 0, 0, 0.5);
@@ -52,7 +48,7 @@
 	text-transform: capitalize;
 	color: black;
 	font-weight: bolder;
-	font-size: 1.8rem;
+	font-size: 1.3rem;
 	transform: translateY(-55px);
 	transition: 1.2s ease-in-out;
 	opacity: 0;
@@ -68,6 +64,7 @@
 	display: flex;
 	justify-content: center;
 	width: 150px;
+	overflow: hidden;
 }
 
 .BtnsCover {
@@ -75,18 +72,20 @@
 	height: 100vh;
 	width: 100vw;
 	background: transparent;
-	display: none;
+	display: block;
 }
 
 .Btn {
 	background: rgb(185, 185, 185);
 	padding: 4px;
 	border-radius: 50px;
+	cursor: pointer;
 	border: none;
 	margin: 0 10px;
 }
 
 .ActivitiesBtnActive {
+	position: relative;
 	padding: 4px;
 	border-radius: 50px;
 	border: none;
@@ -120,14 +119,56 @@
 
 /* Divs for Hero */
 
-.HeroImage {
-	position: absolute;
-	display: flex;
-	max-height: 100vh;
-	min-width: 350px;
-	z-index: -5;
-	transition: 1s ease-in-out;
-	opacity: 1;
+.HeroDivOne {
+	display: none;
+	transition: 2s ease-in-out;
+	overflow-y: hidden;
+	margin-top: 6rem;
+}
+
+.HeroDivTwo {
+	transition: 2s ease-in-out;
+
+	overflow: hidden;
+}
+
+.HeroDivThree {
+	display: none;
+	overflow: hidden;
+	transition: 2s ease-in-out;
+	margin-top: 6rem;
+}
+
+.HeroDivFour {
+	display: none;
+	overflow: hidden;
+	transition: 2s ease-in-out;
+}
+
+.HeroDivFive {
+	display: none;
+	overflow: hidden;
+
+	transition: 2s ease-in-out;
+	margin-top: 6rem;
+}
+
+.HeroDivSix {
+	display: none;
+	overflow: hidden;
+	transition: 2s ease-in-out;
+}
+
+.HeroDivSeven {
+	display: none;
+	transition: 2s ease-in-out;
+	overflow: hidden;
+	margin-top: 6rem;
+}
+.HeroDivEight {
+	display: none;
+	overflow: hidden;
+	transition: 2s ease-in-out;
 }
 
 .HeroImageContainer {
@@ -136,68 +177,18 @@
 }
 
 .Image {
-	height: 300px;
+	height: 250px;
 	margin: 0.3rem 0.3rem;
 	width: 180px;
 	object-fit: cover;
 	border-radius: 15px;
 }
 
-.HeroDivOne {
-	display: none;
-	overflow-y: hidden;
-	transition: 2s ease-in-out;
-	margin-top: 6rem;
-}
-
-.HeroDivTwo {
-	transition: 2s ease-in-out;
-	overflow-y: hidden;
-}
-
-.HeroDivThree {
-	display: none;
-	overflow-y: hidden;
-	transition: 2s ease-in-out;
-	margin-top: 6rem;
-}
-
-.HeroDivFour {
-	display: none;
-	transition: 2s ease-in-out;
-	overflow-y: hidden;
-}
-
-.HeroDivFive {
-	display: none;
-	overflow-y: hidden;
-	transition: 2s ease-in-out;
-	margin-top: 6rem;
-}
-
-.HeroDivSix {
-	display: none;
-	transition: 2s ease-in-out;
-	overflow-y: hidden;
-}
-
-.HeroDivSeven {
-	display: none;
-	transition: 2s ease-in-out;
-	overflow-y: hidden;
-	margin-top: 6rem;
-}
-.HeroDivEight {
-	display: none;
-	transition: 2s ease-in-out;
-	overflow-y: hidden;
-}
-
 .HeroImage1 {
 	position: absolute;
 	display: flex;
+	width: 370px;
 	max-height: 100vh;
-	width: 100vw;
 	z-index: -5;
 	transition: 1s ease-in-out;
 	opacity: 0;
@@ -206,8 +197,8 @@
 .HeroImage2 {
 	position: absolute;
 	display: flex;
+	width: 370px;
 	max-height: 100vh;
-	width: 100vw;
 	z-index: -5;
 	transition: 1s ease-in-out;
 	opacity: 0;
@@ -215,35 +206,35 @@
 
 .HeroImage3 {
 	z-index: -5;
+	display: flex;
 	position: absolute;
+	width: 370px;
 	transition: 1s ease-in-out;
 	height: 100vh;
-	width: 100vw;
 	object-fit: cover;
 	opacity: 0;
 }
 
 .HeroImage4 {
 	z-index: -5;
+	display: flex;
+	width: 370px;
 	position: absolute;
 	height: 100vh;
-	width: 100vw;
 	transition: 1s ease-in-out;
 	object-fit: cover;
 	opacity: 0;
 }
 
-@media (min-width: 370px) {
-	.HeroImage {
-		top: 10%;
-	}
-
+@media (min-width: 200px) {
 	.HeroImage1 {
 		top: 10%;
+		left: 2%;
 	}
 
 	.HeroImage2 {
 		top: 10%;
+		left: 2%;
 	}
 
 	.HeroDivOne {
@@ -255,16 +246,26 @@
 }
 
 @media (min-width: 410px) {
-	.HeroImage {
-		top: 3%;
-	}
-
 	.HeroImage1 {
 		top: 3%;
+		left: 3%;
+		width: 400px;
 	}
 
 	.HeroImage2 {
 		top: 3%;
+		width: 400px;
+		left: 3%;
+	}
+
+	.HeroImage3 {
+		width: 400px;
+		left: 3%;
+	}
+
+	.HeroImage4 {
+		width: 400px;
+		left: 3%;
 	}
 
 	.Image {
@@ -272,17 +273,52 @@
 	}
 }
 
-@media (min-width: 700px) {
-	.HeroImage {
-		top: 15%;
-	}
-
+@media (min-width: 510px) {
 	.HeroImage1 {
-		top: 15%;
+		left: 6%;
+		width: 600px;
 	}
 
 	.HeroImage2 {
-		top: 15%;
+		left: 6%;
+		width: 600px;
+	}
+
+	.HeroImage3 {
+		left: 6%;
+		width: 600px;
+	}
+
+	.HeroImage4 {
+		left: 6%;
+		width: 600px;
+	}
+
+	.HeroImage {
+		left: 6%;
+		width: 600px;
+	}
+}
+
+@media (min-width: 600px) {
+	.Text {
+		font-size: 1.8rem;
+	}
+
+	.Image {
+		height: 300px;
+	}
+
+	.HeroImage1 {
+		top: 10%;
+		width: auto;
+		left: 0%;
+	}
+
+	.HeroImage2 {
+		top: 10%;
+		width: auto;
+		left: 0%;
 	}
 
 	.Image {
@@ -300,17 +336,13 @@
 	}
 }
 
-@media (min-width: 1020px) {
-	.HeroImage {
-		top: 30%;
-	}
-
+@media (min-width: 820px) {
 	.HeroImage1 {
-		top: 30%;
+		top: 10%;
 	}
 
 	.HeroImage2 {
-		top: 30%;
+		top: 10%;
 	}
 
 	.Image {
@@ -331,7 +363,38 @@
 	}
 }
 
-@media (min-width: 1200px) {
+@media (min-height: 1000px) and (min-width: 820px) {
+	.HeroImage {
+		top: 25%;
+	}
+
+	.HeroImage1 {
+		top: 25%;
+	}
+
+	.HeroImage2 {
+		top: 25%;
+	}
+
+	.Image {
+		margin: 1rem 3.5rem;
+	}
+
+	.HeroDivOne {
+		display: block;
+	}
+	.HeroDivTwo {
+		display: block;
+	}
+	.HeroDivThree {
+		display: block;
+	}
+	.HeroDivFour {
+		display: block;
+	}
+}
+
+@media (min-height: 600px) and (min-width: 1050px) {
 	.HeroImage {
 		top: 0%;
 	}
@@ -345,7 +408,7 @@
 	}
 
 	.Image {
-		margin: 2rem 3.5rem;
+		margin: 1rem 3.5rem;
 	}
 
 	.HeroDivOne {
@@ -365,17 +428,17 @@
 	}
 }
 
-@media (min-width: 1700px) {
+@media (min-width: 1300px) {
 	.HeroImage {
-		top: 10%;
+		top: 5%;
 	}
 
 	.HeroImage1 {
-		top: 10%;
+		top: 5%;
 	}
 
 	.HeroImage2 {
-		top: 10%;
+		top: 5%;
 	}
 
 	.Image {
@@ -409,9 +472,9 @@
 }
 
 .BtnDownHolder {
-	width: 100%;
-	top: 40%;
 	position: relative;
+	width: 100%;
+	top: 80%;
 	text-align: center;
 }
 
@@ -422,19 +485,25 @@
 
 .NextBtn {
 	position: fixed;
-	top: 86%;
-	margin-left: -30px;
-	font-size: 2rem;
+	text-transform: capitalize;
+	color: #fff;
+	font-weight: bolder;
+	padding: 0.6rem;
+	margin-left: -70px;
+	font-size: 1.2rem;
 	height: 45px;
+	width: 150px;
 	border-radius: 180px;
 	box-shadow: 0 2px 2px rgba(0, 0, 0, 0.5);
+	cursor: pointer;
 	border: none;
-	width: 50px;
 	animation: updown 2s ease infinite;
 }
 
-.Arrow {
-	color: #ffff;
+@media (min-width: 700px) {
+	.BtnDownHolder {
+		top: 86%;
+	}
 }
 
 @keyframes updown {

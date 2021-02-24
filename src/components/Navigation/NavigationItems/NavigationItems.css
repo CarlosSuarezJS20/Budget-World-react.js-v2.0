@@ -1,8 +1,41 @@
 .NavigationItems {
+	margin-top: 0.3rem;
 	list-style: none;
 	display: flex;
 }
 
-.AddNewButton {
-	font-size: 1.5rem;
+@media (min-width: 720px) {
+	.NavigationItems {
+		margin-top: 0.1rem;
+	}
+}
+
+.NavbarButton {
+	font-size: 1.3rem;
+	color: black;
+	transition: all 0.2s linear;
+}
+
+.NavbarButton:hover {
+	color: rgb(194, 194, 27);
+}
+
+.SignupBtn {
+	text-transform: capitalize;
+	border: 1px solid rgb(207, 211, 1);
+	box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+	font-size: 1rem;
+	border-radius: 25px;
+	background: yellow;
+	color: black;
+	padding: 0.2rem 1rem;
+	font-weight: bolder;
+	transition: all 0.3s linear;
+	cursor: pointer;
+}
+
+.SignupBtn:hover {
+	background: black;
+	color: #fff;
+	border: 1px solid black;
 }

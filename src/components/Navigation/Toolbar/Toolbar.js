@@ -5,7 +5,7 @@ import Search from '../Search/Search';
 import NavigationItems from '../NavigationItems/NavigationItems';
 import { debounce } from '../../Utilities/helpers';
 
-const toolBar = () => {
+const toolBar = (props) => {
 	const [prevScrollPos, setPrevScrollPos] = useState(0);
 	const [visible, setVisible] = useState(true);
 
@@ -47,7 +47,7 @@ const toolBar = () => {
 					<Search />
 				</div>
 				<nav className={classes.NavItemsHolder}>
-					<NavigationItems />
+					<NavigationItems isAuthenticated={props.authenticated} />
 				</nav>
 			</div>
 		</header>

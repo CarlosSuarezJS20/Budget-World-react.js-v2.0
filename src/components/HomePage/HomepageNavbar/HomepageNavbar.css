@@ -1,6 +1,7 @@
 .NavbarHolder {
 	position: fixed;
 	width: 100%;
+	min-width: 390px;
 	background: transparent;
 	z-index: 100;
 }
@@ -40,7 +41,6 @@
 	margin: 0 0.5rem;
 	font-weight: bold;
 	color: black;
-
 	text-transform: capitalize;
 	cursor: pointer;
 }

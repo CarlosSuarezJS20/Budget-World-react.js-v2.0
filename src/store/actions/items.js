@@ -23,11 +23,11 @@ export const fetchItemsStart = () => {
 	};
 };
 
-export const fetchItemsFromServer = (token) => {
+export const fetchItemsFromServer = () => {
 	return (dispatch) => {
 		dispatch(fetchItemsStart());
 		axios
-			.get('/items.json?auth=' + token)
+			.get('/items.json')
 			.then((res) => {
 				const fetchedItems = [];
 				for (let item in res.data) {

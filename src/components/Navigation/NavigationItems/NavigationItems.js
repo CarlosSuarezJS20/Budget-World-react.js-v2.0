@@ -1,18 +1,57 @@
-import React from 'react';
+import React, { Component } from 'react';
 import classes from './NavigationItems.css';
 import NavigationItem from '../NavigationItem/NavigationItem';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlusCircle, faSignOutAlt } from '@fortawesome/free-solid-svg-icons';
 
-const navigationItems = () => (
-	<ul className={classes.NavigationItems}>
-		<NavigationItem link="/add-new" exact>
-			<FontAwesomeIcon icon={faPlusCircle} className={classes.AddNewButton} />
-		</NavigationItem>
-		<NavigationItem link="/logout">
-			<FontAwesomeIcon icon={faSignOutAlt} className={classes.AddNewButton} />
-		</NavigationItem>
-	</ul>
-);
+import { connect } from 'react-redux';
+import * as actions from '../../../store/actions/index';
 
-export default navigationItems;
+class NavigationItems extends Component {
+	render() {
+		return this.props.isAuthenticated ? (
+			<ul className={classes.NavigationItems}>
+				<NavigationItem link="/add-new" exact>
+					<FontAwesomeIcon
+						icon={faPlusCircle}
+						className={classes.NavbarButton}
+					/>
+				</NavigationItem>
+				<NavigationItem link="/logout">
+					<FontAwesomeIcon
+						icon={faSignOutAlt}
+						className={classes.NavbarButton}
+					/>
+				</NavigationItem>
+			</ul>
+		) : (
+			<ul
+				className={classes.NavigationItems}
+				onClick={this.props.onCreatingAccountStatus}
+			>
+				<NavigationItem
+					signUp
+					link="/login"
+					signupClassName={classes.SignupBtn}
+				>
+					sign-up
+				</NavigationItem>
+			</ul>
+		);
+	}
+}
+
+const mapStateToProps = (state) => {
+	return {
+		isAuthenticated: state.authR.token !== null,
+	};
+};
+
+const mapDispatchToProps = (dispatch) => {
+	return {
+		onCreatingAccountStatus: () =>
+			dispatch(actions.creatingAccountStatusToggle()),
+	};
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(NavigationItems);

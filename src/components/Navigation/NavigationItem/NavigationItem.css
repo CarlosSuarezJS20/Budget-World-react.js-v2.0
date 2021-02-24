@@ -4,15 +4,15 @@
 	width: 100%;
 }
 
-.NavigationItem a {
+.LoggedIn {
 	color: rgb(49, 49, 49);
 	width: 100%;
 	box-sizing: border-box;
 }
 
-.NavigationItem a:hover,
-.NavigationItem a:active,
-.NavigationItem a.active {
+.LoggedIn:hover,
+.LoggedIn:active,
+.LoggedIn.active {
 	color: rgb(207, 211, 1);
 	font-weight: bold;
 }

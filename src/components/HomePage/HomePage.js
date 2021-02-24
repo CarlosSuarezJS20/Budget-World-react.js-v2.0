@@ -4,10 +4,10 @@ import HomePageNavbar from './HomepageNavbar/HomepageNavbar';
 
 const homePage = () => {
 	return (
-		<div>
+		<React.Fragment>
 			<HomePageNavbar />
 			<HeroSectionHomepage />
-		</div>
+		</React.Fragment>
 	);
 };
 

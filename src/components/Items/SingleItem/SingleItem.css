@@ -12,12 +12,6 @@
 	box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
 }
 
-@media (min-width: 410px) {
-	.Card {
-		width: auto;
-	}
-}
-
 .ToggleOptionsSection {
 	position: absolute;
 	z-index: 50;
@@ -45,9 +39,8 @@
 	cursor: pointer;
 }
 
-@media (min-width: 768px) {
+@media (min-width: 413px) {
 	.Card {
-		width: 230px;
-		grid-template-rows: 180px 1fr auto;
+		width: 235px;
 	}
 }

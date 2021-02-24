@@ -10,8 +10,6 @@ import Spinner from '../../components/UI/Spinner/Spinner';
 // redux
 import * as actions from '../../store/actions/index';
 import { connect } from 'react-redux';
-// Router
-import { Redirect } from 'react-router-dom';
 import Loader from '../../components/UI/Loader/Loader';
 import ToolTip from '../../components/UI/ToolTip/ToolTip';
 
@@ -22,7 +20,7 @@ class ItemsHolder extends Component {
 	componentDidMount() {
 		//ensures the page is reloaded at the top when routing
 		window.scrollTo(0, 0);
-		this.props.onFetchItems(this.props.token);
+		this.props.onFetchItems();
 	}
 
 	cancelBtnHandler = () => {
@@ -84,10 +82,7 @@ class ItemsHolder extends Component {
 			) : (
 				<Items items={items} />
 			);
-
-		return !this.props.isAuthenticated ? (
-			<Redirect to="/login" />
-		) : (
+		return (
 			<section className={classes.Cards}>
 				<Loader />
 				<ToolTip />
@@ -96,7 +91,7 @@ class ItemsHolder extends Component {
 					cancelled={this.cancelBtnHandler}
 					confirmedDeletion={this.deleteBtnHandler}
 				/>
-				<Toolbar />
+				<Toolbar authenticated={this.props.isAuthenticated} />
 				<CategoriesFilterSection />
 				<div className={classForMainDisplayDiv}>{filteredItems}</div>
 			</section>

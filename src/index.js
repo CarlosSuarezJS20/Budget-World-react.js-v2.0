@@ -10,6 +10,7 @@ import { createStore, compose, applyMiddleware, combineReducers } from 'redux';
 import itemsReducer from './store/reducer/items';
 import auth from './store/reducer/auth';
 import thunk from 'redux-thunk';
+import TagManager from 'react-gtm-module';
 
 //devTools
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
@@ -24,9 +25,15 @@ const store = createStore(
 	composeEnhancers(applyMiddleware(thunk))
 );
 
+const tagManagerArgs = {
+	gtmId: 'GTM-5K84JR9',
+};
+
+TagManager.initialize(tagManagerArgs);
+
 ReactDOM.render(
 	<Provider store={store}>
-		<BrowserRouter basename="/budget-world-react">
+		<BrowserRouter>
 			<App />
 		</BrowserRouter>
 	</Provider>,

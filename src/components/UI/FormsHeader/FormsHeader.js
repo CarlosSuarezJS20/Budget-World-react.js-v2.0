@@ -1,5 +1,6 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
+
 import classes from './FormsHeader.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCheck, faChevronLeft } from '@fortawesome/free-solid-svg-icons';
@@ -7,7 +8,7 @@ import { faCheck, faChevronLeft } from '@fortawesome/free-solid-svg-icons';
 const formsHeader = (props) => {
 	return (
 		<header className={classes.FormHeader}>
-			<NavLink to="/" onClick={props.clearFilter}>
+			<NavLink to="/discover" onClick={props.clearFilter}>
 				<FontAwesomeIcon icon={faChevronLeft} className={classes.Return} />
 			</NavLink>
 			<h2>{props.name}</h2>
