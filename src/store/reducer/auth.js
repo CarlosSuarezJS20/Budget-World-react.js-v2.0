@@ -32,7 +32,6 @@ const authLogout = (state) => {
 };
 
 const creatingAccountStatusToggle = (state) => {
-	console.log(state.creatingAccount);
 	if (state.creatingAccount) {
 		return updateState(state, { creatingAccount: false });
 	} else {

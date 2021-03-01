@@ -56,6 +56,21 @@ class ItemBuilder extends Component {
 				valid: false,
 				touched: false,
 			},
+			city: {
+				elementType: 'input',
+				elementConfig: {
+					type: 'text',
+					placeholder: 'City',
+				},
+				value: '',
+				length: 0,
+				validation: {
+					required: true,
+					maxLength: 30,
+				},
+				valid: false,
+				touched: false,
+			},
 			price: {
 				elementType: 'input',
 				elementConfig: {
@@ -105,7 +120,6 @@ class ItemBuilder extends Component {
 			},
 		},
 		formIsValid: false,
-		added: false,
 		updated: false,
 		valueLength: 0,
 		image: null,
@@ -150,19 +164,16 @@ class ItemBuilder extends Component {
 					description: itemData.description,
 					category: itemData.category,
 					country: itemData.country.toUpperCase(),
+					city: itemData.city.toUpperCase(),
 					userId: this.props.userId,
 				};
 
 				axios
 					.post('/items.json?auth=' + this.props.token, item)
 					.then((res) => {
-						this.setState({ added: true });
+						this.props.history.goBack();
 					})
-					.catch((error) => {
-						this.setState({ added: true });
-					});
-
-				this.setState({ added: false });
+					.catch((error) => {});
 			});
 	};
 
@@ -251,7 +262,6 @@ class ItemBuilder extends Component {
 						/>
 					);
 				})}
-				{this.state.added || this.state.updated ? <Redirect to="/" /> : null}
 				<p className={classes.ThankyouMessage}>
 					thank you for your contribution!
 				</p>

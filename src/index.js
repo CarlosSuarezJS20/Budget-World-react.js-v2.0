@@ -9,6 +9,7 @@ import { Provider } from 'react-redux';
 import { createStore, compose, applyMiddleware, combineReducers } from 'redux';
 import itemsReducer from './store/reducer/items';
 import auth from './store/reducer/auth';
+import filtersReducer from './store/reducer/filters';
 import thunk from 'redux-thunk';
 import TagManager from 'react-gtm-module';
 
@@ -18,6 +19,7 @@ const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 const rootReducer = combineReducers({
 	itemsR: itemsReducer,
 	authR: auth,
+	filtersR: filtersReducer,
 });
 
 const store = createStore(

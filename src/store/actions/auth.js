@@ -60,6 +60,7 @@ export const auth = (email, password, creatingAccount) => {
 		axios
 			.post(url, authData)
 			.then((res) => {
+				console.log(res.data);
 				dispatch(authSuccess(res.data));
 				dispatch(checkAuthTimeOut(res.data.expiresIn));
 				if (creatingAccount) {

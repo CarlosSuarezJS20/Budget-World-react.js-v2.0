@@ -1,8 +1,5 @@
 export {
 	fetchItemsFromServer,
-	inputHandler,
-	categoryFilterHandler,
-	categoryResettingHandler,
 	toggleActiveUpdating,
 	updateItemInServer,
 	deletingItemStart,
@@ -14,3 +11,8 @@ export {
 } from './items';
 
 export { auth, logout, creatingAccountStatusToggle } from './auth';
+export {
+	inputHandler,
+	categoryFilterHandler,
+	categoryResettingHandler,
+} from './filters';

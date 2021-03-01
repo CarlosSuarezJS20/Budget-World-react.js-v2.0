@@ -62,7 +62,7 @@ class CategoriesFilterSection extends Component {
 
 const mapStateToProps = (state) => {
 	return {
-		category: state.itemsR.category,
+		category: state.filtersR.category,
 	};
 };
 

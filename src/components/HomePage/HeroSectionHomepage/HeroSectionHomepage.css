@@ -394,9 +394,10 @@
 	}
 }
 
-@media (min-height: 600px) and (min-width: 1050px) {
+@media (min-height: 590px) and (min-width: 1050px) {
 	.HeroImage {
 		top: 0%;
+		left: 9%;
 	}
 
 	.HeroImage1 {
@@ -431,6 +432,7 @@
 @media (min-width: 1300px) {
 	.HeroImage {
 		top: 5%;
+		left: 0%;
 	}
 
 	.HeroImage1 {

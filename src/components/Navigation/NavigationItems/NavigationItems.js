@@ -31,7 +31,7 @@ class NavigationItems extends Component {
 			>
 				<NavigationItem
 					signUp
-					link="/login"
+					link="/sign-up"
 					signupClassName={classes.SignupBtn}
 				>
 					sign-up

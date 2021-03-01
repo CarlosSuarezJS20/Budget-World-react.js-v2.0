@@ -74,9 +74,19 @@ const input = (props) => {
 				<p
 					style={{
 						color:
-							props.maxCharacters - props.valueLength === 0 ? 'red' : '#ffff',
+							(props.maxCharacters - props.valueLength === 0) === 0
+								? 'red'
+								: '#ffff',
 					}}
 				>{`max. lenght ${props.maxCharacters - props.valueLength}`}</p>
+			) : null}
+			{props.minCharacters ? (
+				<p
+					style={{
+						color:
+							props.minCharacters > props.passwordLength ? 'black' : 'green',
+					}}
+				>{`password lenght ${props.passwordLength}`}</p>
 			) : null}
 			{props.elementConfig.type === 'file' ? (
 				<div className={classes.ProgressSection}>

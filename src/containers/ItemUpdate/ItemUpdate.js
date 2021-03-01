@@ -52,6 +52,21 @@ class ItemUpdate extends Component {
 				valid: false,
 				touched: false,
 			},
+			city: {
+				elementType: 'input',
+				elementConfig: {
+					type: 'text',
+					placeholder: 'city',
+				},
+				value: '',
+				length: 0,
+				validation: {
+					required: true,
+					maxLength: 30,
+				},
+				valid: false,
+				touched: false,
+			},
 			price: {
 				elementType: 'input',
 				elementConfig: {
@@ -106,6 +121,7 @@ class ItemUpdate extends Component {
 	};
 
 	componentDidMount() {
+		console.log(this.props);
 		if (this.props.items.length !== 0) {
 			const itemToUpdate = this.props.items.find((item) => {
 				return item.id === this.props.updateElId;
@@ -116,7 +132,15 @@ class ItemUpdate extends Component {
 			this.setState({ itemToUpdateImg: image });
 
 			// Updates the item with previous values if it is updating
-			const { itemName, imageURL, price, country, description, category } = {
+			const {
+				itemName,
+				imageURL,
+				price,
+				country,
+				city,
+				description,
+				category,
+			} = {
 				...this.state.newItemForm,
 			};
 
@@ -124,6 +148,7 @@ class ItemUpdate extends Component {
 			imageURL.value = itemToUpdate.image;
 			price.value = itemToUpdate.price;
 			country.value = itemToUpdate.country;
+			city.value = itemToUpdate.city;
 			description.value = itemToUpdate.description;
 			category.value = itemToUpdate.category;
 
@@ -156,6 +181,7 @@ class ItemUpdate extends Component {
 			description: this.state.newItemForm.description.value,
 			category: this.state.newItemForm.category.value,
 			country: this.state.newItemForm.country.value.toUpperCase(),
+			city: this.state.newItemForm.city.value.toUpperCase(),
 			userId: this.props.userId,
 			id: this.props.updateElId,
 		};
@@ -165,6 +191,7 @@ class ItemUpdate extends Component {
 			updatedItem,
 			this.props.token
 		);
+		this.props.history.goBack();
 	};
 
 	checkValidity(value, rules) {
@@ -247,7 +274,6 @@ class ItemUpdate extends Component {
 						/>
 					);
 				})}
-				{this.state.updated ? <Redirect to="/" /> : null}
 			</form>
 		);
 

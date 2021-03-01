@@ -31,7 +31,7 @@ class SingleItem extends Component {
 					</div>
 				)}
 
-				<ImageHolder image={this.props.image} />
+				<ImageHolder image={this.props.image} city={this.props.city} />
 				<ItemInfo
 					itemName={this.props.title}
 					itemPrice={this.props.price}

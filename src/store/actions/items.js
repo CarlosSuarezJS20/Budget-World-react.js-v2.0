@@ -23,11 +23,17 @@ export const fetchItemsStart = () => {
 	};
 };
 
-export const fetchItemsFromServer = () => {
+export const fetchItemsFromServer = (search, type) => {
 	return (dispatch) => {
 		dispatch(fetchItemsStart());
+		const querybody =
+			type === 'country'
+				? `?orderBy="country"&equalTo="${search}"`
+				: `?orderBy="city"&equalTo="${search}"`;
+
+		const query = search.length === 0 ? '' : querybody;
 		axios
-			.get('/items.json')
+			.get('/items.json' + query)
 			.then((res) => {
 				const fetchedItems = [];
 				for (let item in res.data) {

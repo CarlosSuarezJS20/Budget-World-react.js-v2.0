@@ -1,6 +1,6 @@
 .Input {
 	width: 100%;
-	padding: 10px;
+	padding: 5px;
 }
 
 @media (min-width: 768px) {
@@ -38,6 +38,7 @@
 	border: 1px solid rgb(137, 139, 0);
 	background: rgb(255, 255, 255);
 	font: inherit;
+	font-size: 0.8rem;
 	padding: 6px 10px;
 	margin-top: 6px;
 	display: block;
@@ -56,6 +57,23 @@
 	display: block;
 	width: 100%;
 	box-sizing: border-box;
+}
+
+@media (min-width: 700px) {
+	.InputSearchToolbar {
+		outline: none;
+		border-radius: 50px;
+		border: 1px solid rgb(137, 139, 0);
+		background: rgb(255, 255, 255);
+		font: inherit;
+		font-size: 1.2rem;
+		padding: 6px 10px;
+		margin-top: 6px;
+		display: block;
+		width: 100%;
+		box-sizing: border-box;
+		text-align: center;
+	}
 }
 
 .Inputlogin:focus {

@@ -20,7 +20,7 @@ class ItemsHolder extends Component {
 	componentDidMount() {
 		//ensures the page is reloaded at the top when routing
 		window.scrollTo(0, 0);
-		this.props.onFetchItems();
+		this.props.onFetchItems(this.props.search, this.props.category);
 	}
 
 	cancelBtnHandler = () => {
@@ -32,55 +32,40 @@ class ItemsHolder extends Component {
 	};
 
 	render() {
-		//Filters
-		let items = this.props.items.filter((item) => {
-			return item.country.indexOf(this.props.search.trim()) !== -1;
-		});
+		let items;
 
-		if (this.props.search && this.props.category) {
-			items = this.props.items
-				.filter((item) => {
-					return item.country.indexOf(this.props.search.trim()) !== -1;
-				})
-				.filter((item) => item.category === this.props.category);
-		}
-
-		if (this.props.search) {
-			items = this.props.items.filter((item) => {
-				return item.country.indexOf(this.props.search.trim()) !== -1;
-			});
-		}
-
+		// filters per category
 		if (this.props.category) {
 			items = this.props.items.filter(
 				(item) => item.category === this.props.category
 			);
 		}
+
 		// This is for the spinner on the main div that holds the items. Appears centered
 
 		let classForMainDisplayDiv;
 
-		if (items.length === 0) {
+		if (this.props.items.length === 0) {
 			classForMainDisplayDiv = classes.NotCardsClass;
 		} else {
 			classForMainDisplayDiv = classes.CardsCenter;
 		}
 
-		if (items.length === 0 && this.props.loading) {
+		if (this.props.items.length === 0 && this.props.loading) {
 			classForMainDisplayDiv = classes.CardsDisplayLoader;
 		}
 
 		let filteredItems =
-			items.length === 0 && this.props.loading ? (
+			this.props.items.length === 0 && this.props.loading ? (
 				<div className={classes.SpinnerHolder}>
 					<Spinner />
 				</div>
-			) : items.length === 0 ? (
+			) : this.props.items.length === 0 ? (
 				<p className={classes.NotFound}>
 					Nothing Found <FontAwesomeIcon icon={faSadCry} />
 				</p>
 			) : (
-				<Items items={items} />
+				<Items items={items ? items : this.props.items} />
 			);
 		return (
 			<section className={classes.Cards}>
@@ -105,8 +90,9 @@ const mapStateToProps = (state) => {
 		deleteItmId: state.itemsR.deleteItemId,
 		items: state.itemsR.items,
 		loading: state.itemsR.loading,
-		search: state.itemsR.search,
-		category: state.itemsR.category,
+		search: state.filtersR.search,
+		searchRef: state.filtersR.searchRef,
+		category: state.filtersR.category,
 		token: state.authR.token,
 		isAuthenticated: state.authR.token != null,
 	};
@@ -117,7 +103,8 @@ const mapDispatchToProps = (dispatch) => {
 		onDeletingItem: (id, token) =>
 			dispatch(actions.deletingItemInServer(id, token)),
 		onCancelDeletion: () => dispatch(actions.deletedItemCancel()),
-		onFetchItems: (token) => dispatch(actions.fetchItemsFromServer(token)),
+		onFetchItems: (search, prevSearchVal, category) =>
+			dispatch(actions.fetchItemsFromServer(search, prevSearchVal, category)),
 	};
 };
 

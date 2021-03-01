@@ -1,5 +1,6 @@
 .ImageContainer {
 	position: relative;
+	overflow-y: hidden;
 }
 
 .ItemImage {
@@ -10,9 +11,22 @@
 	border-top-right-radius: 15px;
 }
 
+.ImageContainer p {
+	position: absolute;
+	right: 0;
+	bottom: 5%;
+	background: yellow;
+	opacity: 0.9;
+	text-transform: capitalize;
+	font-weight: bolder;
+	border-bottom-left-radius: 5px;
+	border-top-left-radius: 5px;
+	padding: 0.25rem 0.5rem;
+	box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
 @media (min-width: 768px) {
 	.ImageContainer {
 		min-width: 230px;
-		height: 200px;
 	}
 }

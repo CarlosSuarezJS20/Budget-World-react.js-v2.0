@@ -13,6 +13,7 @@ export const items = (props) => {
 				description={item.description}
 				category={item.category}
 				country={item.country}
+				city={item.city}
 				userId={item.userId}
 			/>
 		);

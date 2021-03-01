@@ -3,16 +3,6 @@ import { updateState } from './utility';
 
 const initialState = {
 	items: [],
-	inputConfig: {
-		elementType: 'input',
-		elementConfig: {
-			type: 'text',
-			placeholder: 'Search by Country',
-		},
-		value: '',
-	},
-	search: '',
-	category: '',
 	loading: false,
 	updateElId: '',
 	deleting: false,
@@ -31,25 +21,6 @@ const fetchItemsSuccess = (state, action) => {
 
 const fetchItemsFail = (state) => {
 	return updateState(state, { loading: false });
-};
-
-const inputOnchangedHandler = (state, action) => {
-	const updatedSearchInput = { ...state.inputConfig };
-	updatedSearchInput.value = action.event.target.value;
-	return updateState(state, {
-		inputConfig: updatedSearchInput,
-		search: updatedSearchInput.value.toUpperCase(),
-	});
-};
-
-// Filter Functionality
-
-const categoryFilterHandler = (state, action) => {
-	return updateState(state, { category: action.event.target.value });
-};
-
-const categoryResettingHandler = (state) => {
-	return updateState(state, { category: '' });
 };
 
 // Update Functionality
@@ -122,12 +93,6 @@ const reducer = (state = initialState, action) => {
 			return fetchItemsSuccess(state, action);
 		case actionTypes.FETCH_ITEMS_FAIL:
 			return fetchItemsFail(state);
-		case actionTypes.INPUT_ONCHANGED_HANDLER:
-			return inputOnchangedHandler(state, action);
-		case actionTypes.CATEGORY_FILTER_HANDLER:
-			return categoryFilterHandler(state, action);
-		case actionTypes.CATEGORY_RESETTING_HANDLER:
-			return categoryResettingHandler(state);
 		case actionTypes.TOGGLE_UPDATING:
 			return toggleUpdating(state, action);
 		case actionTypes.UPDATE_ITEM_SUCCESS:

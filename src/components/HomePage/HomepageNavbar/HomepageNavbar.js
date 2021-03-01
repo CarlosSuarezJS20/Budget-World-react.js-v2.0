@@ -28,7 +28,10 @@ class HomepageNavbar extends Component {
 							<NavLink to="/login">Log in</NavLink>
 						</li>
 						<li className={classes.Register}>
-							<NavLink to="/login" onClick={this.props.onCreatingAccountStatus}>
+							<NavLink
+								to="/sign-up"
+								onClick={this.props.onCreatingAccountStatus}
+							>
 								Sign Up
 							</NavLink>
 						</li>

@@ -1,13 +1,15 @@
 import React, { Component } from 'react';
-import Input from '../../components/UI/Input/Input';
-import classes from './Auth.css';
-import { connect } from 'react-redux';
-import * as actions from '../../store/actions/index';
-import Logo from '../../components/Logo/Logo';
-import Spinner from '../../components/UI/Spinner/Spinner';
-import { Redirect, NavLink } from 'react-router-dom';
+import Input from '../../../components/UI/Input/Input';
+import classes from './RegistrationPage.css';
+import Logo from '../../../components/Logo/Logo';
+import Spinner from '../../../components/UI/Spinner/Spinner';
+import { Redirect } from 'react-router-dom';
+import * as actions from '../../../store/actions/index';
 
-class Auth extends Component {
+import { NavLink } from 'react-router-dom';
+import { connect } from 'react-redux';
+
+class Registration extends Component {
 	state = {
 		controlsAuth: {
 			email: {
@@ -31,6 +33,22 @@ class Auth extends Component {
 					placeholder: 'Enter Password',
 				},
 				value: '',
+				length: 0,
+				validation: {
+					required: true,
+					minLength: 7,
+				},
+				valid: false,
+				touched: false,
+			},
+			confirmPassword: {
+				elementType: 'input',
+				elementConfig: {
+					type: 'password',
+					placeholder: 'Confirm Password',
+				},
+				value: '',
+				length: 0,
 				validation: {
 					required: true,
 					minLength: 7,
@@ -39,6 +57,7 @@ class Auth extends Component {
 				touched: false,
 			},
 		},
+		passwordNotConfirmed: true,
 	};
 
 	checkValidity(value, rules) {
@@ -78,6 +97,7 @@ class Auth extends Component {
 			[controlName]: {
 				...this.state.controlsAuth[controlName],
 				value: event.target.value,
+				length: event.target.value.length,
 				valid: this.checkValidity(
 					event.target.value,
 					this.state.controlsAuth[controlName].validation
@@ -91,11 +111,25 @@ class Auth extends Component {
 
 	submitHandler = (event) => {
 		event.preventDefault();
-		this.props.onAuth(
-			this.state.controlsAuth.email.value,
-			this.state.controlsAuth.password.value,
-			null
-		);
+		if (!this.props.isCreatingAccount) {
+			this.props.onCreatingAccountStatus();
+		}
+
+		if (
+			this.state.controlsAuth.password.value ===
+			this.state.controlsAuth.confirmPassword.value
+		) {
+			this.props.onAuth(
+				this.state.controlsAuth.email.value,
+				this.state.controlsAuth.password.value,
+				this.props.isCreatingAccount
+			);
+		} else {
+			this.setState((prevValue) => ({
+				passwordNotConfirmed: !prevValue.passwordNotConfirmed,
+			}));
+			return;
+		}
 	};
 
 	render() {
@@ -116,6 +150,8 @@ class Auth extends Component {
 				elementConfig={inputEl.config.elementConfig}
 				value={inputEl.config.value}
 				invalid={!inputEl.config.valid}
+				minCharacters={inputEl.config.validation.minLength}
+				passwordLength={inputEl.config.length}
 				shouldValidate={inputEl.config.validation}
 				touched={inputEl.config.touched}
 				changed={(event) => this.inputChangedHandler(event, inputEl.id)}
@@ -127,6 +163,7 @@ class Auth extends Component {
 		}
 
 		let errorMessage = null;
+		let matchingPasswordError = null;
 
 		if (this.props.errorAuth) {
 			const message = this.props.errorAuth.message
@@ -139,10 +176,19 @@ class Auth extends Component {
 			);
 		}
 
+		if (!this.state.passwordNotConfirmed) {
+			matchingPasswordError = (
+				<p
+					className={classes.ErrorMessage}
+				>{`Password do not match. Please try again`}</p>
+			);
+		}
+
 		let authRedirect = null;
 		if (this.props.isAuthenticated) {
 			authRedirect = <Redirect to="/discover" />;
 		}
+
 		return (
 			<section className={classes.LoginSection}>
 				<header>
@@ -155,8 +201,19 @@ class Auth extends Component {
 							<Logo active />
 						</div>
 						{errorMessage}
-						<h2>Welcome back!</h2>
+						{matchingPasswordError}
+						<h2>Welcome to Budget World!</h2>
 						{authenticationForm}
+						<p
+							style={{
+								textAlign: 'center',
+								paddingLeft: '10px',
+								color: 'rgba(0, 0, 0, 0.712)',
+								textTransform: 'capitalize',
+							}}
+						>
+							password requires min. 7 characters
+						</p>
 						<div className={classes.BtnsHolder}>
 							<button
 								className={classes.AuthBtn}
@@ -164,15 +221,19 @@ class Auth extends Component {
 									this.submitHandler(e);
 								}}
 							>
-								Log In
+								Sign Up
 							</button>
 						</div>
 						<NavLink
-							to="/sign-up"
+							to="/login"
 							className={classes.FormMessage}
-							onClick={this.props.onCreatingAccountStatus}
+							onClick={
+								this.props.isCreatingAccount
+									? this.props.onCreatingAccountStatus
+									: null
+							}
 						>
-							Register Here!
+							'Already a user? Login In'
 						</NavLink>
 					</div>
 				</div>
@@ -184,9 +245,9 @@ class Auth extends Component {
 const mapStateToProps = (state) => {
 	return {
 		errorAuth: state.authR.errorAuthentication,
+		isCreatingAccount: state.authR.creatingAccount,
 		loadingAuth: state.authR.loadingAuth,
 		isAuthenticated: state.authR.token !== null,
-		isCreatingAccount: state.authR.creatingAccount,
 	};
 };
 
@@ -199,4 +260,4 @@ const mapDispatchToProps = (dispatch) => {
 	};
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Auth);
+export default connect(mapStateToProps, mapDispatchToProps)(Registration);
