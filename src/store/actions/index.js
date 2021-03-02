@@ -10,7 +10,13 @@ export {
 	itemIdForTooltip,
 } from './items';
 
-export { auth, logout, creatingAccountStatusToggle } from './auth';
+export {
+	auth,
+	logout,
+	creatingAccountStatusToggle,
+	confirmationPasswordHandler,
+} from './auth';
+
 export {
 	inputHandler,
 	categoryFilterHandler,

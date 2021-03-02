@@ -7,6 +7,12 @@ export const creatingAccountStatusToggle = () => {
 	};
 };
 
+export const confirmationPasswordHandler = () => {
+	return {
+		type: actionTypes.PASSWORD_MATCH_CONFIRMATION,
+	};
+};
+
 export const authStart = () => {
 	// No need for payload.
 	return {
@@ -45,7 +51,7 @@ export const checkAuthTimeOut = (expirationTime) => {
 	};
 };
 
-export const auth = (email, password, creatingAccount) => {
+export const auth = (email, password, creatingAccount, userImage) => {
 	return (dispatch) => {
 		dispatch(authStart());
 		const authData = {
@@ -53,22 +59,19 @@ export const auth = (email, password, creatingAccount) => {
 			password: password,
 			returnSecureToken: true,
 		};
-
 		let url = !creatingAccount
 			? 'https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyAsm2AajbLjNnGdo4cb7pVXXfaxVkt-GKs'
 			: 'https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyAsm2AajbLjNnGdo4cb7pVXXfaxVkt-GKs';
 		axios
 			.post(url, authData)
 			.then((res) => {
-				console.log(res.data);
 				dispatch(authSuccess(res.data));
 				dispatch(checkAuthTimeOut(res.data.expiresIn));
-				if (creatingAccount) {
-					dispatch(creatingAccountStatusToggle());
-				}
+				dispatch(creatingAccountStatusToggle());
 			})
 			.catch((error) => {
 				dispatch(authFail(error.response.data.error));
+				dispatch(creatingAccountStatusToggle());
 			});
 	};
 };

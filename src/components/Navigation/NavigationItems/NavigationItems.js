@@ -2,7 +2,11 @@ import React, { Component } from 'react';
 import classes from './NavigationItems.css';
 import NavigationItem from '../NavigationItem/NavigationItem';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faPlusCircle, faSignOutAlt } from '@fortawesome/free-solid-svg-icons';
+import {
+	faPlusCircle,
+	faSignOutAlt,
+	faUser,
+} from '@fortawesome/free-solid-svg-icons';
 
 import { connect } from 'react-redux';
 import * as actions from '../../../store/actions/index';
@@ -16,6 +20,9 @@ class NavigationItems extends Component {
 						icon={faPlusCircle}
 						className={classes.NavbarButton}
 					/>
+				</NavigationItem>
+				<NavigationItem link="/my-profile">
+					<FontAwesomeIcon icon={faUser} className={classes.NavbarButton} />
 				</NavigationItem>
 				<NavigationItem link="/logout">
 					<FontAwesomeIcon

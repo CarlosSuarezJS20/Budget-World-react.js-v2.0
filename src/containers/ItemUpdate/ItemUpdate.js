@@ -121,7 +121,6 @@ class ItemUpdate extends Component {
 	};
 
 	componentDidMount() {
-		console.log(this.props);
 		if (this.props.items.length !== 0) {
 			const itemToUpdate = this.props.items.find((item) => {
 				return item.id === this.props.updateElId;

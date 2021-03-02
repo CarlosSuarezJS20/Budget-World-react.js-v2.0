@@ -7,11 +7,22 @@ const initialState = {
 	errorAuthentication: null,
 	loadingAuth: false,
 	creatingAccount: false,
+	passwordNotConfirmed: true,
+	uploadImageProgress: 0,
+};
+
+const confirmationPasswordHandler = (state) => {
+	if (state.passwordNotConfirmed) {
+		return updateState(state, { passwordNotConfirmed: false });
+	} else if (!state.passwordNotConfirmed) {
+		return updateState(state, { passwordNotConfirmed: true });
+	}
 };
 
 const authStart = (state) => {
 	return updateState(state, { error: null, loadingAuth: true });
 };
+
 const authSuccess = (state, action) => {
 	return updateState(state, {
 		token: action.idToken,
@@ -20,6 +31,7 @@ const authSuccess = (state, action) => {
 		loadingAuth: false,
 	});
 };
+
 const authFail = (state, action) => {
 	return updateState(state, {
 		errorAuthentication: action.error,
@@ -45,6 +57,8 @@ const reducer = (state = initialState, action) => {
 			return creatingAccountStatusToggle(state);
 		case actionTypes.AUTH_START:
 			return authStart(state);
+		case actionTypes.PASSWORD_MATCH_CONFIRMATION:
+			return confirmationPasswordHandler(state);
 		case actionTypes.AUTH_SUCCESS:
 			return authSuccess(state, action);
 		case actionTypes.AUTH_FAIL:
