@@ -7,21 +7,31 @@
 
 .ProfileUserImageSection {
 	padding: 2rem;
+	position: relative;
+	width: 300px;
+	margin: 0 auto;
 }
 
 .ProfileImageHolder {
 	margin: auto;
-	padding: 2rem;
 	height: 200px;
 	width: 200px;
-	border: 2px solid rgb(190, 187, 187);
 	border-radius: 180px;
 	text-align: center;
+	overflow: hidden;
 }
 
 .ProfileImageIcon {
 	color: rgb(190, 187, 187);
+	margin-top: 1.5rem;
 	font-size: 8rem;
+}
+
+.ProfilePicture {
+	height: 200px;
+	width: 100%;
+	border-radius: 180px;
+	object-fit: cover;
 }
 
 .UploadImageBtnHolder {
@@ -30,16 +40,22 @@
 }
 
 .UploadImageBtnHolder button {
+	position: absolute;
+	top: 60%;
+	left: 65%;
 	text-transform: capitalize;
 	font-weight: bolder;
 	padding: 0.5rem;
-	background: yellow;
-	border: 1px solid rgb(196, 196, 11);
-	border-radius: 15px;
-	transition: 1s ease;
+	background: rgb(218, 214, 214);
+	border: none;
+	border-radius: 180px;
 	cursor: pointer;
 }
 
+.CameraIcon {
+	font-size: 2rem;
+}
+
 .UploadImageBtnHolder button:hover {
-	background: rgb(196, 196, 11);
+	background: rgb(196, 196, 191);
 }

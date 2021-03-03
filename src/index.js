@@ -10,6 +10,7 @@ import { createStore, compose, applyMiddleware, combineReducers } from 'redux';
 import itemsReducer from './store/reducer/items';
 import auth from './store/reducer/auth';
 import filtersReducer from './store/reducer/filters';
+import usersInformation from './store/reducer/usersInformation';
 import thunk from 'redux-thunk';
 import TagManager from 'react-gtm-module';
 
@@ -20,6 +21,7 @@ const rootReducer = combineReducers({
 	itemsR: itemsReducer,
 	authR: auth,
 	filtersR: filtersReducer,
+	usersInformationR: usersInformation,
 });
 
 const store = createStore(

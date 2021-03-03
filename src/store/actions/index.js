@@ -22,3 +22,10 @@ export {
 	categoryFilterHandler,
 	categoryResettingHandler,
 } from './filters';
+
+export {
+	fetchProfilePictureStarts,
+	fetchProfilePictureSuccess,
+	fetchProfilePictureFailed,
+	fetchProfilePicLoadingPercentage,
+} from './usersInformation';

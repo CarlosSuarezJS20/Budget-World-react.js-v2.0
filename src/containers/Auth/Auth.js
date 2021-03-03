@@ -6,6 +6,7 @@ import * as actions from '../../store/actions/index';
 import Logo from '../../components/Logo/Logo';
 import Spinner from '../../components/UI/Spinner/Spinner';
 import { Redirect, NavLink } from 'react-router-dom';
+import firebase from '../../firebase';
 
 class Auth extends Component {
 	state = {
@@ -41,6 +42,23 @@ class Auth extends Component {
 		},
 	};
 
+	componentWillUnmount() {
+		this.getProfileImage();
+	}
+
+	getProfileImage = () => {
+		let storageRef = firebase.storage().ref();
+		let spaceRef = storageRef.child(
+			`users-profile-pictures/${this.props.userId}`
+		);
+		storageRef
+			.child(`users-profile-pictures/${this.props.userId}`)
+			.getDownloadURL()
+			.then((url) => {
+				this.props.onFetchingUserProfileImage(url);
+			});
+	};
+
 	checkValidity(value, rules) {
 		let isValid = true;
 		if (!rules) {
@@ -55,9 +73,9 @@ class Auth extends Component {
 			isValid = value.length >= rules.minLength && isValid;
 		}
 
-		if (rules.maxLength) {
-			isValid = value.length <= rules.maxLength && isValid;
-		}
+		// if (rules.maxLength) {
+		// 	isValid = value.length <= rules.maxLength && isValid;
+		// }
 
 		if (rules.isEmail) {
 			const pattern = /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/;
@@ -94,7 +112,8 @@ class Auth extends Component {
 		this.props.onAuth(
 			this.state.controlsAuth.email.value,
 			this.state.controlsAuth.password.value,
-			null
+			null,
+			this.getProfileImage
 		);
 	};
 
@@ -187,6 +206,7 @@ const mapStateToProps = (state) => {
 		loadingAuth: state.authR.loadingAuth,
 		isAuthenticated: state.authR.token !== null,
 		isCreatingAccount: state.authR.creatingAccount,
+		userId: state.authR.userId,
 	};
 };
 
@@ -196,6 +216,8 @@ const mapDispatchToProps = (dispatch) => {
 			dispatch(actions.auth(email, password, creatingAccount)),
 		onCreatingAccountStatus: () =>
 			dispatch(actions.creatingAccountStatusToggle()),
+		onFetchingUserProfileImage: (userProfilePictureURL) =>
+			dispatch(actions.fetchProfilePictureSuccess(userProfilePictureURL)),
 	};
 };
 
