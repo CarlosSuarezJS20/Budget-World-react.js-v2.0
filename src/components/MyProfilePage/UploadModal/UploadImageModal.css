@@ -1,0 +1,67 @@
+.ModalHeader {
+	display: flex;
+	width: 100%;
+	align-items: center;
+	justify-content: space-between;
+	border-bottom: 2px solid rgb(194, 194, 194);
+	padding-bottom: 0.3rem;
+}
+
+.ModalHeader h2 {
+	font-size: 1rem;
+	color: rgb(39, 39, 39);
+	margin-bottom: 0;
+}
+
+.InputHolder {
+	padding: 2rem 0;
+}
+
+.CloseFilterSectionBtn {
+	cursor: pointer;
+}
+
+.UploadBtn {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.UploadBtn button {
+	border: none;
+	background: none;
+	text-transform: capitalize;
+	font-size: 1rem;
+}
+
+.UploadBtn button:hover {
+	font-weight: bolder;
+	text-decoration: underline;
+}
+
+.UploadBtn button:disabled {
+	color: grey;
+	font-weight: initial;
+	text-decoration: none;
+}
+
+@media (min-width: 700px) {
+	.ModalHeader {
+		display: flex;
+		width: 100%;
+		align-items: center;
+		justify-content: space-between;
+		border-bottom: 2px solid rgb(194, 194, 194);
+		padding-bottom: 1rem;
+	}
+
+	.ModalHeader h2 {
+		font-size: 1rem;
+		color: rgb(39, 39, 39);
+		margin-bottom: 0;
+	}
+
+	.InputHolder {
+		padding: 2.5rem 0;
+	}
+}

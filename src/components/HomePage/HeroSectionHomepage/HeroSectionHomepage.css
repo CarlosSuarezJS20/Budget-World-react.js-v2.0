@@ -5,7 +5,7 @@
 
 .TitleHolder {
 	position: fixed;
-	min-width: 390px;
+	min-width: 375px;
 	height: 600px;
 	width: 100vw;
 	margin-top: -20rem;
@@ -229,12 +229,10 @@
 @media (min-width: 200px) {
 	.HeroImage1 {
 		top: 10%;
-		left: 2%;
 	}
 
 	.HeroImage2 {
 		top: 10%;
-		left: 2%;
 	}
 
 	.HeroDivOne {
@@ -245,27 +243,30 @@
 	}
 }
 
-@media (min-width: 410px) {
+@media (min-width: 380px) {
 	.HeroImage1 {
 		top: 3%;
-		left: 3%;
-		width: 400px;
+		left: -1%;
+		width: 100%;
 	}
 
 	.HeroImage2 {
 		top: 3%;
-		width: 400px;
-		left: 3%;
+		left: -1%;
+
+		width: 100%;
 	}
 
 	.HeroImage3 {
-		width: 400px;
-		left: 3%;
+		left: -1%;
+
+		width: 100%;
 	}
 
 	.HeroImage4 {
-		width: 400px;
-		left: 3%;
+		left: -1%;
+
+		width: 100%;
 	}
 
 	.Image {
@@ -273,7 +274,7 @@
 	}
 }
 
-@media (min-width: 510px) {
+@media (min-width: 500px) {
 	.HeroImage1 {
 		left: 6%;
 		width: 600px;

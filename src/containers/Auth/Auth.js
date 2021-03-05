@@ -43,7 +43,9 @@ class Auth extends Component {
 	};
 
 	componentWillUnmount() {
-		this.getProfileImage();
+		if (this.props.isAuthenticated) {
+			this.getProfileImage();
+		}
 	}
 
 	getProfileImage = () => {
@@ -186,11 +188,7 @@ class Auth extends Component {
 								Log In
 							</button>
 						</div>
-						<NavLink
-							to="/sign-up"
-							className={classes.FormMessage}
-							onClick={this.props.onCreatingAccountStatus}
-						>
+						<NavLink to="/sign-up" className={classes.FormMessage}>
 							Register Here!
 						</NavLink>
 					</div>
@@ -214,8 +212,6 @@ const mapDispatchToProps = (dispatch) => {
 	return {
 		onAuth: (email, password, creatingAccount) =>
 			dispatch(actions.auth(email, password, creatingAccount)),
-		onCreatingAccountStatus: () =>
-			dispatch(actions.creatingAccountStatusToggle()),
 		onFetchingUserProfileImage: (userProfilePictureURL) =>
 			dispatch(actions.fetchProfilePictureSuccess(userProfilePictureURL)),
 	};

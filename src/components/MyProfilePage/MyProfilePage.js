@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import classes from './MyProfilePage.css';
+
+import Toolbar from '../Navigation/Toolbar/Toolbar';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCameraRetro, faUser } from '@fortawesome/free-solid-svg-icons';
 import UploadImageModal from './UploadModal/UploadImageModal';
@@ -36,6 +38,7 @@ class MyProfilePage extends Component {
 				/>
 				<div>
 					<div className={classes.ProfileUserImageSection}>
+						<Toolbar profilePage />
 						<div className={classes.ProfileImageHolder} style={style}>
 							{!this.props.userImageURL.length > 0 ? (
 								<FontAwesomeIcon

@@ -6,9 +6,16 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCheck, faChevronLeft } from '@fortawesome/free-solid-svg-icons';
 
 const formsHeader = (props) => {
+	const clickedHandler = () => {
+		props.clearFilter();
+		if (props.imageFile !== null && props.itemBuilderHeader) {
+			props.deleteStoredImage();
+		}
+	};
+
 	return (
 		<header className={classes.FormHeader}>
-			<NavLink to="/discover" onClick={props.clearFilter}>
+			<NavLink to="/discover" onClick={clickedHandler}>
 				<FontAwesomeIcon icon={faChevronLeft} className={classes.Return} />
 			</NavLink>
 			<h2>{props.name}</h2>

@@ -4,9 +4,6 @@ import Logo from '../../Logo/Logo';
 
 import { NavLink } from 'react-router-dom';
 
-import { connect } from 'react-redux';
-import * as actions from '../../../store/actions/index';
-
 class HomepageNavbar extends Component {
 	render() {
 		return (
@@ -42,11 +39,4 @@ class HomepageNavbar extends Component {
 	}
 }
 
-const mapDispatchToProps = (dispatch) => {
-	return {
-		onCreatingAccountStatus: () =>
-			dispatch(actions.creatingAccountStatusToggle()),
-	};
-};
-
-export default connect(null, mapDispatchToProps)(HomepageNavbar);
+export default HomepageNavbar;

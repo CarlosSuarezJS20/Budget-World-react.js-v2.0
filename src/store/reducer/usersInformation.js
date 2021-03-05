@@ -21,8 +21,7 @@ const fetchingProfilePictureURLSuccess = (state, action) => {
 
 const fetchLoadingPercentageFromFirebase = (state, action) => {
 	return updateState(state, {
-		loadingProcessPercentage:
-			state.loadingProcessPercentage + action.loadingProcessPercentage,
+		loadingProcessPercentage: action.loadingProcessPercentage,
 	});
 };
 

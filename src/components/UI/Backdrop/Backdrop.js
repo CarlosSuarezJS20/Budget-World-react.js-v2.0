@@ -3,6 +3,7 @@ import classes from './Backdrop.css';
 
 const backdrop = (props) => {
 	const backDropRef = useRef(null);
+
 	useEffect(() => {
 		if (backDropRef.current !== null && props.show) {
 			document.body.onresize = () => {

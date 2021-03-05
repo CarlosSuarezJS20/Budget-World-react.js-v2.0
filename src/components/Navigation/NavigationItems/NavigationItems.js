@@ -9,7 +9,6 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 
 import { connect } from 'react-redux';
-import * as actions from '../../../store/actions/index';
 
 class NavigationItems extends Component {
 	render() {
@@ -54,11 +53,4 @@ const mapStateToProps = (state) => {
 	};
 };
 
-const mapDispatchToProps = (dispatch) => {
-	return {
-		onCreatingAccountStatus: () =>
-			dispatch(actions.creatingAccountStatusToggle()),
-	};
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(NavigationItems);
+export default connect(mapStateToProps, null)(NavigationItems);

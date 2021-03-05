@@ -126,6 +126,19 @@ class ItemBuilder extends Component {
 		uploadImageProgress: 0,
 	};
 
+	deleteSaveImageFromFirebase = () => {
+		const file = this.state.image;
+		const storageImageRef = firebase.storage().ref(`images/${file.name}`);
+		storageImageRef
+			.delete()
+			.then(() => {
+				console.log('file deleted successfully');
+			})
+			.catch((error) => {
+				console.log(`There was this ${error}`);
+			});
+	};
+
 	saveImage = () => {
 		let bucketName = 'images';
 		let file = this.state.image;
@@ -159,6 +172,7 @@ class ItemBuilder extends Component {
 			.then((url) => {
 				item = {
 					image: url,
+					imageStorageId: this.state.image.name,
 					itemName: itemData.itemName,
 					price: +itemData.price,
 					description: itemData.description,
@@ -273,8 +287,11 @@ class ItemBuilder extends Component {
 		) : (
 			<div className={classes.FormHolder}>
 				<FormsHeader
+					itemBuilderHeader
+					imageFile={this.state.image}
 					clearFilter={this.props.onClickReSettingCategory}
 					clicked={this.addItemHandler}
+					deleteStoredImage={this.deleteSaveImageFromFirebase}
 					disabled={
 						!this.state.formIsValid || this.state.uploadImageProgress !== 100
 					}

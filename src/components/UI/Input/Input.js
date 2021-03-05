@@ -5,6 +5,7 @@ const input = (props) => {
 	let inputElement = null;
 	let inputClasses;
 
+	// Allocates classes depending on the component where the inputs are rendered
 	if (props.active) {
 		inputClasses = [classes.Inputlogin];
 	} else if (props.toolbar) {
@@ -16,6 +17,14 @@ const input = (props) => {
 	if (props.invalid && props.shouldValidate && props.touched) {
 		inputClasses.push(classes.Invalid);
 	}
+
+	// Progress bar message
+	let labelStyling = {
+		color: props.uploadImageModal ? 'black' : '#fff',
+		textTransform: 'capitalize',
+		fontSize: '0.8rem',
+		margin: '0 0.5rem',
+	};
 
 	switch (props.elementType) {
 		case 'input':
@@ -91,7 +100,9 @@ const input = (props) => {
 			{props.elementConfig.type === 'file' ? (
 				<div className={classes.ProgressSection}>
 					<div className={classes.ProgressbarHolder}>
-						<label>{props.uploadProgress === 100 ? 'downloaded!' : ''}</label>
+						<label style={labelStyling}>
+							{props.uploadProgress === 100 ? 'downloaded!' : ''}
+						</label>
 						<progress value={props.uploadProgress} max="100" />
 					</div>
 					<button

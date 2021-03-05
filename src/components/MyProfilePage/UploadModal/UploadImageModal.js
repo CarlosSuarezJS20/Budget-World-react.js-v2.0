@@ -1,9 +1,12 @@
 import React, { Component } from 'react';
+import classes from './UploadImageModal.css';
 import Modal from '../../UI/Modal/Modal';
 import Input from '../../UI/Input/Input';
 import { connect } from 'react-redux';
 import firebase from '../../../firebase';
 import * as actions from '../../../store/actions/index';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faTimes } from '@fortawesome/free-solid-svg-icons';
 
 const checkValidity = (value, rules) => {
 	let isValid = true;
@@ -63,9 +66,7 @@ class UploadImageModal extends Component {
 
 	saveImage = () => {
 		let storageRef = firebase.storage().ref();
-		let spaceRef = storageRef.child(
-			`users-profile-pictures/${this.props.userId}`
-		);
+		storageRef.child(`users-profile-pictures/${this.props.userId}`);
 		storageRef
 			.child(`users-profile-pictures/${this.props.userId}`)
 			.getDownloadURL()
@@ -75,24 +76,53 @@ class UploadImageModal extends Component {
 			});
 	};
 
+	cancelUploadHander = () => {
+		this.props.clicked();
+		// Re-sets to initial values
+		const copyOfInputEl = this.state.imageURL;
+		copyOfInputEl.value = '';
+		this.props.onFetchingLoadingPercentage(0);
+		this.setState({ imageURL: copyOfInputEl });
+	};
+
 	render() {
 		return (
-			<Modal show={this.props.show} clicked={this.props.clicked}>
-				<header>header</header>
-				<Input
-					key={this.state.imageURL.elementType}
-					elementType={this.state.imageURL.type}
-					elementConfig={this.state.imageURL.elementConfig}
-					value={this.state.imageURL.value}
-					invalid={!this.state.imageURL.valid}
-					shouldValidate={this.state.imageURL.validation}
-					touched={this.state.imageURL.touched}
-					uploadProgress={this.props.progressPercentage}
-					saveImg={this.sendImageToDataBase}
-					changed={(event) => this.ImageInputChangedHandler(event)}
-				/>
-
-				<button onClick={this.saveImage}>save</button>
+			<Modal
+				uploadImageModal
+				show={this.props.show}
+				clicked={this.cancelUploadHander}
+			>
+				<header className={classes.ModalHeader}>
+					<h2>update profile pic</h2>
+					<FontAwesomeIcon
+						icon={faTimes}
+						className={classes.CloseFilterSectionBtn}
+						onClick={this.cancelUploadHander}
+					/>
+				</header>
+				<div className={classes.InputHolder}>
+					<Input
+						uploadImageModal
+						key={this.state.imageURL.elementType}
+						elementType={this.state.imageURL.type}
+						elementConfig={this.state.imageURL.elementConfig}
+						value={this.state.imageURL.value}
+						invalid={!this.state.imageURL.valid}
+						shouldValidate={this.state.imageURL.validation}
+						touched={this.state.imageURL.touched}
+						uploadProgress={this.props.progressPercentage}
+						saveImg={this.sendImageToDataBase}
+						changed={(event) => this.ImageInputChangedHandler(event)}
+					/>
+				</div>
+				<div className={classes.UploadBtn}>
+					<button
+						disabled={this.props.progressPercentage !== 100}
+						onClick={this.saveImage}
+					>
+						save changes
+					</button>
+				</div>
 			</Modal>
 		);
 	}

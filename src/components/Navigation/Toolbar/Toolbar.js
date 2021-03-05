@@ -44,10 +44,15 @@ const toolBar = (props) => {
 					<Logo LogoNavbar />
 				</div>
 				<div className={classes.SearchInputHolder}>
-					<Search />
+					{props.profilePage ? null : (
+						<Search profilePage={props.profilepage} />
+					)}
 				</div>
 				<nav className={classes.NavItemsHolder}>
-					<NavigationItems isAuthenticated={props.authenticated} />
+					<NavigationItems
+						profilePage={props.profilePage}
+						isAuthenticated={props.authenticated}
+					/>
 				</nav>
 			</div>
 		</header>

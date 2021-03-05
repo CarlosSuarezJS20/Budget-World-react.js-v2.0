@@ -60,6 +60,16 @@ class Registration extends Component {
 		passwordNotConfirmed: true,
 	};
 
+	componentDidMount() {
+		//Toggles the status of to create so http request for registration is active
+		this.props.onCreatingAccountStatusToggler();
+	}
+
+	componentWillUnmount() {
+		//Toggles the status of to create so http request for registration is inactive
+		this.props.onCreatingAccountStatusToggler();
+	}
+
 	checkValidity(value, rules) {
 		let isValid = true;
 		if (!rules) {
@@ -111,9 +121,6 @@ class Registration extends Component {
 
 	submitHandler = (event) => {
 		event.preventDefault();
-		if (!this.props.isCreatingAccount) {
-			this.props.onCreatingAccountStatus();
-		}
 
 		if (
 			this.state.controlsAuth.password.value ===
@@ -224,15 +231,7 @@ class Registration extends Component {
 								Sign Up
 							</button>
 						</div>
-						<NavLink
-							to="/login"
-							className={classes.FormMessage}
-							onClick={
-								this.props.isCreatingAccount
-									? this.props.onCreatingAccountStatus
-									: null
-							}
-						>
+						<NavLink to="/login" className={classes.FormMessage}>
 							'Already a user? Login In'
 						</NavLink>
 					</div>
@@ -255,7 +254,7 @@ const mapDispatchToProps = (dispatch) => {
 	return {
 		onAuth: (email, password, creatingAccount) =>
 			dispatch(actions.auth(email, password, creatingAccount)),
-		onCreatingAccountStatus: () =>
+		onCreatingAccountStatusToggler: () =>
 			dispatch(actions.creatingAccountStatusToggle()),
 	};
 };

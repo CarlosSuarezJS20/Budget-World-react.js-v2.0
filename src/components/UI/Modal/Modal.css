@@ -11,3 +11,57 @@
 	top: 30%;
 	transition: all 0.3s ease-out;
 }
+
+.uploadImageModal {
+	position: fixed;
+	z-index: 500;
+	background: rgb(248, 248, 248);
+	width: 90%;
+	height: 250px;
+	border: 1px solid rgb(249, 253, 2);
+	border-radius: 5px;
+	box-shadow: 1px 1px 1px black;
+	padding: 16px;
+	left: 5%;
+	top: 30%;
+	transition: all 0.3s ease-out;
+}
+
+@media (min-width: 820px) {
+	.Input {
+		width: 100%;
+		padding: 5px;
+	}
+
+	.uploadImageModal {
+		position: fixed;
+		left: 50%;
+		top: 50%;
+		height: 250px;
+		width: 500px;
+		padding: 16px;
+		background: rgb(248, 248, 248);
+		border: 1px solid rgb(249, 253, 2);
+		border-radius: 5px;
+		transform: translate(-50%, -50%);
+		box-shadow: 1px 1px 1px black;
+		transition: all 0.3s ease-out;
+		z-index: 500;
+	}
+
+	.Modal {
+		position: fixed;
+		left: 50%;
+		top: 50%;
+		height: 250px;
+		width: 500px;
+		padding: 16px;
+		background: rgb(248, 248, 248);
+		border: 1px solid rgb(249, 253, 2);
+		border-radius: 5px;
+		transform: translate(-50%, -50%);
+		box-shadow: 1px 1px 1px black;
+		transition: all 0.3s ease-out;
+		z-index: 500;
+	}
+}

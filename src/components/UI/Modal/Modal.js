@@ -11,14 +11,20 @@ class Modal extends Component {
 	}
 
 	render() {
+		let classesStyles = classes.Modal;
+
+		if (this.props.uploadImageModal) {
+			classesStyles = classes.uploadImageModal;
+		}
+
 		return (
 			<div>
 				<BackDrop show={this.props.show} clicked={this.props.clicked} />
 				<div
-					className={classes.Modal}
+					className={classesStyles}
 					style={{
-						transform: this.props.show ? 'translateY(0)' : 'translateY(-100vh)',
-						opacity: this.props.show ? '1' : '0',
+						// transform: this.props.show ? 'translateY(0)' : 'translate(-100vh)',
+						display: this.props.show ? 'block' : 'none',
 					}}
 				>
 					{this.props.children}

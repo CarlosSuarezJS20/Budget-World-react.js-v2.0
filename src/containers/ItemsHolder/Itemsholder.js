@@ -16,6 +16,31 @@ import ToolTip from '../../components/UI/ToolTip/ToolTip';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSadCry } from '@fortawesome/free-solid-svg-icons';
 
+import axios from '../../axios';
+import firebase from '../../firebase';
+
+// Helper Function to delete image from storage server
+
+const deleteItemImagefromStorage = (id) => {
+	axios
+		.get(`/items/${id}.json`)
+		.then((res) => {
+			const { imageStorageId } = res.data;
+			const storageImageRef = firebase
+				.storage()
+				.ref(`images/${imageStorageId}`);
+			storageImageRef
+				.delete()
+				.then(() => {
+					console.log('image deleted successfully');
+				})
+				.catch((error) => {
+					console.log(`There was this ${error}`);
+				});
+		})
+		.catch((error) => {});
+};
+
 class ItemsHolder extends Component {
 	componentDidMount() {
 		//ensures the page is reloaded at the top when routing
@@ -28,6 +53,7 @@ class ItemsHolder extends Component {
 	};
 
 	deleteBtnHandler = () => {
+		deleteItemImagefromStorage(this.props.deleteItmId);
 		this.props.onDeletingItem(this.props.deleteItmId, this.props.token);
 	};
 
