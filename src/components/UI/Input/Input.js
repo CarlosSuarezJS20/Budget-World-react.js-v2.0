@@ -2,6 +2,7 @@ import React from 'react';
 import classes from './Input.css';
 
 const input = (props) => {
+	console.log(props.value);
 	let inputElement = null;
 	let inputClasses;
 
@@ -83,8 +84,10 @@ const input = (props) => {
 				<p
 					style={{
 						color:
-							(props.maxCharacters - props.valueLength === 0) === 0
+							props.maxCharacters - props.valueLength === 0
 								? 'red'
+								: props.bioSection
+								? 'black'
 								: '#ffff',
 					}}
 				>{`max. lenght ${props.maxCharacters - props.valueLength}`}</p>

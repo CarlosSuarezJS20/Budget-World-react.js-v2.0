@@ -1,0 +1,46 @@
+.BioSection {
+	width: 100%;
+	margin: 0 auto;
+}
+
+.UserBio {
+	width: 60vw;
+	margin: 0 auto;
+}
+
+.BioMessage {
+	width: 80%;
+	margin: 0 auto;
+	background: rgb(226, 226, 226);
+	padding: 1.2rem 0.5rem;
+	border-radius: 10px;
+}
+
+.BioMessage h3 {
+	font-size: 1rem;
+	text-transform: capitalize;
+	text-align: center;
+}
+
+.EditBioBtnHolder {
+	margin: 0.5rem;
+	text-align: right;
+}
+.EditBioBtnHolder button {
+}
+
+.BioButtonHolder {
+	text-align: center;
+}
+
+.BioButtonHolder button {
+	margin: 0 0.5rem;
+	padding: 0.3rem 1rem;
+	border-radius: 10px;
+	border: 1px solid;
+	text-transform: capitalize;
+}
+
+.BioButtonHolder button:hover {
+	background: rgb(180, 180, 180);
+}

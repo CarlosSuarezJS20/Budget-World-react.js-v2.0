@@ -6,6 +6,7 @@ import {
 	faPlusCircle,
 	faSignOutAlt,
 	faUser,
+	faCompass,
 } from '@fortawesome/free-solid-svg-icons';
 
 import { connect } from 'react-redux';
@@ -20,9 +21,18 @@ class NavigationItems extends Component {
 						className={classes.NavbarButton}
 					/>
 				</NavigationItem>
-				<NavigationItem link="/my-profile">
-					<FontAwesomeIcon icon={faUser} className={classes.NavbarButton} />
-				</NavigationItem>
+				{this.props.profilePage ? (
+					<NavigationItem link="/discover">
+						<FontAwesomeIcon
+							icon={faCompass}
+							className={classes.NavbarButton}
+						/>
+					</NavigationItem>
+				) : (
+					<NavigationItem link="/my-profile">
+						<FontAwesomeIcon icon={faUser} className={classes.NavbarButton} />
+					</NavigationItem>
+				)}
 				<NavigationItem link="/logout">
 					<FontAwesomeIcon
 						icon={faSignOutAlt}

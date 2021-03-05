@@ -18,18 +18,17 @@ class Modal extends Component {
 		}
 
 		return (
-			<div>
+			<React.Fragment>
 				<BackDrop show={this.props.show} clicked={this.props.clicked} />
 				<div
 					className={classesStyles}
 					style={{
-						// transform: this.props.show ? 'translateY(0)' : 'translate(-100vh)',
 						display: this.props.show ? 'block' : 'none',
 					}}
 				>
 					{this.props.children}
 				</div>
-			</div>
+			</React.Fragment>
 		);
 	}
 }

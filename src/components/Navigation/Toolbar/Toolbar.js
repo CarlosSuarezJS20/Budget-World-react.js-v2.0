@@ -44,7 +44,9 @@ const toolBar = (props) => {
 					<Logo LogoNavbar />
 				</div>
 				<div className={classes.SearchInputHolder}>
-					{props.profilePage ? null : (
+					{props.profilePage ? (
+						<h1>My travel page</h1>
+					) : (
 						<Search profilePage={props.profilepage} />
 					)}
 				</div>

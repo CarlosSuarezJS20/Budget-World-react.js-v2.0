@@ -1,0 +1,43 @@
+.ProfileImageHolder {
+	margin: auto;
+	height: 150px;
+	width: 150px;
+	border-radius: 180px;
+	text-align: center;
+	overflow: hidden;
+}
+
+.ProfileImageIcon {
+	color: rgb(190, 187, 187);
+	margin-top: 1.5rem;
+	font-size: 8rem;
+}
+
+.ProfilePicture {
+	height: 160px;
+	width: 100%;
+	border-radius: 180px;
+	object-fit: cover;
+}
+
+.UploadPictureBtn {
+	position: absolute;
+	top: 60%;
+	left: 64%;
+	text-transform: capitalize;
+	font-weight: bolder;
+	padding: 0.5rem;
+	background: rgb(218, 214, 214);
+	border: none;
+	border-radius: 180px;
+	cursor: pointer;
+}
+
+.CameraIcon {
+	font-size: 1.5rem;
+}
+
+.UploadPictureBtn:hover {
+	background: rgb(196, 196, 191);
+	border: 1px solid black;
+}

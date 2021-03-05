@@ -206,7 +206,7 @@ const HeroSectionHomepage = () => {
 							className={classes.Text}
 							id="transport-message"
 						>
-							find the best get around
+							find the way to get around
 						</p>
 					</div>
 				</div>

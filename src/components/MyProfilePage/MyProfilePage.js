@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
 import classes from './MyProfilePage.css';
-
+import ProfileImage from './ProfileImage/ProfileImage';
 import Toolbar from '../Navigation/Toolbar/Toolbar';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCameraRetro, faUser } from '@fortawesome/free-solid-svg-icons';
+import BioSection from '../MyProfilePage/BioSection/BioSection';
 import UploadImageModal from './UploadModal/UploadImageModal';
 import { connect } from 'react-redux';
 
@@ -25,49 +24,20 @@ class MyProfilePage extends Component {
 	};
 
 	render() {
-		let style = { border: '2px solid rgb(190, 187, 187)' };
-
-		if (this.props.userImageURL.length > 0) {
-			style = { border: '3px solid rgb(202, 202, 11)' };
-		}
 		return (
 			<div className={classes.ProfilePageHolder}>
 				<UploadImageModal
 					show={this.state.showUploadImageModal}
 					clicked={this.showModalHandler}
 				/>
-				<div>
-					<div className={classes.ProfileUserImageSection}>
-						<Toolbar profilePage />
-						<div className={classes.ProfileImageHolder} style={style}>
-							{!this.props.userImageURL.length > 0 ? (
-								<FontAwesomeIcon
-									icon={faUser}
-									className={classes.ProfileImageIcon}
-								/>
-							) : (
-								<img
-									src={
-										this.props.userImageURL.length > 0
-											? this.props.userImageURL
-											: null
-									}
-									alt="profile-img"
-									className={classes.ProfilePicture}
-								/>
-							)}
-						</div>
-						<div className={classes.UploadImageBtnHolder}>
-							<button>
-								<FontAwesomeIcon
-									icon={faCameraRetro}
-									className={classes.CameraIcon}
-									onClick={this.showModalHandler}
-								/>
-							</button>
-						</div>
-					</div>
+				<Toolbar profilePage />
+				<div className={classes.ProfileUserImageSection}>
+					<ProfileImage
+						profileImageURL={this.props.userImageURL}
+						showUploadPictureModal={this.showModalHandler}
+					/>
 				</div>
+				<BioSection />
 			</div>
 		);
 	}
@@ -79,8 +49,4 @@ const mapStateToProps = (state) => {
 	};
 };
 
-const mapDispatchToProps = (dispatch) => {
-	return {};
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(MyProfilePage);
+export default connect(mapStateToProps, null)(MyProfilePage);
