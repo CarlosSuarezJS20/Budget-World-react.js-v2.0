@@ -8,6 +8,7 @@ import * as actions from '../../../store/actions/index';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTimes } from '@fortawesome/free-solid-svg-icons';
 
+// Validity of the Input
 const checkValidity = (value, rules) => {
 	let isValid = true;
 
@@ -34,6 +35,14 @@ class UploadImageModal extends Component {
 			touched: false,
 		},
 		profileImage: null,
+	};
+
+	// Re-sets to initial values
+	clearsInput = () => {
+		const copyOfInputEl = this.state.imageURL;
+		copyOfInputEl.value = '';
+		this.props.onFetchingLoadingPercentage(0);
+		this.setState({ imageURL: copyOfInputEl });
 	};
 
 	sendImageToDataBase = () => {
@@ -73,16 +82,13 @@ class UploadImageModal extends Component {
 			.then((url) => {
 				this.props.onGettingProfilePictureUrl(url);
 				this.props.clicked();
+				this.clearsInput();
 			});
 	};
 
 	cancelUploadHander = () => {
 		this.props.clicked();
-		// Re-sets to initial values
-		const copyOfInputEl = this.state.imageURL;
-		copyOfInputEl.value = '';
-		this.props.onFetchingLoadingPercentage(0);
-		this.setState({ imageURL: copyOfInputEl });
+		this.clearsInput();
 	};
 
 	render() {

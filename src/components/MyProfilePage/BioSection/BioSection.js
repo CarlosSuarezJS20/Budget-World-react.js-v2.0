@@ -1,13 +1,16 @@
-import React, { useState } from 'react';
+import React, { useState, useCallback, useEffect } from 'react';
 import classes from './BioSection.css';
 import Input from '../../UI/Input/Input';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCameraRetro, faUser } from '@fortawesome/free-solid-svg-icons';
+import { faPencilAlt } from '@fortawesome/free-solid-svg-icons';
 
-const BioSection = () => {
+import axios from '../../../axios';
+
+const BioSection = (props) => {
 	const [addingBio, setAddingBio] = useState(false);
 	const [bioMessage, setBio] = useState('');
+	const [bioMessageLength, setBioMessageLength] = useState(0);
 	const [inputConfig, setInputConfig] = useState({
 		elementType: 'textarea',
 		elementConfig: {
@@ -15,35 +18,53 @@ const BioSection = () => {
 		},
 		value: '',
 		length: 0,
-		validation: {
-			required: true,
-			maxLength: 100,
-		},
+		maxLength: 100,
 		valid: false,
 	});
+	// HTTP Requests
+	const [sendingRequest, setSendingRequest] = useState(false);
 
-	const checkValidity = (value, rules) => {
-		let isValid = true;
-
-		if (rules.minLength) {
-			isValid = value.length >= rules.minLength && isValid;
+	const sendingHtppRequestForBioMessage = useCallback(async () => {
+		let dataResponse;
+		if (sendingRequest) {
+			return;
 		}
-
-		if (rules.maxLength) {
-			isValid = value.length <= rules.maxLength && isValid;
+		try {
+			dataResponse = await axios.post(
+				'/users-bios.json?auth=' + props.token,
+				bioMessage
+			);
+			if (dataResponse) {
+				setSendingRequest(!sendingRequest);
+			}
+		} catch (error) {
+			//do something with the error
 		}
+	}, []);
 
-		return isValid;
-	};
+	useEffect(() => {
+		return () => {
+			setSendingRequest(!sendingRequest);
+			console.log(sendingRequest);
+		};
+	}, []);
 
 	const addBio = () => {
 		setAddingBio(true);
+		console.log(sendingRequest);
+	};
+
+	const editBio = () => {
+		setAddingBio(true);
+		let { value } = { ...inputConfig };
+		value = bioMessage;
 	};
 
 	const saveBio = () => {
 		setAddingBio(!addingBio);
-		setBio(inputConfig.value);
-		//request POST http
+		setBio(inputConfig.value.trim());
+		setBioMessageLength(inputConfig.value.length);
+		setSendingRequest(!sendingRequest);
 	};
 
 	const cancelBioUpdate = () => {
@@ -54,11 +75,6 @@ const BioSection = () => {
 		const copyOfInputConfig = { ...inputConfig };
 		copyOfInputConfig.value = e.target.value;
 		copyOfInputConfig.length = e.target.value.length;
-		copyOfInputConfig.valid = checkValidity(
-			copyOfInputConfig.value.trim(),
-			copyOfInputConfig.validation
-		);
-
 		setInputConfig(copyOfInputConfig);
 	};
 
@@ -67,13 +83,17 @@ const BioSection = () => {
 			<div className={classes.BioMessage}>
 				<h3>{bioMessage}</h3>
 				<div className={classes.EditBioBtnHolder}>
-					<button onClick={addBio}>edit bio</button>
+					<button className={classes.BioBtn} onClick={editBio}>
+						<FontAwesomeIcon className={classes.PencilBtn} icon={faPencilAlt} />
+					</button>
 				</div>
 			</div>
 		) : (
-			<div>
-				<span>add travel bio</span>
-				<button onClick={addBio}>add bio</button>
+			<div className={classes.AddBioBtnHolder}>
+				<span>travel bio</span>
+				<button className={classes.BioBtn} onClick={addBio}>
+					<FontAwesomeIcon className={classes.PencilBtn} icon={faPencilAlt} />
+				</button>
 			</div>
 		);
 
@@ -90,7 +110,7 @@ const BioSection = () => {
 						valueLength={inputConfig.value.length}
 						invalid={!inputConfig.valid}
 						shouldValidate={inputConfig.validation}
-						maxCharacters={inputConfig.validation.maxLength}
+						maxCharacters={inputConfig.maxLength}
 						changed={(e) => {
 							textAreaChangedHandler(e);
 						}}
