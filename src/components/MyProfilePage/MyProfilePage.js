@@ -37,7 +37,10 @@ class MyProfilePage extends Component {
 						showUploadPictureModal={this.showModalHandler}
 					/>
 				</div>
-				<BioSection />
+				<BioSection
+					userId={this.props.userId}
+					userToken={this.props.userToken}
+				/>
 			</div>
 		);
 	}
@@ -46,6 +49,8 @@ class MyProfilePage extends Component {
 const mapStateToProps = (state) => {
 	return {
 		userImageURL: state.usersInformationR.profilePictureURL,
+		userToken: state.authR.token,
+		userId: state.authR.userId,
 	};
 };
 

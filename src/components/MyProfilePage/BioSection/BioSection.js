@@ -1,6 +1,7 @@
 import React, { useState, useCallback, useEffect } from 'react';
 import classes from './BioSection.css';
 import Input from '../../UI/Input/Input';
+import MyProfileLoader from '../MyProfileLoader/MyProfileLoader';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPencilAlt } from '@fortawesome/free-solid-svg-icons';
@@ -8,8 +9,9 @@ import { faPencilAlt } from '@fortawesome/free-solid-svg-icons';
 import axios from '../../../axios';
 
 const BioSection = (props) => {
+	const [loading, setLoading] = useState(false);
 	const [addingBio, setAddingBio] = useState(false);
-	const [bioMessage, setBio] = useState('');
+	const [bioMessage, setBioMessage] = useState('');
 	const [bioMessageLength, setBioMessageLength] = useState(0);
 	const [inputConfig, setInputConfig] = useState({
 		elementType: 'textarea',
@@ -21,50 +23,99 @@ const BioSection = (props) => {
 		maxLength: 100,
 		valid: false,
 	});
+	const [editing, setEditing] = useState(false);
+	const [editingItemId, setEditingItemId] = useState('');
 	// HTTP Requests
 	const [sendingRequest, setSendingRequest] = useState(false);
+	const sendingHtppRequestForBioMessage = useCallback(
+		async (bioMessageObject) => {
+			let dataResponse;
+			if (sendingRequest) {
+				return;
+			}
+			try {
+				if (editing && bioMessageObject.bioMessageLength === 0) {
+					dataResponse = await axios.delete(
+						`/users-bios/${editingItemId}.json?auth=` + props.userToken
+					);
+				} else if (editing) {
+					dataResponse = await axios.put(
+						`/users-bios/${editingItemId}.json?auth=` + props.userToken,
+						bioMessageObject
+					);
+				} else {
+					dataResponse = await axios.post(
+						'/users-bios.json?auth=' + props.userToken,
+						bioMessageObject
+					);
+				}
 
-	const sendingHtppRequestForBioMessage = useCallback(async () => {
-		let dataResponse;
-		if (sendingRequest) {
-			return;
-		}
+				if (dataResponse) {
+					if (editing && bioMessageObject.bioMessageLength === 0) {
+						setEditingItemId('');
+						setEditing(false);
+					}
+					if (editing) {
+						setEditing(false);
+					}
+					if (editingItemId.length === 0) {
+						setEditingItemId(dataResponse.data.name);
+					}
+					setAddingBio(!addingBio);
+					setSendingRequest(false);
+				}
+			} catch (error) {
+				//do something with the error
+				console.log(error);
+			}
+		},
+		[sendingRequest, addingBio, editing, editingItemId]
+	);
+
+	useEffect(async () => {
+		setLoading(true);
+		let userMessage = {};
 		try {
-			dataResponse = await axios.post(
-				'/users-bios.json?auth=' + props.token,
-				bioMessage
+			const res = await axios.get(
+				`users-bios.json?orderBy="id"&equalTo="${props.userId}"`
 			);
-			if (dataResponse) {
-				setSendingRequest(!sendingRequest);
+			if (res.data) {
+				for (let item in res.data) {
+					userMessage = { itemId: item, ...res.data[item] };
+					setBioMessage(userMessage.bioMessage);
+					setBioMessageLength(userMessage.bioMessageLength);
+					setEditingItemId(userMessage.itemId);
+				}
+				setLoading(false);
 			}
 		} catch (error) {
-			//do something with the error
+			console.log(error);
+			setLoading(false);
 		}
-	}, []);
-
-	useEffect(() => {
-		return () => {
-			setSendingRequest(!sendingRequest);
-			console.log(sendingRequest);
-		};
 	}, []);
 
 	const addBio = () => {
-		setAddingBio(true);
-		console.log(sendingRequest);
+		setAddingBio(!addingBio);
 	};
 
 	const editBio = () => {
-		setAddingBio(true);
-		let { value } = { ...inputConfig };
-		value = bioMessage;
+		setAddingBio(!addingBio);
+		const copyInput = { ...inputConfig };
+		copyInput.value = bioMessage;
+		setInputConfig(copyInput);
+		setEditing(true);
 	};
 
 	const saveBio = () => {
-		setAddingBio(!addingBio);
-		setBio(inputConfig.value.trim());
-		setBioMessageLength(inputConfig.value.length);
-		setSendingRequest(!sendingRequest);
+		const { value } = inputConfig;
+		setBioMessage(value);
+		const bioMessageObject = {
+			id: props.userId,
+			bioMessage: value,
+			bioMessageLength: value.trim().length,
+		};
+		sendingHtppRequestForBioMessage(bioMessageObject);
+		setSendingRequest(true);
 	};
 
 	const cancelBioUpdate = () => {
@@ -78,24 +129,27 @@ const BioSection = (props) => {
 		setInputConfig(copyOfInputConfig);
 	};
 
-	const bio =
-		bioMessage.length > 0 ? (
-			<div className={classes.BioMessage}>
-				<h3>{bioMessage}</h3>
-				<div className={classes.EditBioBtnHolder}>
-					<button className={classes.BioBtn} onClick={editBio}>
-						<FontAwesomeIcon className={classes.PencilBtn} icon={faPencilAlt} />
-					</button>
-				</div>
-			</div>
-		) : (
-			<div className={classes.AddBioBtnHolder}>
-				<span>travel bio</span>
-				<button className={classes.BioBtn} onClick={addBio}>
+	const bio = loading ? (
+		<div className={classes.LoaderHolder}>
+			<MyProfileLoader />
+		</div>
+	) : bioMessage.length > 0 ? (
+		<div className={classes.BioMessage}>
+			<h3>{bioMessage}</h3>
+			<div className={classes.EditBioBtnHolder}>
+				<button className={classes.BioBtn} onClick={editBio}>
 					<FontAwesomeIcon className={classes.PencilBtn} icon={faPencilAlt} />
 				</button>
 			</div>
-		);
+		</div>
+	) : (
+		<div className={classes.AddBioBtnHolder}>
+			<span>travel bio</span>
+			<button className={classes.BioBtn} onClick={addBio}>
+				<FontAwesomeIcon className={classes.PencilBtn} icon={faPencilAlt} />
+			</button>
+		</div>
+	);
 
 	return (
 		<div className={classes.BioSection}>
