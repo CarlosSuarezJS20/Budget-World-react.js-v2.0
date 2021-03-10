@@ -30,6 +30,7 @@ const toolBar = (props) => {
 		background: 'transparent',
 		zIndex: 90,
 		transition: 'top 0.6s',
+		minWidth: '380px',
 	};
 
 	useEffect(() => {

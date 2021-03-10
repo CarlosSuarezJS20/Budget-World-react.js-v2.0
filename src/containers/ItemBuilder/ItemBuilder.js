@@ -165,7 +165,7 @@ class ItemBuilder extends Component {
 
 		// Image URL form Firebase
 		let storageRef = firebase.storage().ref();
-		let spaceRef = storageRef.child(`images/${this.state.image.name}`);
+		storageRef.child(`images/${this.state.image.name}`);
 		storageRef
 			.child(`images/${this.state.image.name}`)
 			.getDownloadURL()
@@ -291,6 +291,7 @@ class ItemBuilder extends Component {
 					imageFile={this.state.image}
 					clearFilter={this.props.onClickReSettingCategory}
 					clicked={this.addItemHandler}
+					reDirect={this.props.history.goBack}
 					deleteStoredImage={this.deleteSaveImageFromFirebase}
 					disabled={
 						!this.state.formIsValid || this.state.uploadImageProgress !== 100

@@ -50,9 +50,7 @@ class Auth extends Component {
 
 	getProfileImage = () => {
 		let storageRef = firebase.storage().ref();
-		let spaceRef = storageRef.child(
-			`users-profile-pictures/${this.props.userId}`
-		);
+		storageRef.child(`users-profile-pictures/${this.props.userId}`);
 		storageRef
 			.child(`users-profile-pictures/${this.props.userId}`)
 			.getDownloadURL()

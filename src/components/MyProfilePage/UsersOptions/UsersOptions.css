@@ -1,0 +1,66 @@
+.OptionsSection {
+	background: rgba(236, 236, 236, 0.897);
+	width: 100%;
+	margin: 0 auto;
+	text-align: right;
+}
+
+.OptionsBtnHolder {
+	background: rgba(236, 236, 236, 0.897);
+	width: 100%;
+	margin: 0 auto;
+	padding: 0.5rem 1rem;
+	text-align: right;
+}
+
+.OptionsBtn {
+	background: #ffff;
+	font-size: 2rem;
+	padding: 0.4rem;
+	border-radius: 180px;
+	box-shadow: 0 0 3px rgba(0, 0, 0, 0.3);
+}
+
+.Active {
+	background: black;
+	color: #fff;
+}
+
+.Question {
+	font-size: 1rem;
+}
+
+.LinksMenu {
+	background: #fff;
+	width: 90%;
+	margin: 1rem auto;
+	padding: 1rem;
+	border-radius: 10px;
+	box-shadow: 0 0 3px rgba(0, 0, 0, 0.3);
+}
+
+.LinksList {
+	padding: 0.3rem;
+}
+
+.LinksList li {
+	text-transform: capitalize;
+	margin: 0.5rem 0;
+	font-weight: 400;
+	font-size: 1.2rem;
+}
+
+.Link {
+	color: black;
+}
+
+.Link:hover {
+	font-weight: bolder;
+	text-decoration: underline;
+}
+
+@media (min-width: 800px) {
+	.OptionsSection {
+		width: 80%;
+	}
+}

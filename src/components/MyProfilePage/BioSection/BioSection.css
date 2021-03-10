@@ -1,12 +1,11 @@
 .BioSection {
-	width: 90%;
-	margin: 0 auto;
-	padding: 2rem;
+	margin: 1rem auto 0 auto;
+	padding: 1rem;
 	background: rgba(236, 236, 236, 0.897);
 }
 
 .UserBio {
-	width: 70vw;
+	width: 270px;
 	margin: 0 auto;
 }
 
@@ -80,13 +79,37 @@
 	text-align: center;
 }
 
+.LoaderSendingRequestHolder {
+	text-align: center;
+	height: 25px;
+	overflow: hidden;
+}
+
 @media (min-width: 800px) {
 	.UserBio {
-		width: 40vw;
+		width: 500px;
 		margin: 0 auto;
 	}
 
 	.BioMessage {
+		width: 100%;
+	}
+}
+
+@media (min-width: 1040px) {
+	.UserBio {
+		padding: 1rem;
+		width: 500px;
+		background: rgba(236, 236, 236, 0.897);
+	}
+	.BioSection {
+		background: #fff;
 		width: 80%;
+	}
+}
+
+@media (min-width: 1300px) {
+	.UserBio {
+		padding: 2rem;
 	}
 }

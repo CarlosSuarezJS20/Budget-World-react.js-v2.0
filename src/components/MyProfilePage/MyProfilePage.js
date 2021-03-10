@@ -5,6 +5,9 @@ import Toolbar from '../Navigation/Toolbar/Toolbar';
 import BioSection from '../MyProfilePage/BioSection/BioSection';
 import UploadImageModal from './UploadModal/UploadImageModal';
 import { connect } from 'react-redux';
+import MyTrips from './MyTrips/MyTrips';
+
+import UsersOptions from './UsersOptions/UsersOptions';
 
 class MyProfilePage extends Component {
 	state = {
@@ -31,16 +34,18 @@ class MyProfilePage extends Component {
 					clicked={this.showModalHandler}
 				/>
 				<Toolbar profilePage />
-				<div className={classes.ProfileUserImageSection}>
+				<div className={classes.ProfileUserInfoSection}>
 					<ProfileImage
 						profileImageURL={this.props.userImageURL}
 						showUploadPictureModal={this.showModalHandler}
 					/>
+					<BioSection
+						userId={this.props.userId}
+						userToken={this.props.userToken}
+					/>
 				</div>
-				<BioSection
-					userId={this.props.userId}
-					userToken={this.props.userToken}
-				/>
+				<UsersOptions />
+				<MyTrips />
 			</div>
 		);
 	}

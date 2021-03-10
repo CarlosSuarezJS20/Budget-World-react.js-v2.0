@@ -8,11 +8,12 @@ import { faPencilAlt } from '@fortawesome/free-solid-svg-icons';
 
 import axios from '../../../axios';
 
+// manage loading and errors //
+
 const BioSection = (props) => {
 	const [loading, setLoading] = useState(false);
 	const [addingBio, setAddingBio] = useState(false);
 	const [bioMessage, setBioMessage] = useState('');
-	const [bioMessageLength, setBioMessageLength] = useState(0);
 	const [inputConfig, setInputConfig] = useState({
 		elementType: 'textarea',
 		elementConfig: {
@@ -34,7 +35,7 @@ const BioSection = (props) => {
 				return;
 			}
 			try {
-				if (editing && bioMessageObject.bioMessageLength === 0) {
+				if (editing && bioMessageObject.bioMessage.length === 0) {
 					dataResponse = await axios.delete(
 						`/users-bios/${editingItemId}.json?auth=` + props.userToken
 					);
@@ -51,7 +52,7 @@ const BioSection = (props) => {
 				}
 
 				if (dataResponse) {
-					if (editing && bioMessageObject.bioMessageLength === 0) {
+					if (editing && bioMessageObject.bioMessage.length === 0) {
 						setEditingItemId('');
 						setEditing(false);
 					}
@@ -61,10 +62,12 @@ const BioSection = (props) => {
 					if (editingItemId.length === 0) {
 						setEditingItemId(dataResponse.data.name);
 					}
+					setBioMessage(bioMessageObject.bioMessage);
 					setAddingBio(!addingBio);
 					setSendingRequest(false);
 				}
 			} catch (error) {
+				setSendingRequest(false);
 				//do something with the error
 				console.log(error);
 			}
@@ -83,13 +86,11 @@ const BioSection = (props) => {
 				for (let item in res.data) {
 					userMessage = { itemId: item, ...res.data[item] };
 					setBioMessage(userMessage.bioMessage);
-					setBioMessageLength(userMessage.bioMessageLength);
 					setEditingItemId(userMessage.itemId);
 				}
 				setLoading(false);
 			}
 		} catch (error) {
-			console.log(error);
 			setLoading(false);
 		}
 	}, []);
@@ -108,11 +109,9 @@ const BioSection = (props) => {
 
 	const saveBio = () => {
 		const { value } = inputConfig;
-		setBioMessage(value);
 		const bioMessageObject = {
 			id: props.userId,
 			bioMessage: value,
-			bioMessageLength: value.trim().length,
 		};
 		sendingHtppRequestForBioMessage(bioMessageObject);
 		setSendingRequest(true);
@@ -169,6 +168,9 @@ const BioSection = (props) => {
 							textAreaChangedHandler(e);
 						}}
 					/>
+					<div className={classes.LoaderSendingRequestHolder}>
+						{sendingRequest ? <MyProfileLoader sendForm /> : null}
+					</div>
 					<div className={classes.BioButtonHolder}>
 						<button onClick={cancelBioUpdate}>cancel</button>
 						<button onClick={saveBio}>save</button>

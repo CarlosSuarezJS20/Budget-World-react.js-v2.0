@@ -10,7 +10,7 @@ const ProfileImage = (props) => {
 		style = { border: '3px solid rgb(202, 202, 11)' };
 	}
 	return (
-		<React.Fragment>
+		<div className={classes.ImageSection}>
 			<div className={classes.ProfileImageHolder} style={style}>
 				{!props.profileImageURL.length > 0 ? (
 					<FontAwesomeIcon icon={faUser} className={classes.ProfileImageIcon} />
@@ -31,7 +31,7 @@ const ProfileImage = (props) => {
 					onClick={props.showUploadPictureModal}
 				/>
 			</button>
-		</React.Fragment>
+		</div>
 	);
 };
 

@@ -1,3 +1,9 @@
+.ImageSection {
+	position: relative;
+	width: 300px;
+	margin: 0 auto;
+}
+
 .ProfileImageHolder {
 	margin: auto;
 	height: 150px;
@@ -22,8 +28,8 @@
 
 .UploadPictureBtn {
 	position: absolute;
-	top: 60%;
-	left: 64%;
+	top: 70%;
+	left: 60%;
 	text-transform: capitalize;
 	font-weight: bolder;
 	padding: 0.5rem;
@@ -40,4 +46,10 @@
 .UploadPictureBtn:hover {
 	background: rgb(196, 196, 191);
 	border: 1px solid black;
+}
+
+@media (min-width: 1040px) {
+	.ImageSection {
+		height: 150px;
+	}
 }

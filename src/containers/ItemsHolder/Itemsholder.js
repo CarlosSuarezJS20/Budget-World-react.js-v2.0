@@ -58,7 +58,7 @@ class ItemsHolder extends Component {
 	};
 
 	render() {
-		let items;
+		let items = [...this.props.items];
 
 		// filters per category
 		if (this.props.category) {
@@ -71,27 +71,27 @@ class ItemsHolder extends Component {
 
 		let classForMainDisplayDiv;
 
-		if (this.props.items.length === 0) {
+		if (items.length === 0) {
 			classForMainDisplayDiv = classes.NotCardsClass;
 		} else {
 			classForMainDisplayDiv = classes.CardsCenter;
 		}
 
-		if (this.props.items.length === 0 && this.props.loading) {
+		if (items.length === 0 && this.props.loading) {
 			classForMainDisplayDiv = classes.CardsDisplayLoader;
 		}
 
 		let filteredItems =
-			this.props.items.length === 0 && this.props.loading ? (
+			items.length === 0 && this.props.loading ? (
 				<div className={classes.SpinnerHolder}>
 					<Spinner />
 				</div>
-			) : this.props.items.length === 0 ? (
+			) : items.length === 0 ? (
 				<p className={classes.NotFound}>
 					Nothing Found <FontAwesomeIcon icon={faSadCry} />
 				</p>
 			) : (
-				<Items items={items ? items : this.props.items} />
+				<Items items={items} />
 			);
 		return (
 			<section className={classes.Cards}>

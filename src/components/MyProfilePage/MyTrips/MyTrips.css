@@ -1,0 +1,41 @@
+.TripsHolder {
+	background: rgba(236, 236, 236, 0.897);
+	margin: 0 auto;
+}
+
+.Trips {
+	position: relative;
+	height: 250px;
+	background: #fff;
+	margin: 0.5rem;
+}
+
+.TripsLoader {
+	width: min-content;
+	margin: 3rem auto;
+}
+
+.Trips h2 {
+	text-align: center;
+	margin: 6rem 0;
+	color: grey;
+	opacity: 0.6;
+}
+
+.Title {
+	position: absolute;
+	top: 80%;
+	width: 100%;
+}
+
+.Title h3 {
+	text-align: right;
+	text-transform: capitalize;
+	padding: 0.5rem;
+}
+
+@media (min-width: 800px) {
+	.TripsHolder {
+		width: 80%;
+	}
+}

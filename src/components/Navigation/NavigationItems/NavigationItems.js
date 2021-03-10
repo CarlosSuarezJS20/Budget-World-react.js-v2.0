@@ -13,7 +13,7 @@ import { connect } from 'react-redux';
 
 class NavigationItems extends Component {
 	render() {
-		return this.props.isAuthenticated ? (
+		let navigationItems = (
 			<ul className={classes.NavigationItems}>
 				<NavigationItem link="/add-new" exact>
 					<FontAwesomeIcon
@@ -21,18 +21,9 @@ class NavigationItems extends Component {
 						className={classes.NavbarButton}
 					/>
 				</NavigationItem>
-				{this.props.profilePage ? (
-					<NavigationItem link="/discover">
-						<FontAwesomeIcon
-							icon={faCompass}
-							className={classes.NavbarButton}
-						/>
-					</NavigationItem>
-				) : (
-					<NavigationItem link="/my-profile">
-						<FontAwesomeIcon icon={faUser} className={classes.NavbarButton} />
-					</NavigationItem>
-				)}
+				<NavigationItem link="/my-profile">
+					<FontAwesomeIcon icon={faUser} className={classes.NavbarButton} />
+				</NavigationItem>
 				<NavigationItem link="/logout">
 					<FontAwesomeIcon
 						icon={faSignOutAlt}
@@ -40,6 +31,29 @@ class NavigationItems extends Component {
 					/>
 				</NavigationItem>
 			</ul>
+		);
+
+		if (this.props.profilePage) {
+			navigationItems = (
+				<ul className={classes.NavigationItems}>
+					<NavigationItem link="/discover">
+						<FontAwesomeIcon
+							icon={faCompass}
+							className={classes.NavbarButton}
+						/>
+					</NavigationItem>
+					<NavigationItem link="/logout">
+						<FontAwesomeIcon
+							icon={faSignOutAlt}
+							className={classes.NavbarButton}
+						/>
+					</NavigationItem>
+				</ul>
+			);
+		}
+
+		return this.props.isAuthenticated ? (
+			navigationItems
 		) : (
 			<ul
 				className={classes.NavigationItems}

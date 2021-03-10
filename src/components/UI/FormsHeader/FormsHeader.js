@@ -1,5 +1,4 @@
 import React from 'react';
-import { NavLink } from 'react-router-dom';
 
 import classes from './FormsHeader.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -11,13 +10,14 @@ const formsHeader = (props) => {
 		if (props.imageFile !== null && props.itemBuilderHeader) {
 			props.deleteStoredImage();
 		}
+		props.reDirect();
 	};
 
 	return (
 		<header className={classes.FormHeader}>
-			<NavLink to="/discover" onClick={clickedHandler}>
+			<button onClick={clickedHandler}>
 				<FontAwesomeIcon icon={faChevronLeft} className={classes.Return} />
-			</NavLink>
+			</button>
 			<h2>{props.name}</h2>
 			<button onClick={props.clicked} disabled={props.disabled}>
 				<FontAwesomeIcon icon={faCheck} />
