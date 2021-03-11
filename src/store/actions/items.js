@@ -23,15 +23,20 @@ export const fetchItemsStart = () => {
 	};
 };
 
-export const fetchItemsFromServer = (search, type) => {
+export const fetchItemsFromServer = (search, type, userId) => {
 	return (dispatch) => {
+		let querybody;
 		dispatch(fetchItemsStart());
-		const querybody =
-			type === 'country'
-				? `?orderBy="country"&equalTo="${search}"`
-				: `?orderBy="city"&equalTo="${search}"`;
+		if (userId) {
+			querybody = `?orderBy="userId"&equalTo="${userId}"`;
+		} else {
+			querybody =
+				type === 'country'
+					? `?orderBy="country"&equalTo="${search}"`
+					: `?orderBy="city"&equalTo="${search}"`;
+		}
 
-		const query = search.length === 0 ? '' : querybody;
+		const query = search.length > 0 || userId ? querybody : '';
 		axios
 			.get('/items.json' + query)
 			.then((res) => {

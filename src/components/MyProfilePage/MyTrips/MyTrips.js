@@ -3,6 +3,9 @@ import classes from './MyTrips.css';
 import axios from '../../../axios';
 import MyProfileLoader from '../MyProfileLoader/MyProfileLoader';
 
+// create api to request trips
+// Errors
+
 const MyTrips = (props) => {
 	const [loading, setLoading] = useState(false);
 	const [trips, setTrips] = useState([]);

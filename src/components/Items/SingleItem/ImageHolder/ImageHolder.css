@@ -3,6 +3,19 @@
 	overflow-y: hidden;
 }
 
+.ImageContainerForProfile {
+	position: relative;
+	overflow-y: hidden;
+	height: 300px;
+	margin: 0.5rem;
+	transition: 0.5s ease;
+}
+
+.ImageContainerForProfile:hover,
+.ImageContainerForProfile:active {
+	transform: scale(1.02);
+}
+
 .ItemImage {
 	height: 180px;
 	width: 100%;
@@ -11,7 +24,14 @@
 	border-top-right-radius: 15px;
 }
 
-.ImageContainer p {
+.ItemImageForProfile {
+	height: 300px;
+	width: 100%;
+	object-fit: cover;
+	border-radius: 15px;
+}
+
+.CityTitle {
 	position: absolute;
 	right: 0;
 	bottom: 5%;

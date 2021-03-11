@@ -6,8 +6,10 @@ import BioSection from '../MyProfilePage/BioSection/BioSection';
 import UploadImageModal from './UploadModal/UploadImageModal';
 import { connect } from 'react-redux';
 import MyTrips from './MyTrips/MyTrips';
+import MyContributions from './MyContributions/MyContributions';
 
 import UsersOptions from './UsersOptions/UsersOptions';
+import { Redirect } from 'react-router';
 
 class MyProfilePage extends Component {
 	state = {
@@ -27,7 +29,9 @@ class MyProfilePage extends Component {
 	};
 
 	render() {
-		return (
+		return !this.props.isAuthenticated ? (
+			<Redirect to="/login" />
+		) : (
 			<div className={classes.ProfilePageHolder}>
 				<UploadImageModal
 					show={this.state.showUploadImageModal}
@@ -45,7 +49,10 @@ class MyProfilePage extends Component {
 					/>
 				</div>
 				<UsersOptions />
-				<MyTrips />
+				<div>
+					<MyTrips />
+					<MyContributions />
+				</div>
 			</div>
 		);
 	}
@@ -53,6 +60,7 @@ class MyProfilePage extends Component {
 
 const mapStateToProps = (state) => {
 	return {
+		isAuthenticated: state.authR.token != null,
 		userImageURL: state.usersInformationR.profilePictureURL,
 		userToken: state.authR.token,
 		userId: state.authR.userId,

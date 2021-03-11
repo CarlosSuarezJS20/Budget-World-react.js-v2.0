@@ -19,7 +19,7 @@ import { faSadCry } from '@fortawesome/free-solid-svg-icons';
 import axios from '../../axios';
 import firebase from '../../firebase';
 
-// Helper Function to delete image from storage server
+// Helper Function to delete image from storage server if user cancels the building process
 
 const deleteItemImagefromStorage = (id) => {
 	axios
@@ -129,8 +129,8 @@ const mapDispatchToProps = (dispatch) => {
 		onDeletingItem: (id, token) =>
 			dispatch(actions.deletingItemInServer(id, token)),
 		onCancelDeletion: () => dispatch(actions.deletedItemCancel()),
-		onFetchItems: (search, prevSearchVal, category) =>
-			dispatch(actions.fetchItemsFromServer(search, prevSearchVal, category)),
+		onFetchItems: (search, category) =>
+			dispatch(actions.fetchItemsFromServer(search, category)),
 	};
 };
 

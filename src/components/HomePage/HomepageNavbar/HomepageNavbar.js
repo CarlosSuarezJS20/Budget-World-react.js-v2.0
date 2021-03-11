@@ -14,12 +14,8 @@ class HomepageNavbar extends Component {
 						<span>BW</span>
 					</div>
 					<ul className={classes.Navlinks}>
-						<li
-							onClick={() => {
-								alert('page under construction, please visit again soon ! ');
-							}}
-						>
-							<a className={classes.AboutLink}>about</a>
+						<li>
+							<NavLink to="/about-us">about</NavLink>
 						</li>
 						<li className={classes.Login}>
 							<NavLink to="/login">Log in</NavLink>

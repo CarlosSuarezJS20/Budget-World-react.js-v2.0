@@ -26,11 +26,12 @@
 	position: absolute;
 	top: 80%;
 	width: 100%;
+	text-align: right;
 }
 
 .Title h3 {
-	text-align: right;
 	text-transform: capitalize;
+	font-size: 1.2rem;
 	padding: 0.5rem;
 }
 

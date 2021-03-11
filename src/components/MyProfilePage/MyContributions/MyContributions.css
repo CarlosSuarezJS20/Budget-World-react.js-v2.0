@@ -1,0 +1,75 @@
+.ContributionsSection {
+	background: rgba(236, 236, 236, 0.897);
+	min-width: 380;
+	margin: 0 auto;
+}
+
+.ContributionsHolder {
+	position: relative;
+	background: #fff;
+	margin: 0.5rem;
+}
+
+.ContributionEmptyHolder {
+	margin: 3rem auto;
+	padding: 1rem;
+}
+
+.Contributions {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+	gap: 2rem;
+	width: 103%;
+	margin: 5rem 0 2rem 0;
+	height: 450px;
+	padding: 1rem 2rem 0 1.5rem;
+}
+
+.InfoAndAddNewHolder {
+	width: 200px;
+	margin: 0 auto;
+	text-align: center;
+}
+
+.InfoAndAddNewHolder h2 {
+	text-align: center;
+	color: grey;
+	opacity: 0.6;
+}
+
+.LoaderHolder {
+	width: 100px;
+	margin: 0 auto;
+}
+
+.ContributionsTitleHolder {
+	position: absolute;
+	background: rgba(255, 255, 255, 0.733);
+	padding: 1rem 0;
+	top: 0%;
+	width: 100%;
+	text-align: center;
+}
+
+.ContributionsTitleHolder h3 {
+	text-transform: capitalize;
+	font-size: 1.4rem;
+	padding: 0.5rem 0.5rem 0 0;
+}
+
+.ContributionsTitleHolder p {
+	text-transform: capitalize;
+	padding: 0 0.5rem 0.5rem 0;
+	color: grey;
+	font-size: 1rem;
+	opacity: 0.8;
+	line-height: 15px;
+}
+
+@media (min-width: 800px) {
+	.ContributionsSection {
+		width: 80%;
+	}
+}
+
+/*  */
