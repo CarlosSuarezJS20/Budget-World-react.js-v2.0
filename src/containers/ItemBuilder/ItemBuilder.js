@@ -120,10 +120,10 @@ class ItemBuilder extends Component {
 			},
 		},
 		formIsValid: false,
-		updated: false,
 		valueLength: 0,
 		image: null,
 		uploadImageProgress: 0,
+		saving: false,
 	};
 
 	deleteSaveImageFromFirebase = () => {
@@ -154,41 +154,52 @@ class ItemBuilder extends Component {
 
 	addItemHandler = (event) => {
 		event.preventDefault();
+		// Prevents for extra added items to happen once user clicks the add button more than once.
+		this.setState((prev) => ({ saving: !prev.saving }));
 
-		const itemData = {};
-		let item = {};
+		if (this.state.saving) {
+			return;
+		} else {
+			const itemData = {};
+			let item = {};
 
-		// All data from Inputs
-		for (let formElementName in this.state.newItemForm) {
-			itemData[formElementName] = this.state.newItemForm[formElementName].value;
+			// All data from Inputs
+			for (let formElementName in this.state.newItemForm) {
+				itemData[formElementName] = this.state.newItemForm[
+					formElementName
+				].value;
+			}
+
+			// Image URL form Firebase
+			let storageRef = firebase.storage().ref();
+			storageRef.child(`images/${this.state.image.name}`);
+			storageRef
+				.child(`images/${this.state.image.name}`)
+				.getDownloadURL()
+				.then((url) => {
+					item = {
+						image: url,
+						imageStorageId: this.state.image.name,
+						itemName: itemData.itemName,
+						price: +itemData.price,
+						description: itemData.description,
+						category: itemData.category,
+						country: itemData.country.toUpperCase(),
+						city: itemData.city.toUpperCase(),
+						userId: this.props.userId,
+					};
+
+					axios
+						.post('/items.json?auth=' + this.props.token, item)
+						.then((res) => {
+							this.props.history.goBack();
+							this.setState((prev) => ({ saving: !prev.saving }));
+						})
+						.catch((error) => {
+							this.setState((prev) => ({ saving: !prev.saving }));
+						});
+				});
 		}
-
-		// Image URL form Firebase
-		let storageRef = firebase.storage().ref();
-		storageRef.child(`images/${this.state.image.name}`);
-		storageRef
-			.child(`images/${this.state.image.name}`)
-			.getDownloadURL()
-			.then((url) => {
-				item = {
-					image: url,
-					imageStorageId: this.state.image.name,
-					itemName: itemData.itemName,
-					price: +itemData.price,
-					description: itemData.description,
-					category: itemData.category,
-					country: itemData.country.toUpperCase(),
-					city: itemData.city.toUpperCase(),
-					userId: this.props.userId,
-				};
-
-				axios
-					.post('/items.json?auth=' + this.props.token, item)
-					.then((res) => {
-						this.props.history.goBack();
-					})
-					.catch((error) => {});
-			});
 	};
 
 	checkValidity(value, rules) {
@@ -245,6 +256,7 @@ class ItemBuilder extends Component {
 	};
 
 	render() {
+		console.log(this.state.saving);
 		const formElementsArray = [];
 		for (let key in this.state.newItemForm) {
 			formElementsArray.push({

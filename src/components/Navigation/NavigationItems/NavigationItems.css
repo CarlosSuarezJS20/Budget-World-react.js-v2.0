@@ -1,7 +1,31 @@
 .NavigationItems {
+	list-style: none;
+	display: flex;
+}
+
+.NavigationItemsProfilePage {
 	margin-top: 0.3rem;
 	list-style: none;
 	display: flex;
+}
+
+.ProfilePageLink {
+	text-align: center;
+	padding: 10px 10px;
+	width: 100%;
+}
+
+.ProfilePageLink {
+	color: rgb(49, 49, 49);
+	width: 100%;
+	box-sizing: border-box;
+}
+
+.ProfilePageLink:hover,
+.ProfilePageLink:active,
+.ProfilePageLink.active {
+	color: rgb(207, 211, 1);
+	font-weight: bold;
 }
 
 @media (min-width: 720px) {
@@ -23,7 +47,7 @@
 .SignupBtn {
 	text-transform: capitalize;
 	border: none;
-	font-size: 1rem;
+	font-size: 1.2rem;
 	padding-right: 1rem;
 	color: black;
 	font-weight: 500;

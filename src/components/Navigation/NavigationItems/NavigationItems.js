@@ -8,6 +8,7 @@ import {
 	faUser,
 	faCompass,
 } from '@fortawesome/free-solid-svg-icons';
+import { Link } from 'react-router-dom';
 
 import { connect } from 'react-redux';
 
@@ -21,9 +22,14 @@ class NavigationItems extends Component {
 						className={classes.NavbarButton}
 					/>
 				</NavigationItem>
-				<NavigationItem link="/my-profile">
-					<FontAwesomeIcon icon={faUser} className={classes.NavbarButton} />
-				</NavigationItem>
+				<li className={classes.ProfilePageLink}>
+					<Link
+						to={{ pathname: `/my-profile/${this.props.userId}` }}
+						className={classes.ProfilePageLink}
+					>
+						<FontAwesomeIcon icon={faUser} className={classes.NavbarButton} />
+					</Link>
+				</li>
 				<NavigationItem link="/logout">
 					<FontAwesomeIcon
 						icon={faSignOutAlt}
@@ -35,7 +41,7 @@ class NavigationItems extends Component {
 
 		if (this.props.profilePage) {
 			navigationItems = (
-				<ul className={classes.NavigationItems}>
+				<ul className={classes.NavigationItemsProfilePage}>
 					<NavigationItem link="/discover">
 						<FontAwesomeIcon
 							icon={faCompass}
@@ -74,6 +80,7 @@ class NavigationItems extends Component {
 const mapStateToProps = (state) => {
 	return {
 		isAuthenticated: state.authR.token !== null,
+		userId: state.authR.userId,
 	};
 };
 
