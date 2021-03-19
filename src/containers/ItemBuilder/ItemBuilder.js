@@ -255,8 +255,7 @@ class ItemBuilder extends Component {
 		this.setState({ newItemForm: updatedItemForm });
 	};
 
-	render() {
-		console.log(this.state.saving);
+	render() {;
 		const formElementsArray = [];
 		for (let key in this.state.newItemForm) {
 			formElementsArray.push({
