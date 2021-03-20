@@ -45,7 +45,7 @@ class Search extends Component {
 				elementType={this.props.inputC.elementType}
 				elementConfig={this.props.inputC.elementConfig}
 				value={this.props.inputC.value}
-				changed={(event) => this.props.onChangedHandler(event)}
+				changed={(event) => this.props.onChangedHandler(event.target.value)}
 			/>
 		);
 	}
@@ -61,7 +61,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
 	return {
-		onChangedHandler: (event) => dispatch(actions.inputHandler(event)),
+		onChangedHandler: (eventValue) => dispatch(actions.inputHandler(eventValue)),
 		onFetchItems: (search, category) =>
 			dispatch(actions.fetchItemsFromServer(search, category)),
 	};

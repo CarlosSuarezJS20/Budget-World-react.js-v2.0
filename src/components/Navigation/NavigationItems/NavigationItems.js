@@ -11,6 +11,7 @@ import {
 import { Link } from 'react-router-dom';
 
 import { connect } from 'react-redux';
+import * as actions from '../../../store/actions/index'; 
 
 class NavigationItems extends Component {
 	render() {
@@ -20,6 +21,9 @@ class NavigationItems extends Component {
 					<FontAwesomeIcon
 						icon={faPlusCircle}
 						className={classes.NavbarButton}
+						onClick={()=> {
+							//Clears the input if the search field in the navbar containts letters
+							this.props.onClearingSearchInput('')}}
 					/>
 				</NavigationItem>
 				<li className={classes.ProfilePageLink}>
@@ -27,7 +31,9 @@ class NavigationItems extends Component {
 						to={{ pathname: `/my-profile/${this.props.userId}` }}
 						className={classes.ProfilePageLink}
 					>
-						<FontAwesomeIcon icon={faUser} className={classes.NavbarButton} />
+						<FontAwesomeIcon icon={faUser} className={classes.NavbarButton} onClick={()=>{
+							this.props.onClearingSearchInput('')
+						}}/>
 					</Link>
 				</li>
 				<NavigationItem link="/logout">
@@ -84,4 +90,10 @@ const mapStateToProps = (state) => {
 	};
 };
 
-export default connect(mapStateToProps, null)(NavigationItems);
+const mapDispatchToProps = (dispatch) => {
+	return {
+	onClearingSearchInput: (emptyString) => dispatch(actions.inputHandler(emptyString)), 
+	};
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(NavigationItems);

@@ -1,9 +1,9 @@
 import * as actionTypes from './actionTypes';
 
-export const inputHandler = (event) => {
+export const inputHandler = (value) => {
 	return {
 		type: actionTypes.INPUT_ONCHANGED_HANDLER,
-		eventValue: event.target.value,
+		eventValue: value,
 	};
 };
 

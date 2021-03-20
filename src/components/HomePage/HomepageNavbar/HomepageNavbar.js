@@ -5,6 +5,7 @@ import Logo from '../../Logo/Logo';
 import { NavLink } from 'react-router-dom';
 
 class HomepageNavbar extends Component {
+	// Will have to add Name of the traveller and additional information
 	render() {
 		return (
 			<header className={classes.NavbarHolder}>
