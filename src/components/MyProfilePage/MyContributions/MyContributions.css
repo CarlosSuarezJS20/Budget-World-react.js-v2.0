@@ -12,13 +12,15 @@
 }
 
 .ContributionEmptyHolder {
-  margin: 3rem auto;
-  padding: 1rem;
+  height: 450px;
+  background: rgba(236, 236, 236, 0.452);
+  padding: 10rem 2rem 0 1.5rem;
+  margin: 0 0 2rem 0;
 }
 
 .Contributions {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
   background: rgba(236, 236, 236, 0.452);
   gap: 2rem;
   width: 103%;
@@ -29,6 +31,7 @@
 
 .InfoAndAddNewHolder {
   width: 200px;
+  height: 200px;
   margin: 0 auto;
   text-align: center;
 }
@@ -68,16 +71,59 @@
 
 .SearchContainer {
   position: absolute;
-  top: 15%;
+  top: 20%;
   padding: 1rem;
   width: 100%;
   z-index: 100;
 }
 
+.SearchInputHolder {
+  display: none;
+}
+
 .SearchItems {
   display: flex;
   padding: 0.3rem;
+  width: 50px;
+  float: right;
+  border-radius: 20px;
   background: black;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+}
+
+.SearchItems:hover {
+  width: 250px;
+}
+
+.SearchItems:hover > .SearchInputHolder {
+  display: block;
+}
+
+.ContributionsSearchBtn {
+  background: black;
+  color: #ffff;
+  border: none;
+  font-size: 1.5rem;
+  padding: 0.5rem;
+}
+
+.ContributionsSearchBtn:hover + #search {
+  display: block;
+}
+
+.AddnewContribution {
+  font-size: 1.2rem;
+  border: 2px solid black;
+  border-radius: 5px;
+  padding: 0.5rem;
+  color: black;
+  font-weight: bold;
+  text-transform: capitalize;
+}
+
+.AddnewContribution:hover {
+  border: 2px solid rgb(197, 197, 16);
+  color: rgb(197, 197, 16);
 }
 
 @media (min-width: 800px) {
