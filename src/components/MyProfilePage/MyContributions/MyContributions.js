@@ -6,9 +6,9 @@ import SingleContributionImageHolder from "../../Items/SingleItem/ImageHolder/Im
 import MyProfileLoader from "../MyProfileLoader/MyProfileLoader";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faSearch, faThList } from "@fortawesome/free-solid-svg-icons";
+import { faSearch } from "@fortawesome/free-solid-svg-icons";
 
-import { NavLink } from "react-router-dom";
+import { NavLink, withRouter } from "react-router-dom";
 import Input from "../../UI/Input/Input";
 
 export class MyContributions extends Component {
@@ -24,6 +24,7 @@ export class MyContributions extends Component {
   };
 
   componentDidMount() {
+    console.log(this.props);
     this.props.onFetchingUserContributions(this.props.userId);
   }
 
@@ -90,7 +91,10 @@ export class MyContributions extends Component {
             ) : userContributions.length === 0 ? (
               <div className={classes.InfoAndAddNewHolder}>
                 <h2>No Contributions</h2>
-                <NavLink to="/add-new" className={classes.AddnewContribution}>
+                <NavLink
+                  to={{ pathname: `${this.props.match.url}/add-new` }}
+                  className={classes.AddnewContribution}
+                >
                   add new
                 </NavLink>
               </div>
@@ -127,4 +131,7 @@ const mapDispatchToProps = (dispatch) => {
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(MyContributions);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(withRouter(MyContributions));

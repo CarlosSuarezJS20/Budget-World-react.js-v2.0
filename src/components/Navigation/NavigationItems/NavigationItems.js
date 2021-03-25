@@ -16,7 +16,7 @@ class NavigationItems extends Component {
   render() {
     let navigationItems = (
       <ul className={classes.NavigationItems}>
-        <NavigationItem link="/add-new" exact>
+        <NavigationItem addNew link="/add-new" exact>
           <FontAwesomeIcon
             icon={faPlusCircle}
             className={classes.NavbarButton}

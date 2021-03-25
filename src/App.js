@@ -22,80 +22,82 @@ class App extends Component {
     return (
       <React.Fragment>
         <ScrollRestoration />
-        <Route
-          path="/new-trip"
-          component={() => (
-            <div
-              style={{
-                height: "100vh",
-                padding: "3rem",
-                textAlign: "center",
-                margin: "10rem 0",
-              }}
-            >
-              <FontAwesomeIcon
-                icon={faCompass}
+        <Switch>
+          <Route path="/" exact component={HomePage} />
+          <Route
+            path="/new-trip"
+            component={() => (
+              <div
                 style={{
-                  fontSize: "4rem",
-                  margin: "1rem 0",
-                  color: "grey",
-                  opacity: "0.8",
-                }}
-              />
-              <h1
-                style={{
-                  fontSize: "2rem",
-                  margin: "1rem 0",
-                  color: "grey",
-                  opacity: "0.8",
+                  height: "100vh",
+                  padding: "3rem",
+                  textAlign: "center",
+                  margin: "10rem 0",
                 }}
               >
-                Page under construction
-              </h1>
-            </div>
-          )}
-        />
-        <Route
-          path="/about-us"
-          component={() => (
-            <div
-              style={{
-                height: "100vh",
-                padding: "3rem",
-                textAlign: "center",
-                margin: "10rem 0",
-              }}
-            >
-              <FontAwesomeIcon
-                icon={faCompass}
+                <FontAwesomeIcon
+                  icon={faCompass}
+                  style={{
+                    fontSize: "4rem",
+                    margin: "1rem 0",
+                    color: "grey",
+                    opacity: "0.8",
+                  }}
+                />
+                <h1
+                  style={{
+                    fontSize: "2rem",
+                    margin: "1rem 0",
+                    color: "grey",
+                    opacity: "0.8",
+                  }}
+                >
+                  Page under construction
+                </h1>
+              </div>
+            )}
+          />
+          <Route
+            path="/about-us"
+            component={() => (
+              <div
                 style={{
-                  fontSize: "4rem",
-                  margin: "1rem 0",
-                  color: "grey",
-                  opacity: "0.8",
-                }}
-              />
-              <h1
-                style={{
-                  fontSize: "2rem",
-                  margin: "1rem 0",
-                  color: "grey",
-                  opacity: "0.8",
+                  height: "100vh",
+                  padding: "3rem",
+                  textAlign: "center",
+                  margin: "10rem 0",
                 }}
               >
-                Page under construction
-              </h1>
-            </div>
-          )}
-        />
-        <Route path="/update" component={ItemUpdate} />
-        <Route path="/add-new" component={ItemBuilder} />
-        <Route path="/logout" component={Logout} />
-        <Route path="/sign-up" component={RegistrationPage} />
-        <Route path="/login" component={Auth} />
-        <Route path="/my-profile" component={MyProfile} />
-        <Route path="/discover" exact component={Itemsholder} />
-        <Route path="/" exact component={HomePage} />
+                <FontAwesomeIcon
+                  icon={faCompass}
+                  style={{
+                    fontSize: "4rem",
+                    margin: "1rem 0",
+                    color: "grey",
+                    opacity: "0.8",
+                  }}
+                />
+                <h1
+                  style={{
+                    fontSize: "2rem",
+                    margin: "1rem 0",
+                    color: "grey",
+                    opacity: "0.8",
+                  }}
+                >
+                  Page under construction
+                </h1>
+              </div>
+            )}
+          />
+          <Route path="/update" component={ItemUpdate} />
+          <Route path="/:previous/add-new" component={ItemBuilder} />
+          <Route path="/logout" component={Logout} />
+          <Route path="/sign-up" component={RegistrationPage} />
+          <Route path="/login" component={Auth} />
+          <Route path="/my-profile" component={MyProfile} />
+          <Route path="/discover" component={Itemsholder} />
+        </Switch>
       </React.Fragment>
     );
   }

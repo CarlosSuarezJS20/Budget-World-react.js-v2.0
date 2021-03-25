@@ -1,73 +1,73 @@
-import * as actionTypes from '../actions/actionTypes';
-import { updateState } from './utility';
+import * as actionTypes from "../actions/actionTypes";
+import { updateState } from "./utility";
 
 const initialState = {
-	token: null,
-	userId: null,
-	errorAuthentication: null,
-	loadingAuth: false,
-	creatingAccount: false,
-	passwordNotConfirmed: true,
-	uploadImageProgress: 0,
+  token: null,
+  userId: null,
+  errorAuthentication: null,
+  loadingAuth: false,
+  creatingAccount: false,
+  passwordNotConfirmed: true,
+  uploadImageProgress: 0,
 };
 
 const confirmationPasswordHandler = (state) => {
-	if (state.passwordNotConfirmed) {
-		return updateState(state, { passwordNotConfirmed: false });
-	} else if (!state.passwordNotConfirmed) {
-		return updateState(state, { passwordNotConfirmed: true });
-	}
+  if (state.passwordNotConfirmed) {
+    return updateState(state, { passwordNotConfirmed: false });
+  } else if (!state.passwordNotConfirmed) {
+    return updateState(state, { passwordNotConfirmed: true });
+  }
 };
 
 const authStart = (state) => {
-	return updateState(state, { error: null, loadingAuth: true });
+  return updateState(state, { error: null, loadingAuth: true });
 };
 
 const authSuccess = (state, action) => {
-	return updateState(state, {
-		token: action.idToken,
-		userId: action.userId,
-		errorAuthentication: null,
-		loadingAuth: false,
-	});
+  return updateState(state, {
+    token: action.idToken,
+    userId: action.userId,
+    errorAuthentication: null,
+    loadingAuth: false,
+  });
 };
 
 const authFail = (state, action) => {
-	return updateState(state, {
-		errorAuthentication: action.error,
-		loadingAuth: false,
-	});
+  return updateState(state, {
+    errorAuthentication: action.error,
+    loadingAuth: false,
+  });
 };
 
 const authLogout = (state) => {
-	return updateState(state, { token: null, userId: null });
+  return updateState(state, { token: null, userId: null });
 };
 
 const creatingAccountStatusToggle = (state) => {
-	if (state.creatingAccount) {
-		return updateState(state, { creatingAccount: false });
-	} else {
-		return updateState(state, { creatingAccount: true });
-	}
+  if (state.creatingAccount) {
+    return updateState(state, { creatingAccount: false });
+  } else {
+    return updateState(state, { creatingAccount: true });
+  }
 };
 
 const reducer = (state = initialState, action) => {
-	switch (action.type) {
-		case actionTypes.CREATING_ACCOUNT_STATUS_TOGGLE:
-			return creatingAccountStatusToggle(state);
-		case actionTypes.AUTH_START:
-			return authStart(state);
-		case actionTypes.PASSWORD_MATCH_CONFIRMATION:
-			return confirmationPasswordHandler(state);
-		case actionTypes.AUTH_SUCCESS:
-			return authSuccess(state, action);
-		case actionTypes.AUTH_FAIL:
-			return authFail(state, action);
-		case actionTypes.AUTH_LOGOUT:
-			return authLogout(state);
-		default:
-			return state;
-	}
+  switch (action.type) {
+    case actionTypes.CREATING_ACCOUNT_STATUS_TOGGLE:
+      return creatingAccountStatusToggle(state);
+    case actionTypes.AUTH_START:
+      return authStart(state);
+    case actionTypes.PASSWORD_MATCH_CONFIRMATION:
+      return confirmationPasswordHandler(state);
+    case actionTypes.AUTH_SUCCESS:
+      return authSuccess(state, action);
+    case actionTypes.AUTH_FAIL:
+      return authFail(state, action);
+    case actionTypes.AUTH_LOGOUT:
+      return authLogout(state);
+    default:
+      return state;
+  }
 };
 
 export default reducer;
