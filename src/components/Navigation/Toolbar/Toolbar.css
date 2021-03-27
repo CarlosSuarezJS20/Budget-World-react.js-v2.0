@@ -1,95 +1,95 @@
 .Navbar {
-	position: fixed;
-	top: 0;
-	left: 0;
-	right: 0;
-	background: transparent;
-	z-index: 100;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  background: transparent;
+  z-index: 100;
 }
 
 .NavbarLogoHolder {
-	display: none;
+  display: none;
 }
 
 .NavbarItemsHolder {
-	display: flex;
-	justify-content: space-between;
-	background: rgb(248, 248, 248);
-	border-radius: 50px;
-	margin: 1rem auto;
-	width: 320px;
-	box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: space-between;
+  background: rgb(248, 248, 248);
+  border-radius: 50px;
+  margin: 1rem auto;
+  width: 320px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
 }
 
 .NavbarItemsHolder h1 {
-	font-size: 1rem;
-	margin: 1rem 1rem;
-	text-align: center;
+  font-size: 1rem;
+  margin: 1rem 1rem;
+  text-align: center;
 }
 
 .SearchInputHolder {
-	width: 200px;
+  width: 200px;
 }
 
 .Title {
-	border: 1px solid rgb(49, 49, 49);
-	border-radius: 5px;
-	padding: 5px;
-	font-size: 1.5rem;
-	font-weight: bold;
+  border: 1px solid rgb(49, 49, 49);
+  border-radius: 5px;
+  padding: 5px;
+  font-size: 1.5rem;
+  font-weight: bold;
 }
 
 @media (min-width: 600px) {
-	.SearchInputHolder {
-		width: 250px;
-	}
+  .SearchInputHolder {
+    width: 250px;
+  }
 
-	.NavbarItemsHolder {
-		width: 500px;
-	}
+  .NavbarItemsHolder {
+    width: 500px;
+  }
 }
 
 @media (min-width: 760px) {
-	.SearchInputHolder {
-		width: 300px;
-	}
+  .SearchInputHolder {
+    width: 300px;
+  }
 
-	.NavItemsHolder {
-		padding-right: 1.5rem;
-	}
+  .NavItemsHolder {
+    padding-right: 1.5rem;
+  }
 }
 
 @media (min-width: 1000px) {
-	.NavbarItemsHolder {
-		display: grid;
-		height: 60px;
-		grid-template-columns: 200px 300px 200px;
-		align-items: center;
-		background: rgb(248, 248, 248);
-		border-radius: 50px;
-		margin: 0 auto;
-		width: 800px;
-	}
+  .NavbarItemsHolder {
+    display: grid;
+    height: 60px;
+    grid-template-columns: 200px 300px 200px;
+    align-items: center;
+    background: rgb(248, 248, 248);
+    border-radius: 50px;
+    margin: 0 auto;
+    width: 800px;
+  }
 
-	.NavbarLogoHolder {
-		display: block;
-		margin-left: 1rem;
-		padding-right: 0;
-	}
+  .NavbarLogoHolder {
+    display: block;
+    margin-left: 1rem;
+    padding-right: 0;
+  }
 }
 
 @media (min-width: 1300px) {
-	.NavbarItemsHolder {
-		width: 1000px;
-		height: 80px;
-	}
+  .NavbarItemsHolder {
+    width: 1000px;
+    height: 80px;
+  }
 
-	.NavbarLogoHolder {
-		display: block;
-		margin-left: 1rem;
-	}
+  .NavbarLogoHolder {
+    display: block;
+    margin-left: 1rem;
+  }
 
-	.NavItemsHolder {
-		margin: 1rem auto;
-	}
+  .NavItemsHolder {
+    margin: 1rem auto;
+  }
 }

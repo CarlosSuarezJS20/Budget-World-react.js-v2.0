@@ -16,10 +16,6 @@ class MyProfilePage extends Component {
     showUploadImageModal: false,
   };
 
-  componentDidMount() {
-    console.log(this.props);
-  }
-
   componentDidUpdate(prevProps, prevState) {
     if (prevProps.showUploadImageModal !== this.state.showUploadImageModal) {
       return true;

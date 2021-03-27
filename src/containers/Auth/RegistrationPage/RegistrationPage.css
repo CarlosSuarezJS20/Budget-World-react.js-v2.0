@@ -1,211 +1,211 @@
 .LoginSection {
-	height: 100vh;
+  height: 100vh;
 }
 
 .HeroImage {
-	background: linear-gradient(transparent, rgba(255, 254, 254, 0.3)),
-		url('../../../assets/images/signup.jpg') center/cover no-repeat;
-	height: 35vh;
+  background: linear-gradient(transparent, rgba(255, 254, 254, 0.3)),
+    url("../../../assets/images/signup.jpg") center/cover no-repeat;
+  height: 35vh;
 }
 
 .HeroImage h1 {
-	padding-top: 1.5rem;
-	color: rgb(233, 229, 0);
-	font-size: 1.5rem;
-	font-weight: 500;
+  padding-top: 1.5rem;
+  color: rgb(233, 229, 0);
+  font-size: 1.5rem;
+  font-weight: 500;
 }
 
 .LogoHolder {
-	display: block;
+  display: block;
 }
 
 .FormHolder {
-	height: 60vh;
-	overflow: hidden;
+  height: 60vh;
+  overflow: hidden;
 }
 
 @media (min-width: 400px) {
-	.HeroImage {
-		height: 30vh;
-	}
+  .HeroImage {
+    height: 30vh;
+  }
 }
 
 @media (min-width: 500px) {
-	.HeroImage {
-		height: 50vh;
-	}
+  .HeroImage {
+    height: 50vh;
+  }
 
-	.LogoHolder {
-		left: 45%;
-		display: block;
-	}
+  .LogoHolder {
+    left: 45%;
+    display: block;
+  }
 
-	.FormHolder {
-		height: 50vh;
-		overflow: unset;
-	}
+  .FormHolder {
+    height: 50vh;
+    overflow: unset;
+  }
 }
 
 .Auth {
-	margin: 1.5rem auto;
-	width: 300px;
-	text-align: center;
-	border-radius: 5px;
-	box-sizing: border-box;
+  margin: 1.5rem auto;
+  width: 300px;
+  text-align: center;
+  border-radius: 5px;
+  box-sizing: border-box;
 }
 
 .Auth h2 {
-	font-weight: 500;
-	color: rgb(56, 56, 56);
+  font-weight: 500;
+  color: rgb(56, 56, 56);
 }
 
 .BtnsHolder {
-	padding-top: 1rem;
-	border-top: 1px solid rgb(156, 156, 156);
-	width: 250px;
-	margin: 1rem auto;
+  padding-top: 1rem;
+  border-top: 1px solid rgb(156, 156, 156);
+  width: 250px;
+  margin: 1rem auto;
 }
 
 .AuthBtn {
-	color: rgb(49, 49, 49);
-	width: 100%;
-	font-weight: bold;
-	background: rgb(249, 253, 2);
-	display: inline-block;
-	padding: 0.6rem 1rem;
-	text-transform: capitalize;
-	border: 1px solid rgb(207, 211, 1);
-	border-radius: 25px;
-	box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-	transition: all 0.3s linear;
-	cursor: pointer;
+  color: rgb(49, 49, 49);
+  width: 100%;
+  font-weight: bold;
+  background: rgb(249, 253, 2);
+  display: inline-block;
+  padding: 0.6rem 1rem;
+  text-transform: capitalize;
+  border: 1px solid rgb(207, 211, 1);
+  border-radius: 25px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s linear;
+  cursor: pointer;
 }
 
 .AuthBtn:hover {
-	background: rgb(207, 211, 1);
+  background: rgb(207, 211, 1);
 }
 
 .AuthBtn:active {
-	color: rgb(49, 49, 49);
+  color: rgb(49, 49, 49);
 }
 
 .FormMessage {
-	color: blue;
-	font-size: 1rem;
-	cursor: pointer;
+  color: blue;
+  font-size: 1rem;
+  cursor: pointer;
 }
 
 .FormMessage:hover {
-	color: blue;
-	text-decoration: underline;
+  color: blue;
+  text-decoration: underline;
 }
 
 .ErrorMessage {
-	color: red;
-	text-transform: capitalize;
-	font-size: 0.6rem;
+  color: red;
+  text-transform: capitalize;
+  font-size: 0.6rem;
 }
 
 @media (min-width: 1020px) {
-	.Auth {
-		margin: 5rem auto;
-		width: 500px;
-	}
+  .Auth {
+    margin: 5rem auto;
+    width: 500px;
+  }
 
-	.Auth h2 {
-		font-weight: 500;
-		font-size: 2rem;
-		color: rgb(56, 56, 56);
-	}
+  .Auth h2 {
+    font-weight: 500;
+    font-size: 2rem;
+    color: rgb(56, 56, 56);
+  }
 
-	.BtnsHolder {
-		padding-top: 2rem;
-		border-top: 1px solid rgb(156, 156, 156);
-		width: 400px;
-		margin: 2rem auto;
-	}
+  .BtnsHolder {
+    padding-top: 2rem;
+    border-top: 1px solid rgb(156, 156, 156);
+    width: 400px;
+    margin: 2rem auto;
+  }
 
-	.AuthBtn {
-		font-size: 1.5rem;
-	}
+  .AuthBtn {
+    font-size: 1.5rem;
+  }
 
-	.FormMessage {
-		font-size: 1.5rem;
-		cursor: pointer;
-	}
+  .FormMessage {
+    font-size: 1.5rem;
+    cursor: pointer;
+  }
 
-	.FormMessage:hover {
-		color: blue;
-		text-decoration: underline;
-	}
+  .FormMessage:hover {
+    color: blue;
+    text-decoration: underline;
+  }
 
-	.ErrorMessage {
-		color: red;
-		text-transform: capitalize;
-		font-size: 1rem;
-	}
+  .ErrorMessage {
+    color: red;
+    text-transform: capitalize;
+    font-size: 1rem;
+  }
 }
 
 @media (min-width: 1090px) {
-	.LoginSection {
-		height: 100vh;
-		display: grid;
-		grid-template-columns: 500px 1fr;
-		gap: 1rem;
-		background: rgb(2, 0, 36);
-		background: linear-gradient(
-			180deg,
-			rgba(2, 0, 36, 1) 7%,
-			rgba(234, 244, 2, 1) 62%,
-			rgba(241, 255, 0, 1) 100%
-		);
-	}
+  .LoginSection {
+    height: 100vh;
+    display: grid;
+    grid-template-columns: 500px 1fr;
+    gap: 1rem;
+    background: rgb(2, 0, 36);
+    background: linear-gradient(
+      180deg,
+      rgba(2, 0, 36, 1) 7%,
+      rgba(234, 244, 2, 1) 62%,
+      rgba(241, 255, 0, 1) 100%
+    );
+  }
 
-	.HeroImage {
-		height: 100vh;
-	}
+  .HeroImage {
+    height: 100vh;
+  }
 
-	.FormHolder {
-		background-color: #fff;
-		height: 100vh;
-		overflow: unset;
-	}
+  .FormHolder {
+    background-color: #fff;
+    height: 100vh;
+    overflow: unset;
+  }
 
-	.LogoHolder {
-		position: absolute;
-		top: 5%;
-		left: 73%;
-		background-color: #fff;
-		border-radius: 50px;
-	}
+  .LogoHolder {
+    position: absolute;
+    top: 5%;
+    left: 73%;
+    background-color: #fff;
+    border-radius: 50px;
+  }
 }
 
 @media (min-width: 1100px) {
-	.LogoHolder {
-		top: 5%;
-		left: 68%;
-	}
+  .LogoHolder {
+    top: 5%;
+    left: 68%;
+  }
 
-	.Auth {
-		margin: 5rem auto;
-	}
+  .Auth {
+    margin: 5rem auto;
+  }
 }
 
 @media (min-width: 1300px) {
-	.Auth {
-		margin: 16rem auto;
-	}
+  .Auth {
+    margin: 10rem auto;
+  }
 
-	.LogoHolder {
-		margin-top: 10rem;
-		top: 3%;
-		left: 74%;
-	}
+  .LogoHolder {
+    margin-top: 5rem;
+    top: 3%;
+    left: 74%;
+  }
 
-	.LoginSection {
-		height: 100vh;
-		display: grid;
-		grid-template-columns: 1fr 1fr;
-		gap: 1rem;
-	}
+  .LoginSection {
+    height: 100vh;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+  }
 }

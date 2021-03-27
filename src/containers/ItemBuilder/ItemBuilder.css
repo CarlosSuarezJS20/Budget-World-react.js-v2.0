@@ -1,88 +1,88 @@
 .FormHolder {
-	height: 100vh;
-	width: 100vw;
-	background: rgb(245, 172, 13);
-	background: linear-gradient(
-		144deg,
-		rgba(245, 172, 13, 1) 0%,
-		rgba(9, 119, 108, 0.9752275910364145) 51%,
-		rgba(240, 252, 20, 1) 100%
-	);
+  height: 100vh;
+  width: 100vw;
+  background: rgb(245, 172, 13);
+  background: linear-gradient(
+    144deg,
+    rgba(245, 172, 13, 1) 0%,
+    rgba(9, 119, 108, 0.9752275910364145) 51%,
+    rgba(240, 252, 20, 1) 100%
+  );
 }
 
 .ItemBuilder {
-	position: relative;
-	margin: 3.5rem 0 auto auto;
-	background: #ffffff2a;
-	text-align: center;
-	border-top: 1.5px solid #ffff;
-	border-top-left-radius: 50px;
-	border-top-right-radius: 50px;
-	padding: 35px;
-	overflow: unset;
-	box-sizing: border-box;
-	height: 85%;
+  position: relative;
+  margin: 3.5rem 0 auto auto;
+  background: #ffffff2a;
+  text-align: center;
+  border-top: 1.5px solid #ffff;
+  border-top-left-radius: 50px;
+  border-top-right-radius: 50px;
+  padding: 35px;
+  overflow: unset;
+  box-sizing: border-box;
+  height: 85%;
 }
 
 .ThankyouMessage {
-	color: #fff;
-	font-size: 1rem;
-	margin-top: 2rem;
-	text-transform: capitalize;
+  color: #fff;
+  font-size: 1rem;
+  margin-top: 2rem;
+  text-transform: capitalize;
 }
 
 .ItemBuilder a {
-	position: absolute;
-	color: rgb(49, 49, 49);
-	font-weight: bold;
-	left: 90%;
-	top: 2%;
-	border: 1px solid rgb(82, 82, 82);
-	border-radius: 5px;
-	padding: 5px;
+  position: absolute;
+  color: rgb(49, 49, 49);
+  font-weight: bold;
+  left: 90%;
+  top: 2%;
+  border: 1px solid rgb(82, 82, 82);
+  border-radius: 5px;
+  padding: 5px;
 }
 
 .ItemBuilder a:hover {
-	position: absolute;
-	font-weight: bold;
-	color: rgb(207, 211, 1);
-	border: 1px solid rgb(82, 82, 82);
-	border-radius: 5px;
-	padding: 5px;
+  position: absolute;
+  font-weight: bold;
+  color: rgb(207, 211, 1);
+  border: 1px solid rgb(82, 82, 82);
+  border-radius: 5px;
+  padding: 5px;
 }
 
 .FormTitle {
-	font-weight: bold;
-	margin-bottom: 1rem;
-	font-size: 1.5rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+  font-size: 1.5rem;
 }
 
 @media (min-width: 765px) {
-	.ItemBuilder {
-		margin-top: 5.5rem;
-	}
+  .ItemBuilder {
+    margin-top: 3.5rem;
+  }
 
-	.ItemBuilder a {
-		left: 93%;
-	}
+  .ItemBuilder a {
+    left: 93%;
+  }
 }
 
 @media (min-width: 1020px) {
-	.ItemBuilder {
-		margin: 2rem auto;
-		width: 700px;
-		padding: 2rem 10rem;
-		border-radius: 50px;
-		height: 500px;
-	}
+  .ItemBuilder {
+    margin: 2rem auto;
+    width: 700px;
+    padding: 2rem 10rem;
+    border-radius: 50px;
+    height: 500px;
+  }
 }
 
 @media (min-width: 1300px) {
-	.ItemBuilder {
-		margin: 2rem auto;
-		width: 800px;
-		padding: 4rem 6rem;
-		border-radius: 50px;
-		height: 650px;
-	}
+  .ItemBuilder {
+    margin: 2rem auto;
+    width: 800px;
+    padding: 4rem 6rem;
+    border-radius: 50px;
+    height: 650px;
+  }
 }

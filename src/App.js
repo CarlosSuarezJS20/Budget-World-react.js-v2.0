@@ -90,7 +90,7 @@ class App extends Component {
               </div>
             )}
           />
-          <Route path="/update" component={ItemUpdate} />
+          <Route path="/:previous/update" component={ItemUpdate} />
           <Route path="/:previous/add-new" component={ItemBuilder} />
           <Route path="/logout" component={Logout} />
           <Route path="/sign-up" component={RegistrationPage} />

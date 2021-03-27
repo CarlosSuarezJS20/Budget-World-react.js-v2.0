@@ -1,25 +1,25 @@
 .Backdrop {
-	width: 100%;
-	height: 100vh;
-	position: fixed;
-	z-index: 100;
-	top: 0;
-	left: 0;
-	background-color: rgba(0, 0, 0, 0.6);
+  width: 100%;
+  height: 100vh;
+  position: fixed;
+  z-index: 1004;
+  top: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.6);
 }
 
 .BackdropForToolTip {
-	width: 100%;
-	height: 100vh;
-	position: fixed;
-	z-index: 100;
-	top: 0;
-	left: 0;
-	background-color: rgba(0, 0, 0, 0.6);
+  width: 100%;
+  height: 100vh;
+  position: fixed;
+  z-index: 1000;
+  top: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.6);
 }
 
 @media (min-width: 768px) {
-	.BackdropForToolTip {
-		background-color: transparent;
-	}
+  .BackdropForToolTip {
+    background-color: transparent;
+  }
 }

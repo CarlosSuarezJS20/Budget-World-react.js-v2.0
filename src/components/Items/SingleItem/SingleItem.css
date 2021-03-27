@@ -1,46 +1,85 @@
 .Card {
-	display: grid;
-	position: relative;
-	grid-template-columns: 1fr;
-	grid-template-rows: 184px 1fr auto;
-	width: 175px;
-	border-radius: 15px;
-	margin-top: 1rem;
-	margin-bottom: 1rem;
-	margin-left: auto;
-	margin-right: auto;
-	box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+  display: grid;
+  position: relative;
+  grid-template-columns: 1fr;
+  grid-template-rows: 184px 1fr auto;
+  width: 175px;
+  border-radius: 15px;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  margin-left: auto;
+  margin-right: auto;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+.OverLayer {
+  position: absolute;
+  background: black;
+  height: 100%;
+  width: 100%;
+  z-index: 800;
+  opacity: 0;
+}
+
+.Card:hover > .OverLayer {
+  opacity: 0.3;
 }
 
 .ToggleOptionsSection {
-	position: absolute;
-	z-index: 50;
-	display: flex;
-	justify-content: flex-end;
-	width: 100%;
-	padding: 0.4rem;
-	cursor: pointer;
+  position: absolute;
+  z-index: 50;
+  display: flex;
+  justify-content: flex-end;
+  width: 100%;
+  padding: 0.4rem;
+  cursor: pointer;
+  z-index: 900;
+}
+
+.SmileApprovedIcon {
+  position: absolute;
+  display: flex;
+  background: #fff;
+  top: 4%;
+  left: -1%;
+  padding: 0.2rem;
+  border-radius: 5px;
+  z-index: 500;
+}
+
+.ApprovedIcon {
+  color: rgb(126, 126, 126);
+  font-size: 1rem;
+  margin-left: 0.3rem;
+}
+
+.SmileApprovedIcon p {
+  color: rgb(126, 126, 126);
+  font-weight: bold;
+  font-size: 0.6rem;
+  margin-left: 0.3rem;
+  text-transform: capitalize;
 }
 
 .ToggleOptionsHolder {
-	background: rgba(0, 0, 0, 0.466);
-	padding: 10px 15px;
-	border-radius: 50px;
+  background: rgba(0, 0, 0, 0.466);
+  padding: 10px 15px;
+  border-radius: 50px;
 }
 
 .ToggleOptionsHolder:hover {
-	background: rgba(0, 0, 0, 0.7);
+  background: rgba(0, 0, 0, 0.7);
 }
 
 .ToggleSign {
-	color: #fff;
-	font-size: 1rem;
-	text-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-	cursor: pointer;
+  color: #fff;
+  font-size: 1rem;
+  text-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+  cursor: pointer;
 }
 
 @media (min-width: 413px) {
-	.Card {
-		width: 235px;
-	}
+  .Card {
+    width: 235px;
+  }
 }

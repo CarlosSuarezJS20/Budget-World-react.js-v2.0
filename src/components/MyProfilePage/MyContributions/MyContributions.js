@@ -24,7 +24,6 @@ export class MyContributions extends Component {
   };
 
   componentDidMount() {
-    console.log(this.props);
     this.props.onFetchingUserContributions(this.props.userId);
   }
 
