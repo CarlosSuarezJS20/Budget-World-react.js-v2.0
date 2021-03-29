@@ -48,7 +48,7 @@ const UsersOptions = (props) => {
             </li>
             <li>
               <NavLink
-                to="new-trip"
+                to={{ pathname: `${props.match.url}/new-trip` }}
                 onClick={optionsClickHandler}
                 className={classes.Link}
               >

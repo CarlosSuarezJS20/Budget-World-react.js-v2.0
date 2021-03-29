@@ -186,7 +186,7 @@ class ItemBuilder extends Component {
             country: itemData.country.toUpperCase().trim(),
             city: itemData.city.toUpperCase().trim(),
             userId: this.props.userId,
-            approved: [],
+            start: 0,
           };
 
           axios

@@ -27,38 +27,12 @@
 
 .ToggleOptionsSection {
   position: absolute;
-  z-index: 50;
   display: flex;
   justify-content: flex-end;
   width: 100%;
   padding: 0.4rem;
   cursor: pointer;
   z-index: 900;
-}
-
-.SmileApprovedIcon {
-  position: absolute;
-  display: flex;
-  background: #fff;
-  top: 4%;
-  left: -1%;
-  padding: 0.2rem;
-  border-radius: 5px;
-  z-index: 500;
-}
-
-.ApprovedIcon {
-  color: rgb(126, 126, 126);
-  font-size: 1rem;
-  margin-left: 0.3rem;
-}
-
-.SmileApprovedIcon p {
-  color: rgb(126, 126, 126);
-  font-weight: bold;
-  font-size: 0.6rem;
-  margin-left: 0.3rem;
-  text-transform: capitalize;
 }
 
 .ToggleOptionsHolder {
@@ -76,6 +50,50 @@
   font-size: 1rem;
   text-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
   cursor: pointer;
+}
+
+.RatingHolder {
+  position: absolute;
+  padding: 0.3rem;
+  top: 36%;
+  left: 2%;
+  z-index: 600;
+  background: black;
+  border-radius: 5px;
+  border-radius: 5px;
+
+  text-align: center;
+}
+
+.RatingHolder h3 {
+  color: #ffff;
+  font-size: 0.5rem;
+  font-weight: bold;
+  text-transform: capitalize;
+}
+
+.RatingStar {
+  font-size: 0.7rem;
+  color: #ffff;
+}
+
+.EmptyRatingStar {
+  font-size: 0.7rem;
+  color: #f5f5f552;
+}
+
+.RateAgainOption {
+  position: absolute;
+  text-transform: capitalize;
+  color: #ffff;
+  padding: 0.5rem;
+  z-index: 901;
+  cursor: pointer;
+}
+
+.RateAgainOption:hover {
+  font-weight: bolder;
+  text-decoration: underline;
 }
 
 @media (min-width: 413px) {

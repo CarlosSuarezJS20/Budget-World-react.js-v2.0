@@ -1,0 +1,15 @@
+.StarRatingHolder {
+  position: absolute;
+  top: 3%;
+  left: 4%;
+  z-index: 980;
+}
+
+input {
+  display: none;
+}
+
+.Star {
+  cursor: pointer;
+  transition: color 200ms;
+}

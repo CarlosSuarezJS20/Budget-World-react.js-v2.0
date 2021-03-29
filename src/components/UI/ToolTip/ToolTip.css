@@ -61,46 +61,6 @@
   font-weight: bold;
 }
 
-.ApproveBtn {
-  display: block;
-  margin: 0.4rem;
-  text-transform: capitalize;
-  color: black;
-  padding: 0.3rem;
-  text-align: center;
-}
-
-.ApproveSection:hover {
-  background: rgb(219, 219, 219);
-  border-radius: 10px;
-}
-
-.ApproveOptionsHolder {
-  display: none;
-  padding: 1rem;
-}
-
-.ApproveSection:hover > .ApproveBtn {
-  font-weight: bold;
-}
-
-.ApproveSection:hover > .ApproveOptionsHolder {
-  display: flex;
-}
-
-.ApproveOptionBtn {
-  border: none;
-  background: transparent;
-  font-size: 1rem;
-  margin: 0 0.5rem;
-  text-transform: capitalize;
-}
-
-.ApproveOptionBtn:hover {
-  font-weight: bold;
-  text-decoration: underline;
-}
-
 @media (min-width: 768px) {
   .TooltipBtn {
     display: block;
@@ -112,10 +72,6 @@
     border: none;
     cursor: pointer;
     transition: all 0.3s ease-out;
-  }
-
-  .ApproveBtn {
-    text-align: left;
   }
 
   .Open {

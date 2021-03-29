@@ -63,7 +63,7 @@ class Tooltip extends Component {
       style = {
         top: hostElPositionTop,
         left: hostElPositionLeft,
-        height: "280px",
+        height: "200px",
         width: "230px",
       };
     }
@@ -102,20 +102,6 @@ class Tooltip extends Component {
             >
               delete
             </a>
-          </div>
-          <div className={classes.ApproveSection}>
-            <a
-              className={classes.ApproveBtn}
-              onClick={() => {
-                this.approvedBtnHandler(this.props.tooltipElId);
-              }}
-            >
-              approve?
-            </a>
-            <div className={classes.ApproveOptionsHolder}>
-              <button className={classes.ApproveOptionBtn}>yes</button>
-              <button className={classes.ApproveOptionBtn}>No</button>
-            </div>
           </div>
         </div>
       </React.Fragment>
