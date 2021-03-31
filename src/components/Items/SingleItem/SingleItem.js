@@ -15,11 +15,13 @@ import axios from "../../../axios";
 class SingleItem extends Component {
   state = {
     stars: 0,
-    users: null,
-    userRated: false,
+    currentUserRating: 0,
+    usersRatings: [],
+    ratingAgain: false,
   };
 
   componentDidMount() {
+    //Fetching the rating object for individual card from server
     axios
       .get(`/items-ratings.json?orderBy="cardId"&equalTo="${this.props.id}"`)
       .then((res) => {
@@ -27,51 +29,79 @@ class SingleItem extends Component {
         for (let item in res.data) {
           itemRating.push({ ...res.data[item], id: item });
         }
-
-        let ratingAverage;
-        let userRatingOwnersId;
-
-        if (itemRating.length > 0) {
-          ratingAverage =
-            itemRating
-              .map((rating) => rating.cardRating)
-              .reduce((p, c) => p + c) / itemRating.length;
-
-          userRatingOwnersId = itemRating.map((rating) => rating.userId);
-
-          if (userRatingOwnersId.includes(this.props.storedUserId)) {
-            this.setState({ userRated: true });
-          }
-        }
-
-        this.setState({
-          stars: itemRating.length > 0 ? Math.round(ratingAverage) : 0,
-          users: userRatingOwnersId,
-        });
+        this.setState({ usersRatings: itemRating });
       })
       .catch((error) => {
         console.log(error);
       });
   }
 
-  render() {
-    let rating = <StartRating cardId={this.props.id} />;
+  newRatingHandler = (cardRatingItem) => {
+    const currentUsersRating = this.state.usersRatings;
+    currentUsersRating.push(cardRatingItem);
+    this.setState({
+      currentUserRating: cardRatingItem.cardRating,
+      usersRatings: currentUsersRating,
+    });
+  };
 
-    if (this.state.userRated) {
-      rating = <p className={classes.RateAgainOption}>rate again</p>;
+  ratingAgainHandler = () => {
+    this.setState((prev) => ({ ratingAgain: !prev.ratingAgain }));
+    console.log("rating again");
+  };
+
+  render() {
+    console.log(this.props.isAuthenticated && this.state.ratingAgain);
+
+    let rating = (
+      <StartRating
+        cardId={this.props.id}
+        newRating={this.newRatingHandler}
+        isUserRatingAgain={this.state.ratingAgain}
+        isUserRatingAgainHandler={this.ratingAgainHandler}
+      />
+    );
+
+    if (
+      (this.state.usersRatings
+        .map((rating) => rating.userId)
+        .includes(this.props.storedUserId) ||
+        this.state.currentUserRating > 0) &&
+      !this.state.ratingAgain
+    ) {
+      rating = (
+        <p
+          className={classes.RateAgainOption}
+          onClick={this.ratingAgainHandler}
+        >
+          rate again
+        </p>
+      );
+    }
+
+    let stars = 0;
+
+    if (this.state.usersRatings.length > 0) {
+      stars =
+        this.state.usersRatings
+          .map((rating) => rating.cardRating)
+          .reduce((p, c) => p + c) / this.state.usersRatings.length;
     }
 
     return (
       <article className={classes.Card} id={this.props.id}>
         <div className={classes.OverLayer}></div>
-        {this.props.isAuthenticated && rating}
-
-        {this.state.stars > 0 && (
+        {this.props.isAuthenticated
+          ? rating
+          : this.props.isAuthenticated && this.state.ratingAgain
+          ? rating
+          : null}
+        {stars > 0 && (
           <div className={classes.RatingHolder}>
-            <h3>{`Rated by ${
-              this.state.users && this.state.users.length
-            } travellers`}</h3>
-            {[...Array(this.state.stars)].map((star, i) => {
+            <h3>{`Rated by ${this.state.usersRatings.length} traveller${
+              this.state.usersRatings.length === 1 ? "" : "s"
+            }`}</h3>
+            {[...Array(Math.round(stars))].map((star, i) => {
               return (
                 <FontAwesomeIcon
                   key={i}
@@ -80,7 +110,7 @@ class SingleItem extends Component {
                 />
               );
             })}
-            {[...Array(5 - this.state.stars)].map((star, i) => {
+            {[...Array(5 - Math.round(stars))].map((star, i) => {
               return (
                 <FontAwesomeIcon
                   key={i}

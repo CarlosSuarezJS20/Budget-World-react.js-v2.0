@@ -13,17 +13,22 @@ class StartRating extends Component {
   };
 
   ratingHandler = (ratingValue) => {
+    if (this.props.isUserRatingAgain) {
+      console.log("rating again!");
+    }
     this.setState({ rating: ratingValue, sendingRating: true });
-    const cardRating = {
+    const cardRatingItem = {
       cardRating: ratingValue,
       userId: this.props.userId,
       cardId: this.props.cardId,
     };
 
     axios
-      .post("/items-ratings.json?auth=" + this.props.token, cardRating)
+      .post("/items-ratings.json?auth=" + this.props.token, cardRatingItem)
       .then((res) => {
         this.setState({ sendingRating: false });
+        // catches the current rating for UI
+        this.props.newRating(cardRatingItem);
       })
       .catch((error) => {
         this.setState({ sendingRating: false });
@@ -73,6 +78,9 @@ class StartRating extends Component {
             </label>
           );
         })}
+        {this.props.isUserRatingAgain && (
+          <p onClick={this.props.isUserRatingAgainHandler}>back</p>
+        )}
       </div>
     );
   }

@@ -5,6 +5,18 @@
   z-index: 980;
 }
 
+.StarRatingHolder p {
+  color: #ffff;
+  text-transform: capitalize;
+  text-align: right;
+  cursor: pointer;
+}
+
+.StarRatingHolder p:hover {
+  font-weight: bold;
+  text-decoration: underline;
+}
+
 input {
   display: none;
 }
