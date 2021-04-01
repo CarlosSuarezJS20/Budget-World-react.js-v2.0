@@ -19,46 +19,77 @@ class SingleItem extends Component {
     usersRatings: [],
     ratingAgain: false,
   };
+  componentDidUpdate(prevProps, prevState) {
+    if (prevState.ratingAgain !== this.state.ratingAgain) {
+      axios
+        .get(`/items-ratings.json?orderBy="cardId"&equalTo="${this.props.id}"`)
+        .then((res) => {
+          let itemRatings = [];
+          for (let item in res.data) {
+            itemRatings.push({ ...res.data[item], id: item });
+          }
+          this.setState({ usersRatings: itemRatings });
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    }
+  }
 
   componentDidMount() {
     //Fetching the rating object for individual card from server
     axios
       .get(`/items-ratings.json?orderBy="cardId"&equalTo="${this.props.id}"`)
       .then((res) => {
-        let itemRating = [];
+        let itemRatings = [];
         for (let item in res.data) {
-          itemRating.push({ ...res.data[item], id: item });
+          itemRatings.push({ ...res.data[item], id: item });
         }
-        this.setState({ usersRatings: itemRating });
+        this.setState({ usersRatings: itemRatings });
       })
       .catch((error) => {
         console.log(error);
       });
   }
 
-  newRatingHandler = (cardRatingItem) => {
-    const currentUsersRating = this.state.usersRatings;
-    currentUsersRating.push(cardRatingItem);
-    this.setState({
-      currentUserRating: cardRatingItem.cardRating,
-      usersRatings: currentUsersRating,
-    });
+  uiRatingHandler = (cardRatingItem) => {
+    if (this.state.ratingAgain) {
+      const { cardId } = this.state.currentRatingCardToUpdate;
+      const userRatingToUpdateIndex = this.state.usersRatings.findIndex(
+        (userRating) => userRating.cardId === cardId
+      );
+      const copyOfUsersRating = this.state.usersRatings;
+      copyOfUsersRating.splice(userRatingToUpdateIndex, 1);
+      copyOfUsersRating.push(cardRatingItem);
+      this.setState({ usersRatings: copyOfUsersRating });
+    } else {
+      const currentUsersRating = this.state.usersRatings;
+      currentUsersRating.push(cardRatingItem);
+      this.setState({
+        currentUserRating: cardRatingItem.cardRating,
+        usersRatings: currentUsersRating,
+      });
+    }
   };
 
-  ratingAgainHandler = () => {
-    this.setState((prev) => ({ ratingAgain: !prev.ratingAgain }));
-    console.log("rating again");
+  updateRatingHandler = () => {
+    const ratingToUpdate = this.state.usersRatings.find((rating) => {
+      return rating.cardId === this.props.id;
+    });
+    this.setState((prev) => ({
+      ratingAgain: !prev.ratingAgain,
+      currentRatingCardToUpdate: ratingToUpdate,
+    }));
   };
 
   render() {
-    console.log(this.props.isAuthenticated && this.state.ratingAgain);
-
     let rating = (
       <StartRating
         cardId={this.props.id}
-        newRating={this.newRatingHandler}
+        uiNewRating={this.uiRatingHandler}
         isUserRatingAgain={this.state.ratingAgain}
-        isUserRatingAgainHandler={this.ratingAgainHandler}
+        isUserRatingAgainHandler={this.updateRatingHandler}
+        ratingCardsFromServer={this.state.usersRatings}
       />
     );
 
@@ -72,7 +103,7 @@ class SingleItem extends Component {
       rating = (
         <p
           className={classes.RateAgainOption}
-          onClick={this.ratingAgainHandler}
+          onClick={this.updateRatingHandler}
         >
           rate again
         </p>

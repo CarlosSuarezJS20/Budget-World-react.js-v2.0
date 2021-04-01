@@ -12,10 +12,7 @@ class StartRating extends Component {
     sendingRating: false,
   };
 
-  ratingHandler = (ratingValue) => {
-    if (this.props.isUserRatingAgain) {
-      console.log("rating again!");
-    }
+  newRatingHandler = (ratingValue) => {
     this.setState({ rating: ratingValue, sendingRating: true });
     const cardRatingItem = {
       cardRating: ratingValue,
@@ -28,10 +25,37 @@ class StartRating extends Component {
       .then((res) => {
         this.setState({ sendingRating: false });
         // catches the current rating for UI
-        this.props.newRating(cardRatingItem);
+        this.props.uiNewRating(cardRatingItem);
       })
       .catch((error) => {
         this.setState({ sendingRating: false });
+        console.log(error);
+      });
+  };
+
+  updateRatingHandler = (newRatingValue) => {
+    this.setState({ rating: newRatingValue, sendingRating: true });
+    const newRatingItem = {
+      cardRating: newRatingValue,
+      userId: this.props.userId,
+      cardId: this.props.cardId,
+    };
+
+    const { id } = this.props.ratingCardsFromServer.find(
+      (card) => card.cardId === this.props.cardId
+    );
+    axios
+      .put(`/items-ratings/${id}.json?auth=${this.props.token}`, newRatingItem)
+      .then((res) => {
+        this.setState({ sendingRating: false });
+        //This id is needed when updating the UI
+        this.props.uiNewRating(newRatingItem);
+        this.props.isUserRatingAgainHandler();
+      })
+      .catch((error) => {
+        this.props.isUserRatingAgainHandler();
+        this.setState({ sendingRating: false });
+        console.log(error);
       });
   };
 
@@ -56,7 +80,13 @@ class StartRating extends Component {
                 name="rating"
                 value={ratingValue}
                 onClick={() => {
-                  this.ratingHandler(ratingValue);
+                  if (this.state.sendingRating) {
+                    return;
+                  } else if (this.props.isUserRatingAgain) {
+                    this.updateRatingHandler(ratingValue);
+                  } else {
+                    this.newRatingHandler(ratingValue);
+                  }
                 }}
               />
               <FontAwesomeIcon
