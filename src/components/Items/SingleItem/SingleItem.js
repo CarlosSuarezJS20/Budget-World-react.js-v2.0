@@ -19,6 +19,7 @@ class SingleItem extends Component {
     usersRatings: [],
     ratingAgain: false,
   };
+  
   componentDidUpdate(prevProps, prevState) {
     if (prevState.ratingAgain !== this.state.ratingAgain) {
       axios

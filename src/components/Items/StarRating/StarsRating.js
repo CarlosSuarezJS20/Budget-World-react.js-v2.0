@@ -5,6 +5,8 @@ import { faStar } from "@fortawesome/free-solid-svg-icons";
 import axios from "../../../axios";
 import { connect } from "react-redux";
 
+// Add border to stars
+
 class StartRating extends Component {
   state = {
     rating: null,

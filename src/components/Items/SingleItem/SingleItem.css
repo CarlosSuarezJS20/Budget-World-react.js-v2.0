@@ -55,7 +55,7 @@
 .RatingHolder {
   position: absolute;
   padding: 0.3rem;
-  top: 36%;
+  top: 140px;
   left: 2%;
   z-index: 600;
   background: black;
@@ -98,5 +98,9 @@
 @media (min-width: 413px) {
   .Card {
     width: 235px;
+  }
+
+  .RatingHolder {
+    top: 139px;
   }
 }

@@ -9,6 +9,8 @@ import * as actions from "../../../store/actions/index";
 import { NavLink } from "react-router-dom";
 import { connect } from "react-redux";
 
+import TagManager from "react-gtm-module";
+
 class Registration extends Component {
   state = {
     controlsAuth: {
@@ -61,6 +63,16 @@ class Registration extends Component {
   };
 
   componentDidMount() {
+    const tagManagerArgs = {
+      dataLayer: {
+        userInSignup: "userInSignup",
+      },
+    };
+
+    // tag manager datalayer
+    TagManager.dataLayer(tagManagerArgs);
+    // passing a custome parameter to the datalayer
+
     //Toggles the status of to create so http request for registration is active
     this.props.onCreatingAccountStatusToggler();
   }
