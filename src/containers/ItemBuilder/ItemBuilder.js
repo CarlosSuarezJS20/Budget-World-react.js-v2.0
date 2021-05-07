@@ -7,6 +7,8 @@ import * as actions from "../../store/actions/index";
 import { Redirect } from "react-router-dom";
 import FormsHeader from "../../components/UI/FormsHeader/FormsHeader";
 
+// test commit
+
 // Firebase
 import firebase from "../../firebase";
 
