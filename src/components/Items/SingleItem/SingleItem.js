@@ -4,6 +4,8 @@ import ImageHolder from "./ImageHolder/ImageHolder";
 import ItemInfo from "./ItemInfo/ItemInfo";
 import ItemFooter from "./ItemFooter/ItemFooter";
 
+import { NavLink, withRouter } from "react-router-dom";
+
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEllipsisV, faStar } from "@fortawesome/free-solid-svg-icons";
 
@@ -19,7 +21,7 @@ class SingleItem extends Component {
     usersRatings: [],
     ratingAgain: false,
   };
-  
+
   componentDidUpdate(prevProps, prevState) {
     if (prevState.ratingAgain !== this.state.ratingAgain) {
       axios
@@ -104,7 +106,10 @@ class SingleItem extends Component {
       rating = (
         <p
           className={classes.RateAgainOption}
-          onClick={this.updateRatingHandler}
+          onClick={(e) => {
+            e.preventDefault();
+            this.updateRatingHandler();
+          }}
         >
           rate again
         </p>
@@ -121,7 +126,23 @@ class SingleItem extends Component {
     }
 
     return (
-      <article className={classes.Card} id={this.props.id}>
+      <NavLink
+        to={{
+          pathname: `${this.props.match.path}/${this.props.title}`,
+          state: {
+            id: this.props.id,
+            image: this.props.image,
+            title: this.props.title,
+            city: this.props.city,
+            country: this.props.country,
+            price: this.props.price,
+            description: this.props.description,
+            itemCategory: this.props.category,
+          },
+        }}
+        className={classes.Card}
+        id={this.props.id}
+      >
         <div className={classes.OverLayer}></div>
         {this.props.isAuthenticated
           ? rating
@@ -158,7 +179,8 @@ class SingleItem extends Component {
           <div className={classes.ToggleOptionsSection}>
             <div
               className={classes.ToggleOptionsHolder}
-              onClick={() => {
+              onClick={(e) => {
+                e.preventDefault();
                 this.props.onOpenTooltip();
                 this.props.onElementIdForToolTip(this.props.id);
               }}
@@ -183,7 +205,7 @@ class SingleItem extends Component {
           itemCountry={this.props.country}
           itemUserId={this.props.userId}
         />
-      </article>
+      </NavLink>
     );
   }
 }
@@ -202,4 +224,7 @@ const mapDispatchToProps = (dispatch) => {
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(SingleItem);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(withRouter(SingleItem));

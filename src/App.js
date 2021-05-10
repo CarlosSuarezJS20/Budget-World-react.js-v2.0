@@ -16,6 +16,7 @@ import { Route, Switch } from "react-router-dom";
 import Auth from "./containers/Auth/Auth";
 import Logout from "./containers/Auth/Logout/Logout";
 import ScrollRestoration from "react-scroll-restoration";
+import ItemCloseUpView from "./components/ItemCloseUpView/ItemCloseUpView";
 
 class App extends Component {
   render() {
@@ -96,6 +97,7 @@ class App extends Component {
           <Route path="/sign-up" component={RegistrationPage} />
           <Route path="/login" component={Auth} />
           <Route path="/my-profile" component={MyProfile} />
+          <Route path="/:previous/:itemName" component={ItemCloseUpView} />
           <Route path="/discover" component={Itemsholder} />
         </Switch>
       </React.Fragment>

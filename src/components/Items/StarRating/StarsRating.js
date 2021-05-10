@@ -111,7 +111,13 @@ class StartRating extends Component {
           );
         })}
         {this.props.isUserRatingAgain && (
-          <p onClick={this.props.isUserRatingAgainHandler}>back</p>
+          <p
+            onClick={() => {
+              this.props.isUserRatingAgainHandler;
+            }}
+          >
+            back
+          </p>
         )}
       </div>
     );

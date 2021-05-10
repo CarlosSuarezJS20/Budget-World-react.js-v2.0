@@ -32,9 +32,8 @@ class Tooltip extends Component {
     this.props.onClosingTooltip();
   };
 
-  approvedBtnHandler = (id) => {};
-
   render() {
+    console.log(this.props.tooltipElId);
     // Conditions the initial class depending on the screen size. This helps to swich styling depending on screen size
     let initialClass = [
       window.innerWidth >= 768
