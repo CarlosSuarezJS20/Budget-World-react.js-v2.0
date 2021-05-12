@@ -76,6 +76,7 @@
 
   .Open {
     display: block;
+    z-index: 999;
   }
 
   .TitleHolder {

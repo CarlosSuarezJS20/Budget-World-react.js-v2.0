@@ -144,6 +144,7 @@ class SingleItem extends Component {
         id={this.props.id}
       >
         <div className={classes.OverLayer}></div>
+        {/* Rating */}
         {this.props.isAuthenticated
           ? rating
           : this.props.isAuthenticated && this.state.ratingAgain
@@ -174,7 +175,7 @@ class SingleItem extends Component {
             })}
           </div>
         )}
-
+        {/* Menu drop down for item */}
         {this.props.storedUserId === this.props.userId && (
           <div className={classes.ToggleOptionsSection}>
             <div

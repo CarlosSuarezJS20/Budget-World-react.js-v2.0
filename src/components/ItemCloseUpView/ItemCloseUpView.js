@@ -5,7 +5,7 @@ import { connect } from "react-redux";
 import * as actions from "../../store/actions/index";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faEllipsisV } from "@fortawesome/free-solid-svg-icons";
+import { faChevronLeft, faEllipsisV } from "@fortawesome/free-solid-svg-icons";
 import axios from "../../axios";
 import Loader from "../UI/Loader/Loader";
 import Items from "../../components/Items/Items";
@@ -47,24 +47,37 @@ class ItemCloseUpView extends Component {
     return (
       <section className={classes.CloseUpSection}>
         <Loader />
-        <ToolTip />
+        <ToolTip itemCloseUp />
+
         <div
           className={classes.ItemContainer}
           id={this.props.location.state.id}
         >
           <div className={classes.OptionsMenuContainer}>
             <FontAwesomeIcon
-              icon={faEllipsisV}
-              className={classes.EllipsisClass}
+              icon={faChevronLeft}
+              className={classes.BackToDiscoveryArrow}
+              onClick={() => {
+                this.props.history.goBack();
+              }}
+            />
+            <div
+              className={classes.MenuWrapper}
               onClick={() => {
                 this.props.onOpenTooltip();
                 this.props.onElementIdForToolTip(this.props.location.state.id);
               }}
-            />
+            >
+              <FontAwesomeIcon
+                icon={faEllipsisV}
+                className={classes.EllipsisClass}
+              />
+            </div>
           </div>
           <img
             src={this.props.location.state.image}
             className={classes.ItemImage}
+            alt="item-"
           />
           <div style={{ height: "300px" }}></div>
         </div>

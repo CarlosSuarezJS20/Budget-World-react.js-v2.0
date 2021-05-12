@@ -71,7 +71,12 @@ class StartRating extends Component {
 
   render() {
     return (
-      <div className={classes.StarRatingHolder}>
+      <div
+        className={classes.StarRatingHolder}
+        onClick={(e) => {
+          e.stopPropagation();
+        }}
+      >
         {[...Array(5)].map((star, i) => {
           const ratingValue = i + 1;
 
@@ -112,8 +117,9 @@ class StartRating extends Component {
         })}
         {this.props.isUserRatingAgain && (
           <p
-            onClick={() => {
-              this.props.isUserRatingAgainHandler;
+            onClick={(e) => {
+              e.preventDefault();
+              this.props.isUserRatingAgainHandler(e);
             }}
           >
             back

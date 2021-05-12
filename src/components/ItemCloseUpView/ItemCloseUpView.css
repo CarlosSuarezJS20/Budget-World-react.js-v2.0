@@ -18,17 +18,45 @@
   height: 100%;
 }
 
+.BackToDiscoveryArrow {
+  margin-top: 0.3rem;
+  font-size: 1.5rem;
+}
+
+.BackToDiscoveryArrow:hover {
+  transform: scale(1.2);
+}
+
 .OptionsMenuContainer {
   position: absolute;
+  display: flex;
+  justify-content: space-between;
   padding: 0 2rem;
   width: 100%;
-  top: 4%;
-  text-align: right;
+  top: 3%;
+}
+
+.OptionsMenuContainer:hover {
+  cursor: pointer;
+}
+
+.MenuWrapper {
+  background: rgba(0, 0, 0, 0.342);
+  text-align: center;
+  height: 42px;
+  width: 42px;
+  border-radius: 90px;
+}
+
+.MenuWrapper:hover {
+  background: black;
 }
 
 .EllipsisClass {
+  margin: 0.5rem auto;
   color: #ffff;
   font-size: 1.5rem;
+  opacity: 1;
 }
 
 .AdditionalItems {
